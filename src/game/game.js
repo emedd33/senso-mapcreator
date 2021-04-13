@@ -3,108 +3,56 @@ const app = new PIXI.Application({
         height: HEIGHT 
     })
 document.body.appendChild(app.view)
+let drawType = "tiles";
 
 const gameMatrix = new Array(MATRIX_WIDTH * MATRIX_HEIGHT).fill(0);
-console.log(MATRIX_WIDTH)
-printGameMatrix(gameMatrix, 0)
-let drawType = "tiles";
 app.renderer.backgroundColor = 0xFAEBD7
-// Scale mode for all textures, will retain pixelation
-PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+
+// Set up layers
+const backgroundGroup = new PIXI.display.Group(-1,  true)
+backgroundGroup.on('sort',((sprite) => {
+    sprite.zOrder = -1;
+}));
+const tileGroup = new PIXI.display.Group(0,  true)
+tileGroup.on('sort',((sprite) => {
+    sprite.zOrder = 0;
+}));
+const objectGroup = new PIXI.display.Group(1, true)
+objectGroup.on("sort",((sprite) => {
+    sprite.zOrder = 1;
+}));
+
+app.stage.sortableChildren = true;
+app.stage.addChild(new PIXI.display.Layer(backgroundGroup));
+app.stage.addChild(new PIXI.display.Layer(tileGroup));
+app.stage.addChild(new PIXI.display.Layer(objectGroup));
+
+const backgroundContainer = new PIXI.Container();
+const tileContainer = new PIXI.Container();
+const objectContainer = new PIXI.Container();
+app.stage.addChild(backgroundContainer)
+app.stage.addChild(tileContainer)
+app.stage.addChild(objectContainer)
+
+// Load textures 
 const loader = new PIXI.Loader(); // you can also create your own if you want
-    const textures = {}
+PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+const textures = {}
 loader.add("dungeonTiles", "assets/textures/dungeon-tile.png")
 loader.add("grid_32_32", "assets/textures/32-32-grid.png")
+loader.add("table_1", "assets/textures/Table-1.png")
 app.stage.scale.x = X_SCALE
 app.stage.scale.y = Y_SCALE
 
-// app.stage.position.x = 128
-// app.stage.position.y = 128
-function onClick(event) {
-    const pos = event.data.getLocalPosition(this.parent)
-    addToGrid(pos, textures)
-}
-function onDragStart(event) {
-    // store a reference to the data
-    // the reason for this is because of multitouch
-    // we want to track the movement of this particular touch
-    this.data = getTilePosition(event.data);
-    this.dragging = true;
-}
-
-function onDragEnd() {
-    this.alpha = 1;
-    this.dragging = false;
-    // set the interaction data to null
-    this.data = null;
-}
-
-
-function onDragMove(event) {
-    if (this.dragging && drawType === "tiles") {
-        const newPosition = getTilePosition(event.data.getLocalPosition(this.parent));
-        if (newPosition.x !== this.data.x || newPosition.y !== this.data.y) {
-            this.alpha = 0.5;
-            this.data = newPosition
-            addToGrid(newPosition, textures)
-
-        }
-    }
-}
-// eslint-disable-next-line
-function onScroll(event) {
-    // no implemented yet
-    // TODO make zooming work
-    let wDelta = event.wheelDelta < 0 ? 'down' : 'up';
-    // Initial scale is set to 1.5, so user can zoom out to 1.05 and zoom in to 1.95 
-    if (wDelta === "down") {
-        if (app.stage.width >= 3800) {
-            app.stage.scale.x -= .05
-            app.stage.scale.y -= .05
-        }
-    } else if (wDelta === "up") {
-        if (app.stage.scale.y <= 1) {
-
-            app.stage.scale.x += .05
-            app.stage.scale.y += .05
-        }
-    }
-
-    event.preventDefault()
-
-}
-function addToGrid(pos, tileTextures) {
-    if (drawType === "tiles") {
-        const tilePos = getTilePosition(pos)
-        const index = getGameMatrixIndex(tilePos.x, tilePos.y)
-        drawTile(app, gameMatrix, textures.center, tilePos.y, tilePos.x, index, CENTER)
-        drawTopLeftTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
-        drawTopTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
-        drawTopRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
-        drawLeftTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
-        drawRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
-        drawBottomLeftTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
-        drawBottomTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
-        drawBottomRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
-    } else if (drawType === "items") {
-        const sprite = new PIXI.Sprite(PIXI.utils.TextureCache.item);
-        // sprite.scale = 0.9
-        sprite.y = pos.y
-        sprite.x = pos.x;
-        sprite.scale.set(0.5)
-        sprite.anchor.set(0.5)
-        app.stage.addChild(sprite)
-    }
-
-}
- loader.load((loader, resources) => {
-
+loader.load((loader, resources) => {
+    // Setup background Container
     const backgroundSprite = new PIXI.Sprite(PIXI.utils.TextureCache.grid_32_32);
     backgroundSprite.anchor.set(0.5);
     backgroundSprite.x = app.screen.width / 2;
     backgroundSprite.y = app.screen.height / 2;
     backgroundSprite.interactive = true;
     backgroundSprite.buttonMode = true;
+    backgroundContainer.addChild(backgroundSprite);
     document.getElementById("change-to-items").addEventListener("click", function () {
             drawType = "items"
         })
@@ -116,6 +64,8 @@ function addToGrid(pos, tileTextures) {
             .on('pointerup', onDragEnd)
             .on('pointerupoutside', onDragEnd)
             .on('pointermove', onDragMove)
+    
+    // Loads Texture
     // Row 1
     textures.bottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
     textures.bottomright.frame = new PIXI.Rectangle(0, 0, 32, 32)
@@ -217,6 +167,86 @@ function addToGrid(pos, tileTextures) {
     textures.topleftBottomright.frame = new PIXI.Rectangle(32 * 3, 32 * 6, 32, 32)
     textures.topleftToprightBottomleftBottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
     textures.topleftToprightBottomleftBottomright.frame = new PIXI.Rectangle(32 * 4, 32 * 6, 32, 32)
-    app.stage.addChild(backgroundSprite);
 
  })
+// Event functions
+
+function onClick(event) {
+    const pos = event.data.getLocalPosition(this.parent)
+    addToGrid(pos, textures)
+}
+function onDragStart(event) {
+    // store a reference to the data
+    // the reason for this is because of multitouch
+    // we want to track the movement of this particular touch
+    this.data = getTilePosition(event.data);
+    this.dragging = true;
+}
+
+function onDragEnd() {
+    this.alpha = 1;
+    this.dragging = false;
+    // set the interaction data to null
+    this.data = null;
+}
+
+
+function onDragMove(event) {
+    if (this.dragging && drawType === "tiles") {
+        const newPosition = getTilePosition(event.data.getLocalPosition(this.parent));
+        if (newPosition.x !== this.data.x || newPosition.y !== this.data.y) {
+            this.alpha = 0.5;
+            this.data = newPosition
+            addToGrid(newPosition, textures)
+
+        }
+    }
+}
+// eslint-disable-next-line
+function onScroll(event) {
+    // no implemented yet
+    // TODO make zooming work
+    let wDelta = event.wheelDelta < 0 ? 'down' : 'up';
+    // Initial scale is set to 1.5, so user can zoom out to 1.05 and zoom in to 1.95 
+    if (wDelta === "down") {
+        if (app.stage.width >= 3800) {
+            app.stage.scale.x -= .05
+            app.stage.scale.y -= .05
+        }
+    } else if (wDelta === "up") {
+        if (app.stage.scale.y <= 1) {
+
+            app.stage.scale.x += .05
+            app.stage.scale.y += .05
+        }
+    }
+
+    event.preventDefault()
+
+}
+function addToGrid(pos, tileTextures) {
+    if (drawType === "tiles") {
+        const tilePos = getTilePosition(pos)
+        const index = getGameMatrixIndex(tilePos.x, tilePos.y)
+        drawTile(app, gameMatrix, textures.center, tilePos.y, tilePos.x, index, CENTER)
+        drawTopLeftTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
+        drawTopTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
+        drawTopRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
+        drawLeftTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
+        drawRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
+        drawBottomLeftTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
+        drawBottomTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
+        drawBottomRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
+    } else if (drawType === "items") {
+        const sprite = new PIXI.Sprite(PIXI.utils.TextureCache.table_1);
+        // sprite.scale = 0.9
+        sprite.y = pos.y
+        sprite.x = pos.x;
+        sprite.scale.set(0.5)
+        sprite.anchor.set(0.5)
+        sprite.parentGroup = objectGroup
+        objectContainer.addChild(sprite)
+    }
+
+}
+ 

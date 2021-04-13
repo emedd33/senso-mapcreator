@@ -2,8 +2,10 @@ function drawTile(app, gameMatrix, texture, x, y, index, indexValue) {
     const sprite = new PIXI.Sprite(texture);
     sprite.y = x
     sprite.x = y;
-    app.stage.addChild(sprite)
+    sprite.parentGroup = tileGroup
+    tileContainer.addChild(sprite)
     gameMatrix[index] = indexValue
+
 }
 
 function drawTopRightTile(app, gameMatrix, index, textures, columnPx, rowPx) {
