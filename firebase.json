@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "public": "src",
+    "site": "sesno-adventure-mapmaker",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

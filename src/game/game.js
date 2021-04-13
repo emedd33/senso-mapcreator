@@ -5,16 +5,18 @@ const app = new PIXI.Application({
 document.body.appendChild(app.view)
 
 const gameMatrix = new Array(MATRIX_WIDTH * MATRIX_HEIGHT).fill(0);
+console.log(MATRIX_WIDTH)
+printGameMatrix(gameMatrix, 0)
 let drawType = "tiles";
 app.renderer.backgroundColor = 0xFAEBD7
 // Scale mode for all textures, will retain pixelation
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 const loader = new PIXI.Loader(); // you can also create your own if you want
     const textures = {}
-loader.add("dungeonTiles", "src/assets/textures/dungeon-tile.png")
-loader.add("grid_32_32", "src/assets/textures/32-32-grid.png")
-app.stage.scale.x = 0.5
-app.stage.scale.y = 0.5
+loader.add("dungeonTiles", "assets/textures/dungeon-tile.png")
+loader.add("grid_32_32", "assets/textures/32-32-grid.png")
+app.stage.scale.x = X_SCALE
+app.stage.scale.y = Y_SCALE
 
 // app.stage.position.x = 128
 // app.stage.position.y = 128
