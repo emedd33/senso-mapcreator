@@ -1,7 +1,7 @@
 {
   "hosting": {
     "public": "src",
-    "site": "sesno-adventure-mapmaker",
+    "site": "senso-mapcreator",
     "ignore": [
       "firebase.json",
       "**/.*",
