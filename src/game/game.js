@@ -7,7 +7,12 @@ const gameMatrix = new Array(MATRIX_WIDTH * MATRIX_HEIGHT).fill(0);
 app.renderer.backgroundColor = 0xFAEBD7
 
 let interactionType = "drawTile";
-
+const gameState = {
+    background:{}, 
+    tiles: {},
+    objecs: {},
+    gameMatrix: gameMatrix
+}
 // Set up layers
 const backgroundGroup = new PIXI.display.Group(-1,  true)
 backgroundGroup.on('sort',((sprite) => {
@@ -46,10 +51,24 @@ app.stage.scale.y = Y_SCALE
 
 loader.load((loader, resources) => {
     // Setup background Container
-    const backgroundSprite = new PIXI.Sprite(PIXI.utils.TextureCache.grid_32_32);
-    backgroundSprite.anchor.set(0.5);
-    backgroundSprite.x = app.screen.width / 2;
-    backgroundSprite.y = app.screen.height / 2;
+    let backgroundSprite;
+    if (gameState.background.texture){
+        if (gameState.background.texture === "grid_32_32"){
+            backgroundSprite = new PIXI.Sprite(PIXI.utils.TextureCache.grid_32_32);
+        } 
+        backgroundSprite.anchor.set(gameState.background.anchor )
+        backgroundSprite.x =gameState.background.x
+        backgroundSprite.y =gameState.background.y
+    } else {
+        backgroundSprite = new PIXI.Sprite(PIXI.utils.TextureCache.grid_32_32);
+        backgroundSprite.anchor.set(0.5);
+        backgroundSprite.x = 0
+        backgroundSprite.y = 0
+        gameState.background.texture = "grid_32_32"
+        gameState.background.anchor = 0.5
+        gameState.background.x = 0
+        gameState.background.y = 0
+    }
     backgroundSprite.interactive = true;
     backgroundSprite.buttonMode = true;
     backgroundContainer.addChild(backgroundSprite);
@@ -248,6 +267,7 @@ function onScroll(event) {
 
 }
 function addToGrid(pos, tileTextures) {
+    console.log(gameState)
     if (interactionType === "drawTile") {
         const tilePos = getTilePosition(pos)
         const index = getGameMatrixIndex(tilePos.x, tilePos.y)

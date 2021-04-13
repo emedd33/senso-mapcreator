@@ -5,7 +5,7 @@ function drawTile(app, gameMatrix, texture, x, y, index, indexValue) {
     sprite.parentGroup = tileGroup
     tileContainer.addChild(sprite)
     gameMatrix[index] = indexValue
-
+    gameState.tiles[index.toString()] = {texture: texture, type: indexValue.toString(), x: x, y:y}
 }
 
 function drawTopRightTile(app, gameMatrix, index, textures, columnPx, rowPx) {
