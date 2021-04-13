@@ -1,29 +1,30 @@
 const app = new PIXI.Application({
-        width: WIDTH,
-        height: HEIGHT 
-    })
+    width: WIDTH,
+    height: HEIGHT
+})
 document.getElementById("game-container").appendChild(app.view)
 const gameMatrix = new Array(MATRIX_WIDTH * MATRIX_HEIGHT).fill(0);
 app.renderer.backgroundColor = 0xFAEBD7
 
 let interactionType = "drawTile";
+let objectType;
 const gameState = {
-    background:{}, 
+    background: {},
     tiles: {},
     objecs: {},
     gameMatrix: gameMatrix
 }
 // Set up layers
-const backgroundGroup = new PIXI.display.Group(-1,  true)
-backgroundGroup.on('sort',((sprite) => {
+const backgroundGroup = new PIXI.display.Group(-1, true)
+backgroundGroup.on('sort', ((sprite) => {
     sprite.zOrder = -1;
 }));
-const tileGroup = new PIXI.display.Group(0,  true)
-tileGroup.on('sort',((sprite) => {
+const tileGroup = new PIXI.display.Group(0, true)
+tileGroup.on('sort', ((sprite) => {
     sprite.zOrder = 0;
 }));
 const objectGroup = new PIXI.display.Group(1, true)
-objectGroup.on("sort",((sprite) => {
+objectGroup.on("sort", ((sprite) => {
     sprite.zOrder = 1;
 }));
 
@@ -46,19 +47,20 @@ const textures = {}
 loader.add("dungeonTiles", "assets/textures/dungeon-tile.png")
 loader.add("grid_32_32", "assets/textures/32-32-grid.png")
 loader.add("table_1", "assets/textures/Table-1.png")
+loader.add("TC_Basics", "assets/textures/TC_Basics.png")
 app.stage.scale.x = X_SCALE
 app.stage.scale.y = Y_SCALE
 
 loader.load((loader, resources) => {
     // Setup background Container
     let backgroundSprite;
-    if (gameState.background.texture){
-        if (gameState.background.texture === "grid_32_32"){
+    if (gameState.background.texture) {
+        if (gameState.background.texture === "grid_32_32") {
             backgroundSprite = new PIXI.Sprite(PIXI.utils.TextureCache.grid_32_32);
-        } 
-        backgroundSprite.anchor.set(gameState.background.anchor )
-        backgroundSprite.x =gameState.background.x
-        backgroundSprite.y =gameState.background.y
+        }
+        backgroundSprite.anchor.set(gameState.background.anchor)
+        backgroundSprite.x = gameState.background.x
+        backgroundSprite.y = gameState.background.y
     } else {
         backgroundSprite = new PIXI.Sprite(PIXI.utils.TextureCache.grid_32_32);
         backgroundSprite.anchor.set(0.5);
@@ -72,27 +74,35 @@ loader.load((loader, resources) => {
     backgroundSprite.interactive = true;
     backgroundSprite.buttonMode = true;
     backgroundContainer.addChild(backgroundSprite);
-    
+
     backgroundSprite.on('pointerdown', onClick)
         .on('pointerdown', onDragStart)
         .on('pointerup', onDragEnd)
         .on('pointerupoutside', onDragEnd)
         .on('pointermove', onDragMove)
-    
-        // Setup interaction button
-    document.getElementById("change-to-objects").addEventListener("click", function () {
+
+    // Setup interaction button
+    document.getElementById("change-to-table").addEventListener("click", function () {
         backgroundSprite.interactive = true
-            document.getElementById("interaction-type").innerHTML ="Draw Object"
-            interactionType = "drawObject"
-        })
+        document.getElementById("interaction-type").innerHTML = "Draw Table"
+        interactionType = "drawObject"
+        objectType = "table"
+    })
+    document.getElementById("change-to-barrel").addEventListener("click", function () {
+        backgroundSprite.interactive = true
+        document.getElementById("interaction-type").innerHTML = "Draw Barrel"
+        interactionType = "drawObject"
+        objectType = "barrel"
+    })
+
     document.getElementById("change-to-tiles").addEventListener("click", function () {
         backgroundSprite.interactive = true
-        document.getElementById("interaction-type").innerHTML ="Draw tile"
+        document.getElementById("interaction-type").innerHTML = "Draw tile"
         interactionType = "drawTile"
     })
     document.getElementById("change-to-move").addEventListener("click", function () {
         backgroundSprite.interactive = false
-        document.getElementById("interaction-type").innerHTML ="Move object"
+        document.getElementById("interaction-type").innerHTML = "Move object"
         interactionType = "moveObject"
     })
 
@@ -199,7 +209,7 @@ loader.load((loader, resources) => {
     textures.topleftToprightBottomleftBottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
     textures.topleftToprightBottomleftBottomright.frame = new PIXI.Rectangle(32 * 4, 32 * 6, 32, 32)
 
- })
+})
 // Event functions
 
 function onClick(event) {
@@ -210,16 +220,15 @@ function onDragStart(event) {
     // store a reference to the data
     // the reason for this is because of multitouch
     // we want to track the movement of this particular touch
-    if (interactionType === "drawTile"){
+    if (interactionType === "drawTile") {
         this.data = getTilePosition(event.data);
-    } else if (interactionType === "moveObject"){
+    } else if (interactionType === "moveObject") {
         this.data = event.data;
     }
     this.dragging = true;
 }
 
 function onDragEnd() {
-    this.alpha = 1;
     this.dragging = false;
     // set the interaction data to null
     this.data = null;
@@ -229,15 +238,14 @@ function onDragEnd() {
 function onDragMove(event) {
     if (this.dragging) {
         const position = event.data.getLocalPosition(this.parent)
-        if (interactionType === "drawTile"){
+        if (interactionType === "drawTile") {
             const tilePosition = getTilePosition(position)
             if (tilePosition.x !== this.data.x || tilePosition.y !== this.data.y) {
-                this.alpha = 0.5;
                 this.data = tilePosition
                 addToGrid(tilePosition, textures)
             }
-        } else if(interactionType === "moveObject"){
-            
+        } else if (interactionType === "moveObject") {
+
             this.x = position.x;
             this.y = position.y;
 
@@ -281,21 +289,18 @@ function addToGrid(pos, tileTextures) {
         drawBottomTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
         drawBottomRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
     } else if (interactionType === "drawObject") {
-        const sprite = new PIXI.Sprite(PIXI.utils.TextureCache.table_1);
-        // sprite.scale = 0.9
-        sprite.y = pos.y
-        sprite.x = pos.x;
-        sprite.scale.set(0.5)
-        sprite.anchor.set(0.5)
-        sprite.parentGroup = objectGroup
-        sprite.interactive =true
-        sprite
-        .on('pointerdown', onDragStart)
-        .on('pointerup', onDragEnd)
-        .on('pointerupoutside', onDragEnd)
-        .on('pointermove', onDragMove);
-        objectContainer.addChild(sprite)
+        let objectSprite
+        switch (objectType) {
+            case "table":
+                objectSprite = drawObject(PIXI.utils.TextureCache.TC_Basics.clone(), 2450, 2000, 350, 350, 0.2, pos)
+                break
+            case "barrel":
+                objectSprite = drawObject(PIXI.utils.TextureCache.TC_Basics.clone(), 100, 1400, 150, 170, 0.2, pos)
+                break
+            default:
+                break
+        }
+
     }
 
 }
- 

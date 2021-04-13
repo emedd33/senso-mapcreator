@@ -5,9 +5,25 @@ function drawTile(app, gameMatrix, texture, x, y, index, indexValue) {
     sprite.parentGroup = tileGroup
     tileContainer.addChild(sprite)
     gameMatrix[index] = indexValue
-    gameState.tiles[index.toString()] = {texture: texture, type: indexValue.toString(), x: x, y:y}
+    gameState.tiles[index.toString()] = { texture: texture, type: indexValue.toString(), x: x, y: y }
 }
-
+function drawObject(textureMap, x, y, width, height, scale, pos) {
+    let objectTexture = PIXI.utils.TextureCache.TC_Basics.clone()
+    objectTexture.frame = new PIXI.Rectangle(x, y, width, height)
+    let objectSprite = new PIXI.Sprite(objectTexture);
+    objectSprite.y = pos.y
+    objectSprite.x = pos.x;
+    objectSprite.scale.set(scale)
+    objectSprite.anchor.set(0.5)
+    objectSprite.parentGroup = objectGroup
+    objectSprite.interactive = true
+    objectSprite
+        .on('pointerdown', onDragStart)
+        .on('pointerup', onDragEnd)
+        .on('pointerupoutside', onDragEnd)
+        .on('pointermove', onDragMove);
+    objectContainer.addChild(objectSprite)
+}
 function drawTopRightTile(app, gameMatrix, index, textures, columnPx, rowPx) {
     let topRightIndex;
     if ((index + 1) % MATRIX_WIDTH !== 0) {
@@ -56,7 +72,7 @@ function drawTopRightTile(app, gameMatrix, index, textures, columnPx, rowPx) {
     }
 }
 
- function drawTopTile(app, gameMatrix, index, textures, columnPx, rowPx) {
+function drawTopTile(app, gameMatrix, index, textures, columnPx, rowPx) {
     const topIndex = index - MATRIX_WIDTH
     const topTile = gameMatrix[topIndex]
     if (topTile === CENTER) {
@@ -126,7 +142,7 @@ function drawTopRightTile(app, gameMatrix, index, textures, columnPx, rowPx) {
     }
 }
 
- function drawTopLeftTile(app, gameMatrix, index, textures, columnPx, rowPx) {
+function drawTopLeftTile(app, gameMatrix, index, textures, columnPx, rowPx) {
     let topLeftIndex;
     if (index % MATRIX_WIDTH !== 0) {
         topLeftIndex = index - MATRIX_WIDTH - 1
@@ -380,7 +396,7 @@ function drawBottomLeftTile(app, gameMatrix, index, textures, columnPx, rowPx) {
     }
 
 }
- function drawBottomTile(app, gameMatrix, index, textures, columnPx, rowPx) {
+function drawBottomTile(app, gameMatrix, index, textures, columnPx, rowPx) {
     const bottomIndex = index + MATRIX_WIDTH
     const bottomTile = gameMatrix[bottomIndex]
     if (bottomTile === CENTER) {
@@ -449,7 +465,7 @@ function drawBottomLeftTile(app, gameMatrix, index, textures, columnPx, rowPx) {
         drawTile(app, gameMatrix, textures.topBottomright, rowPx + TEXTURE_HEIGHT, columnPx, bottomIndex, TOP_BOTTOMRIGHT)
     }
 
-}function drawBottomRightTile(app, gameMatrix, index, textures, columnPx, rowPx) {
+} function drawBottomRightTile(app, gameMatrix, index, textures, columnPx, rowPx) {
     let bottomRightIndex;
     if ((index + 1) % MATRIX_WIDTH !== 0) {
         bottomRightIndex = index + MATRIX_WIDTH + 1
