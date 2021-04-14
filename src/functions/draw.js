@@ -7,22 +7,28 @@ function drawTile(app, gameMatrix, texture, x, y, index, indexValue) {
     gameMatrix[index] = indexValue
     gameState.tiles[index.toString()] = { texture: texture, type: indexValue.toString(), x: x, y: y }
 }
-function drawObject(textureMap, x, y, width, height, scale, pos) {
-    let objectTexture = PIXI.utils.TextureCache.TC_Basics.clone()
-    objectTexture.frame = new PIXI.Rectangle(x, y, width, height)
-    let objectSprite = new PIXI.Sprite(objectTexture);
-    objectSprite.y = pos.y
-    objectSprite.x = pos.x;
-    objectSprite.scale.set(scale)
-    objectSprite.anchor.set(0.5)
-    objectSprite.parentGroup = objectGroup
-    objectSprite.interactive = true
-    objectSprite
+function drawObject(textureMap, x, y, width, height, scale, pos, type) {
+    let objectTexture;
+    if (textureMap === "TC_Basics"){
+        objectTexture = PIXI.utils.TextureCache.TC_Basics.clone()
+    }
+    if(objectTexture){
+        objectTexture.frame = new PIXI.Rectangle(x, y, width, height)
+        let objectSprite = new PIXI.Sprite(objectTexture);
+        objectSprite.y = pos.y
+        objectSprite.x = pos.x;
+        objectSprite.scale.set(scale)
+        objectSprite.anchor.set(0.5)
+        objectSprite.parentGroup = objectGroup
+        objectSprite.interactive = true
+        objectSprite
         .on('pointerdown', onDragStart)
         .on('pointerup', onDragEnd)
         .on('pointerupoutside', onDragEnd)
         .on('pointermove', onDragMove);
-    objectContainer.addChild(objectSprite)
+        gameState.objecs.push({displayOrder:objectSprite.displayOrder, type:type, textureMap:textureMap, x:x, y:y,height:height, width:width, scale:scale,pos:pos})
+        objectContainer.addChild(objectSprite)
+    }
 }
 function drawTopRightTile(app, gameMatrix, index, textures, columnPx, rowPx) {
     let topRightIndex;

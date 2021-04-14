@@ -11,7 +11,7 @@ let objectType;
 const gameState = {
     background: {},
     tiles: {},
-    objecs: {},
+    objecs: [],
     gameMatrix: gameMatrix
 }
 // Set up layers
@@ -292,10 +292,10 @@ function addToGrid(pos, tileTextures) {
         let objectSprite
         switch (objectType) {
             case "table":
-                objectSprite = drawObject(PIXI.utils.TextureCache.TC_Basics.clone(), 2450, 2000, 350, 350, 0.2, pos)
+                objectSprite = drawObject("TC_Basics", 2450, 2000, 350, 350, 0.2, pos, "table")
                 break
             case "barrel":
-                objectSprite = drawObject(PIXI.utils.TextureCache.TC_Basics.clone(), 100, 1400, 150, 170, 0.2, pos)
+                objectSprite = drawObject("TC_Basics", 100, 1400, 150, 170, 0.2, pos,"barrel")
                 break
             default:
                 break
