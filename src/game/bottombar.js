@@ -18,5 +18,6 @@ function setupBottomBar(backgroundSprite){
         backgroundSprite.interactive = false
         document.getElementById("interaction-type").innerHTML = "Move object"
         interactionType = "moveObject"
+        // cursorSprite.setTexture(textures.objects.cursor)
     })
 }

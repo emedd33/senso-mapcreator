@@ -8,6 +8,10 @@ app.renderer.backgroundColor = 0xFAEBD7
 
 let interactionType = "drawTile";
 let objectType;
+let tileType = "dungeonTile"
+let cursorSprite;
+let backgroundSprite;
+
 const gameState = {
     background: {},
     tiles: {},
@@ -27,18 +31,25 @@ const objectGroup = new PIXI.display.Group(1, true)
 objectGroup.on("sort", ((sprite) => {
     sprite.zOrder = 1;
 }));
+const cursorGroup = new PIXI.display.Group(2, true)
+objectGroup.on("sort", ((sprite) => {
+    sprite.zOrder = 2;
+}));
 
 app.stage.sortableChildren = true;
 app.stage.addChild(new PIXI.display.Layer(backgroundGroup));
 app.stage.addChild(new PIXI.display.Layer(tileGroup));
 app.stage.addChild(new PIXI.display.Layer(objectGroup));
+app.stage.addChild(new PIXI.display.Layer(cursorGroup));
 
 const backgroundContainer = new PIXI.Container();
 const tileContainer = new PIXI.Container();
 const objectContainer = new PIXI.Container();
+const cursorContainer = new PIXI.Container();
 app.stage.addChild(backgroundContainer)
 app.stage.addChild(tileContainer)
 app.stage.addChild(objectContainer)
+app.stage.addChild(cursorContainer)
 
 // Load textures 
 const loader = new PIXI.Loader(); // you can also create your own if you want
@@ -50,7 +61,6 @@ app.stage.scale.y = Y_SCALE
 
 loader.load((loader, resources) => {
     // Setup background Container
-    let backgroundSprite;
     if (gameState.background.texture) {
         if (gameState.background.texture === "grid_32_32") {
             backgroundSprite = new PIXI.Sprite(PIXI.utils.TextureCache.grid_32_32);
@@ -71,18 +81,31 @@ loader.load((loader, resources) => {
     backgroundSprite.interactive = true;
     backgroundSprite.buttonMode = true;
     backgroundContainer.addChild(backgroundSprite);
-    
-    backgroundSprite.on('pointerdown', onClick)
+
+    // console.log(document.getElementById("game-container"))
+    // document.getElementById("game-container").childNodes[0].addEventListener("pointerdown", onClick)
+    backgroundSprite
+    .on('pointerdown', onClick)
     .on('pointerdown', onDragStart)
     .on('pointerup', onDragEnd)
     .on('pointerupoutside', onDragEnd)
     .on('pointermove', onDragMove)
     
+
     loadObjects()
     loadTiles()
     // Setup interaction button
+    // console.log(textures.objects)
+    cursorSprite = new PIXI.Sprite(textures.objects.cursor);
+    cursorSprite.scale.set(0.05)
+    cursorSprite.parentGroup = cursorGroup
+    cursorContainer.addChild(cursorSprite)
+    app.renderer.plugins.interaction.cursorStyles.default = "none";
+    app.renderer.plugins.interaction.cursorStyles.pointer = "none";
     setupBottomBar(backgroundSprite)
     setupSidebar(backgroundSprite)
+    
+
 })
 // Event functions
 
@@ -97,6 +120,7 @@ function onDragStart(event) {
     if (interactionType === "drawTile") {
         this.data = getTilePosition(event.data);
     } else if (interactionType === "moveObject") {
+        console.log(event.data)
         this.data = event.data;
     }
     this.dragging = true;
@@ -110,8 +134,13 @@ function onDragEnd() {
 
 
 function onDragMove(event) {
+    
+    const position = event.data.getLocalPosition(this.parent)
+    if (cursorSprite){
+        cursorSprite.x = position.x
+        cursorSprite.y = position.y
+    }
     if (this.dragging) {
-        const position = event.data.getLocalPosition(this.parent)
         if (interactionType === "drawTile") {
             const tilePosition = getTilePosition(position)
             if (tilePosition.x !== this.data.x || tilePosition.y !== this.data.y) {
@@ -119,9 +148,12 @@ function onDragMove(event) {
                 addToGrid(tilePosition)
             }
         } else if (interactionType === "moveObject") {
-
+            // backgroundSprite.x = 0
+            // backgroundSprite.y = 0
             this.x = position.x;
             this.y = position.y;
+            backgroundSprite.x = 0
+            backgroundSprite.y = 0
 
         }
     }
@@ -149,7 +181,6 @@ function onScroll(event) {
 
 }
 function addToGrid(pos) {
-    console.log(gameState)
     if (interactionType === "drawTile") {
         const tilePos = getTilePosition(pos)
         const index = getGameMatrixIndex(tilePos.x, tilePos.y)
@@ -163,13 +194,12 @@ function addToGrid(pos) {
         drawBottomTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
         drawBottomRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
     } else if (interactionType === "drawObject") {
-        let objectSprite
         switch (objectType) {
             case "table_1":
-                drawObject(PIXI.utils.TextureCache.table_1,0.5, pos, "table_1")
+                drawObject(PIXI.utils.TextureCache.table_1,0.1, pos, "table_1")
                 break
             case "barrel_1":
-                drawObject(PIXI.utils.TextureCache.barrel_1,0.2, pos, "barrel_l")
+                drawObject(PIXI.utils.TextureCache.barrel_1,0.1, pos, "barrel_l")
                 break
             default:
                 break

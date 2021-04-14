@@ -3,8 +3,8 @@ const TEXTURE_WIDTH = 32
 const TEXTURE_HEIGHT = 32
 const X_SCALE = 1
 const Y_SCALE = 1
-const WIDTH = TEXTURE_WIDTH * 16
-const HEIGHT = TEXTURE_HEIGHT * 10
+const WIDTH = window.innerWidth*0.9 -  window.innerWidth*0.9 % TEXTURE_WIDTH  
+const HEIGHT = window.innerHeight*0.9 -  window.innerHeight*0.9 % TEXTURE_WIDTH  
 const MATRIX_WIDTH = (WIDTH / TEXTURE_WIDTH) * 1 / X_SCALE
 const MATRIX_HEIGHT = (HEIGHT / TEXTURE_HEIGHT) * 1 / Y_SCALE
 

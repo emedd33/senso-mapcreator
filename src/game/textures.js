@@ -1,7 +1,8 @@
 function loadTextures(){
     loader.add("dungeonTiles", "assets/textures/tiles/dungeon-tile.png")
+    loader.add("cursor", "assets/textures/cursor.png")
     loader.add("grid_32_32", "assets/textures/grids/32-32-grid.png")
-    loader.add("table_1", "assets/textures/objects/Table-1.png")
+    loader.add("table_1", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Table1.png")
     loader.add("barrel_1", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel1.png")
 }
 function loadTiles(){
@@ -112,4 +113,5 @@ function loadTiles(){
 function loadObjects(){
     textures.objects.table_1 = PIXI.utils.TextureCache.table_1.clone()
     textures.objects.barrel_1 = PIXI.utils.TextureCache.barrel_1.clone()
+    textures.objects.cursor = PIXI.utils.TextureCache.cursor.clone()
 }
