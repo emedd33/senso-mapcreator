@@ -43,11 +43,8 @@ app.stage.addChild(objectContainer)
 // Load textures 
 const loader = new PIXI.Loader(); // you can also create your own if you want
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
-const textures = {}
-loader.add("dungeonTiles", "assets/textures/dungeon-tile.png")
-loader.add("grid_32_32", "assets/textures/32-32-grid.png")
-loader.add("table_1", "assets/textures/Table-1.png")
-loader.add("TC_Basics", "assets/textures/TC_Basics.png")
+const textures = {tiles:{}, objects:{}}
+loadTextures()
 app.stage.scale.x = X_SCALE
 app.stage.scale.y = Y_SCALE
 
@@ -74,147 +71,24 @@ loader.load((loader, resources) => {
     backgroundSprite.interactive = true;
     backgroundSprite.buttonMode = true;
     backgroundContainer.addChild(backgroundSprite);
-
+    
     backgroundSprite.on('pointerdown', onClick)
-        .on('pointerdown', onDragStart)
-        .on('pointerup', onDragEnd)
-        .on('pointerupoutside', onDragEnd)
-        .on('pointermove', onDragMove)
-
+    .on('pointerdown', onDragStart)
+    .on('pointerup', onDragEnd)
+    .on('pointerupoutside', onDragEnd)
+    .on('pointermove', onDragMove)
+    
+    loadObjects()
+    loadTiles()
     // Setup interaction button
-    document.getElementById("change-to-table").addEventListener("click", function () {
-        backgroundSprite.interactive = true
-        document.getElementById("interaction-type").innerHTML = "Draw Table"
-        interactionType = "drawObject"
-        objectType = "table"
-    })
-    document.getElementById("change-to-barrel").addEventListener("click", function () {
-        backgroundSprite.interactive = true
-        document.getElementById("interaction-type").innerHTML = "Draw Barrel"
-        interactionType = "drawObject"
-        objectType = "barrel"
-    })
-
-    document.getElementById("change-to-tiles").addEventListener("click", function () {
-        backgroundSprite.interactive = true
-        document.getElementById("interaction-type").innerHTML = "Draw tile"
-        interactionType = "drawTile"
-    })
-    document.getElementById("change-to-move").addEventListener("click", function () {
-        backgroundSprite.interactive = false
-        document.getElementById("interaction-type").innerHTML = "Move object"
-        interactionType = "moveObject"
-    })
-
-    // Loads Texture
-    // Row 1
-    textures.bottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.bottomright.frame = new PIXI.Rectangle(0, 0, 32, 32)
-    textures.bottom = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.bottom.frame = new PIXI.Rectangle(32, 0, 32, 32)
-    textures.bottomleft = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.bottomleft.frame = new PIXI.Rectangle(32 * 2, 0, 32, 32)
-    textures.right = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.right.frame = new PIXI.Rectangle(32 * 3, 0, 32, 32)
-    textures.center = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.center.frame = new PIXI.Rectangle(32 * 4, 0, 32, 32)
-    textures.left = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.left.frame = new PIXI.Rectangle(32 * 5, 0, 32, 32)
-    textures.topright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.topright.frame = new PIXI.Rectangle(32 * 6, 0, 32, 32)
-    // Row 2
-    textures.top = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.top.frame = new PIXI.Rectangle(0, 32, 32, 32)
-    textures.topleft = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.topleft.frame = new PIXI.Rectangle(32, 32, 32, 32)
-    textures.swingUpRight = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.swingUpRight.frame = new PIXI.Rectangle(32 * 2, 32, 32, 32)
-    textures.swingRightDown = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.swingRightDown.frame = new PIXI.Rectangle(32 * 3, 32, 32, 32)
-    textures.swingRightUp = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.swingRightUp.frame = new PIXI.Rectangle(32 * 4, 32, 32, 32)
-    textures.swingDownRight = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.swingDownRight.frame = new PIXI.Rectangle(32 * 5, 32, 32, 32)
-    textures.UFromLeft = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.UFromLeft.frame = new PIXI.Rectangle(32 * 6, 32, 32, 32)
-    // Row 3
-    textures.UFromTop = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.UFromTop.frame = new PIXI.Rectangle(0, 32 * 2, 32, 32)
-    textures.UFromRight = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.UFromRight.frame = new PIXI.Rectangle(32, 32 * 2, 32, 32)
-    textures.UFromBottom = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.UFromBottom.frame = new PIXI.Rectangle(32 * 2, 32 * 2, 32, 32)
-    textures.circle = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.circle.frame = new PIXI.Rectangle(32 * 3, 32 * 2, 32, 32)
-    textures.swingUpRightBottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.swingUpRightBottomright.frame = new PIXI.Rectangle(32 * 4, 32 * 2, 32, 32)
-    textures.swingRightDownBottomleft = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.swingRightDownBottomleft.frame = new PIXI.Rectangle(32 * 5, 32 * 2, 32, 32)
-    textures.swingRightUpTopleft = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.swingRightUpTopleft.frame = new PIXI.Rectangle(32 * 6, 32 * 2, 32, 32)
-    // Row 4
-    textures.swingDownRightTopright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.swingDownRightTopright.frame = new PIXI.Rectangle(0, 32 * 3, 32, 32)
-    textures.leftRight = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.leftRight.frame = new PIXI.Rectangle(32, 32 * 3, 32, 32)
-    textures.topBottom = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.topBottom.frame = new PIXI.Rectangle(32 * 2, 32 * 3, 32, 32)
-    textures.leftTopright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.leftTopright.frame = new PIXI.Rectangle(32 * 3, 32 * 3, 32, 32)
-    textures.leftBottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.leftBottomright.frame = new PIXI.Rectangle(32 * 4, 32 * 3, 32, 32)
-    textures.topBottomleft = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.topBottomleft.frame = new PIXI.Rectangle(32 * 5, 32 * 3, 32, 32)
-    textures.topBottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.topBottomright.frame = new PIXI.Rectangle(32 * 6, 32 * 3, 32, 32)
-    // Row 5
-    textures.rightTopleft = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.rightTopleft.frame = new PIXI.Rectangle(32 * 0, 32 * 4, 32, 32)
-    textures.rightBottomleft = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.rightBottomleft.frame = new PIXI.Rectangle(32 * 1, 32 * 4, 32, 32)
-    textures.bottomTopright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.bottomTopright.frame = new PIXI.Rectangle(32 * 2, 32 * 4, 32, 32)
-    textures.bottomTopleft = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.bottomTopleft.frame = new PIXI.Rectangle(32 * 3, 32 * 4, 32, 32)
-    textures.LeftToprightBottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.LeftToprightBottomright.frame = new PIXI.Rectangle(32 * 4, 32 * 4, 32, 32)
-    textures.topBottomleftBottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.topBottomleftBottomright.frame = new PIXI.Rectangle(32 * 5, 32 * 4, 32, 32)
-    textures.rightTopleftBottomleft = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.rightTopleftBottomleft.frame = new PIXI.Rectangle(32 * 6, 32 * 4, 32, 32)
-    // Row 6
-    textures.bottomTopleftTopright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.bottomTopleftTopright.frame = new PIXI.Rectangle(32 * 0, 32 * 5, 32, 32)
-    textures.topleftTopright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.topleftTopright.frame = new PIXI.Rectangle(32 * 1, 32 * 5, 32, 32)
-    textures.topleftBottomleft = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.topleftBottomleft.frame = new PIXI.Rectangle(32 * 2, 32 * 5, 32, 32)
-    textures.bottomLeftBottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.bottomLeftBottomright.frame = new PIXI.Rectangle(32 * 3, 32 * 5, 32, 32)
-    textures.toprightBottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.toprightBottomright.frame = new PIXI.Rectangle(32 * 4, 32 * 5, 32, 32)
-    textures.topleftToprightBottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.topleftToprightBottomright.frame = new PIXI.Rectangle(32 * 5, 32 * 5, 32, 32)
-    textures.topleftToprightBottomleft = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.topleftToprightBottomleft.frame = new PIXI.Rectangle(32 * 6, 32 * 5, 32, 32)
-    textures.topleftBottomleftBottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    // Row 7
-    textures.topleftBottomleftBottomright.frame = new PIXI.Rectangle(32 * 0, 32 * 6, 32, 32)
-    textures.toprightBottomleftBottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.toprightBottomleftBottomright.frame = new PIXI.Rectangle(32 * 1, 32 * 6, 32, 32)
-    textures.toprightBottomleft = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.toprightBottomleft.frame = new PIXI.Rectangle(32 * 2, 32 * 6, 32, 32)
-    textures.topleftBottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.topleftBottomright.frame = new PIXI.Rectangle(32 * 3, 32 * 6, 32, 32)
-    textures.topleftToprightBottomleftBottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
-    textures.topleftToprightBottomleftBottomright.frame = new PIXI.Rectangle(32 * 4, 32 * 6, 32, 32)
-
+    setupBottomBar(backgroundSprite)
+    setupSidebar(backgroundSprite)
 })
 // Event functions
 
 function onClick(event) {
     const pos = event.data.getLocalPosition(this.parent)
-    addToGrid(pos, textures)
+    addToGrid(pos)
 }
 function onDragStart(event) {
     // store a reference to the data
@@ -242,7 +116,7 @@ function onDragMove(event) {
             const tilePosition = getTilePosition(position)
             if (tilePosition.x !== this.data.x || tilePosition.y !== this.data.y) {
                 this.data = tilePosition
-                addToGrid(tilePosition, textures)
+                addToGrid(tilePosition)
             }
         } else if (interactionType === "moveObject") {
 
@@ -274,12 +148,12 @@ function onScroll(event) {
     event.preventDefault()
 
 }
-function addToGrid(pos, tileTextures) {
+function addToGrid(pos) {
     console.log(gameState)
     if (interactionType === "drawTile") {
         const tilePos = getTilePosition(pos)
         const index = getGameMatrixIndex(tilePos.x, tilePos.y)
-        drawTile(app, gameMatrix, textures.center, tilePos.y, tilePos.x, index, CENTER)
+        drawTile(app, gameMatrix, textures.tiles.center, tilePos.y, tilePos.x, index, CENTER)
         drawTopLeftTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
         drawTopTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
         drawTopRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
@@ -291,11 +165,11 @@ function addToGrid(pos, tileTextures) {
     } else if (interactionType === "drawObject") {
         let objectSprite
         switch (objectType) {
-            case "table":
-                objectSprite = drawObject("TC_Basics", 2450, 2000, 350, 350, 0.2, pos, "table")
+            case "table_1":
+                drawObject(PIXI.utils.TextureCache.table_1,0.5, pos, "table_1")
                 break
-            case "barrel":
-                objectSprite = drawObject("TC_Basics", 100, 1400, 150, 170, 0.2, pos,"barrel")
+            case "barrel_1":
+                drawObject(PIXI.utils.TextureCache.barrel_1,0.2, pos, "barrel_l")
                 break
             default:
                 break

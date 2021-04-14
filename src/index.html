@@ -10,17 +10,34 @@
     <script src="modules/pixi-layers.js"></script>
     <script src="functions/draw.js"></script>
     <script src="functions/position.js"></script>
+    <script src="game/bottombar.js"></script>
+    <script src="game/sidebar.js"></script>
+    <script src="game/textures.js"></script>
     <script src="functions/print.js"></script>
+    <script src="assets/Constants.js"></script>
+    <link href="./style.css" rel="stylesheet">
 </head>
 
 <body>
-    <div id="game-container"></div>
-    <button id="change-to-table">table</button>
-    <button id="change-to-barrel">Barrel</button>
-    <button id="change-to-tiles">Tiles</button>
-    <button id="change-to-move">Move</button>
-    <h2 id="interaction-type">Draw tile</h2>
-    <script src="assets/Contants.js"></script>
+    
+    <div id="container">
+        <div id="game-container"></div>
+        <div id="right-sidebar">
+            <div id="objects-container">
+                <button id="barrel-object-button">Barrel 1</button>
+                <button id="table-object-button">Table 1</button>
+            </div>
+            <div id="tiles-container">
+                
+            </div>
+        </div>
+        <div id="bottom-bar">
+            <button id="change-to-tiles">Tiles</button>
+            <button id="change-to-objects">Objects</button>
+            <button id="change-to-move">Move</button>
+            <h2 id="interaction-type">Draw tile</h2>
+        </div>
+    </div>
     <script type="text/javascript" src="game/game.js"></script>
 </body>
 

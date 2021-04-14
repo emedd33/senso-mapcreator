@@ -1,0 +1,27 @@
+#container {
+  background-color: black;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+#game-container {
+  grid-column-start: 1;
+  grid-column-end: 7;
+}
+#right-sidebar {
+  grid-column-start: 7;
+  grid-column-end: 9;
+  background-color: gray;
+  height: 100%;
+}
+#objects-container {
+  display: none;
+}
+#tiles-container {
+  display: none;
+}
+#bottom-bar {
+  grid-column-start: 1;
+  grid-column-end: 9;
+  background-color: gray;
+  height: 100%;
+}
