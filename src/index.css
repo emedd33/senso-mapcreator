@@ -1,0 +1,79 @@
+canvas {
+  cursor: default;
+}
+button {
+  border: none;
+  color: black;
+  background-color: antiquewhite;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: rgb(199, 186, 169);
+}
+a {
+  text-decoration: none;
+  background-color: antiquewhite;
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+  border-color: black;
+  border: solid 1px;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
+  box-shadow: 5px 5px 15px 5px #000000;
+}
+a:hover {
+  background-color: goldenrod;
+}
+
+/* ID elements */
+#container {
+  background-color: black;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+#game-container {
+  grid-column-start: 1;
+  grid-column-end: 10;
+  width: 100%;
+  height: auto;
+  z-index: 0;
+}
+#right-sidebar {
+  grid-column-start: 10;
+  grid-column-end: 11;
+  background-color: gray;
+  height: 100%;
+  z-index: 1;
+}
+#profile-container {
+  display: flex;
+  justify-content: center;
+}
+#objects-container {
+  display: none;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+}
+#tiles-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+#bottom-bar {
+  grid-column-start: 1;
+  grid-column-end: 11;
+  background-color: gray;
+  height: 100%;
+}
+
+.object-button {
+  width: 3rem;
+  height: 3rem;
+}

@@ -18,7 +18,7 @@ function setupSidebar(backgroundSprite) {
         interactionType = "drawObject"
         objectType = "barrel_1"
         let newCursorSprite = new PIXI.Sprite(textures.objects.barrel_1);
-        newCursorSprite.scale.set(0.1)
+        newCursorSprite.scale.set(0.2)
         newCursorSprite.anchor.set(0.5)
         newCursorSprite.parentGroup = cursorGroup
         cursorContainer.addChild(newCursorSprite)

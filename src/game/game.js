@@ -6,9 +6,9 @@ document.getElementById("game-container").appendChild(app.view)
 const gameMatrix = new Array(MATRIX_WIDTH * MATRIX_HEIGHT).fill(0);
 app.renderer.backgroundColor = 0xFAEBD7
 
-let interactionType = "drawTile";
+let interactionType = "moveObject";
 let objectType;
-let tileType = "dungeonTile"
+let tileType;
 let cursorSprite;
 let backgroundSprite;
 
@@ -199,7 +199,7 @@ function addToGrid(pos) {
                 drawObject(PIXI.utils.TextureCache.table_1,0.1, pos, "table_1")
                 break
             case "barrel_1":
-                drawObject(PIXI.utils.TextureCache.barrel_1,0.1, pos, "barrel_l")
+                drawObject(PIXI.utils.TextureCache.barrel_1,0.2, pos, "barrel_l")
                 break
             default:
                 break
