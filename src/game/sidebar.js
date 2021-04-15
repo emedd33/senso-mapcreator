@@ -56,16 +56,15 @@ function setupSidebar(backgroundSprite) {
             const filename = document.getElementById("save-game-filename").value.toString()
             if (filename){
                 let saveGameState = gameState
-                console.log(JSON.stringify(saveGameState))
                 document.getElementById("save-game-spinner").style.display="block"
                 document.getElementById("save-game-input").style.display="none"
                 backgroundSprite.interactive = false
                 cursorContainer.removeChild(cursorSprite)
                 try {
-                    let mapCreatorJSONRef = storage.ref(`/users/${authUser.displayName}/mapcreator/${filename}.json`);
+                    let mapCreatorJSONRef = storage.ref(`/users/${authUser.displayName}/mapcreator/${filename}/gameState.json`);
                     mapCreatorJSONRef.putString(saveGameState).then(()=>{})
                     app.renderer.extract.canvas(app.stage).toBlob(function(blob) {
-                        let mapCreatorPNGRef = storage.ref(`/users/${authUser.displayName}/mapcreator/${filename}.png`);
+                        let mapCreatorPNGRef = storage.ref(`/users/${authUser.displayName}/mapcreator/${filename}/image.png`);
                         mapCreatorPNGRef.put(blob).then((snapshot) => {
                             console.log('Uploaded png!');
                             document.getElementById("save-game-spinner").style.display="none"
