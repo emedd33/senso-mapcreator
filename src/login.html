@@ -5,8 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="./index.css" rel="stylesheet">
+    <script src="functions/authentication/authenticate.js"></script>
+    <script>
+        var authUser;
+    </script>
+
 </head>
 <body>
-    login
+    <label for="fname">Email:</label><br>
+    <input type="text" id="email-input" name="fname" placeholder="user@email.com"><br>
+    <label for="lname">Password:</label><br>
+    <input type="password" id="lname" name="lname" placeholder="password"><br><br>
+    <button id="login-button" type="submit" >Login</button>
+    
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+    
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
+    
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyAiuucXI6pytwuvH22g1M__o6TRjy2qLNU",
+            authDomain: "senso-adventure.firebaseapp.com",
+            databaseURL: "https://senso-adventure-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "senso-adventure",
+            storageBucket: "senso-adventure.appspot.com",
+            messagingSenderId: "740993056701",
+            appId: "1:740993056701:web:f80f29b3e417a80617dcd4",
+            measurementId: "G-K5DFK7CRXV"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+    <script src="login/setup.js"></script>
+
 </body>
 </html>
