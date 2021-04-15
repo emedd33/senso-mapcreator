@@ -51,4 +51,55 @@ function setupSidebar(backgroundSprite) {
         cursorContainer.removeChild(cursorSprite)
         cursorSprite = newCursorSprite
     })
+    document.getElementById("save-game-button").addEventListener("click",function(){
+        if (authUser){
+            const filename = document.getElementById("save-game-filename").value.toString()
+            if (filename){
+                let saveGameState = gameState
+                console.log(JSON.stringify(saveGameState))
+                document.getElementById("save-game-spinner").style.display="block"
+                document.getElementById("save-game-input").style.display="none"
+                backgroundSprite.interactive = false
+                cursorContainer.removeChild(cursorSprite)
+                try {
+                    let mapCreatorJSONRef = storage.ref(`/users/${authUser.displayName}/mapcreator/${filename}.json`);
+                    mapCreatorJSONRef.putString(saveGameState).then(()=>{})
+                    app.renderer.extract.canvas(app.stage).toBlob(function(blob) {
+                        let mapCreatorPNGRef = storage.ref(`/users/${authUser.displayName}/mapcreator/${filename}.png`);
+                        mapCreatorPNGRef.put(blob).then((snapshot) => {
+                            console.log('Uploaded png!');
+                            document.getElementById("save-game-spinner").style.display="none"
+                            document.getElementById("save-game-input").style.display="flex"
+                            backgroundSprite.interactive = true
+                            document.getElementById("interaction-type").innerHTML = "Move object"
+                            interactionType = "moveObject"
+                            newCursorSprite = new PIXI.Sprite(textures.objects.cursor);
+                            newCursorSprite.scale.set(0.05)
+                            newCursorSprite.parentGroup = cursorGroup
+                            cursorContainer.addChild(newCursorSprite)
+                            cursorContainer.removeChild(cursorSprite)
+                            cursorSprite = newCursorSprite
+                        });
+                    })
+                } catch (error) {
+                    document.getElementById("save-game-spinner").style.display="none"
+                    document.getElementById("save-game-input").style.display="flex"
+                    backgroundSprite.interactive = true
+                    document.getElementById("interaction-type").innerHTML = "Move object"
+                    interactionType = "moveObject"
+                    newCursorSprite = new PIXI.Sprite(textures.objects.cursor);
+                    newCursorSprite.scale.set(0.05)
+                    newCursorSprite.parentGroup = cursorGroup
+                    cursorContainer.addChild(newCursorSprite)
+                    cursorContainer.removeChild(cursorSprite)
+                    cursorSprite = newCursorSprite
+                    
+                }
+        } else {
+            alert("Please enter filename")
+        }
+            
+
+        }
+    })
 }

@@ -6,6 +6,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       document.getElementById("login-container").style.display ="none"
       console.log(authUser)
       document.getElementById("authuser-email").innerHTML = user.displayName
+      storage = firebase.storage();
   } else {
         document.getElementById("profile-container").style.display ="none"
       document.getElementById("login-container").style.display ="flex"

@@ -17,8 +17,10 @@
     <script src="assets/Constants.js"></script>
     <script src="firebase/setup.js"></script>
     <link href="./index.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script>
         var authUser;
+        var storage;
     </script>
 </head>
 
@@ -27,29 +29,46 @@
     <div id="container">
         <div id="game-container"></div>
         <div id="right-sidebar">
-            <div class="auth-container" id="login-container">
-                <a href="./login.html">Login</a>
-                <a href="./signup.html">Signup</a>
-            </div>
-            <div class="auth-container" id="profile-container">
-               <p id="authuser-email">Logged in</p>
-            </div>
-            <div id="objects-container">
-                <button id="barrel_1-object-button">
+            
+            <div id="draw-type-container">
+
+                <div id="objects-container">
+                    <button id="barrel_1-object-button">
                     <img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel1.png"></button>
-                <button id="table_1-object-button">
+                    <button id="table_1-object-button">
                     <img class="object-button"
-                        src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Table1.png"></button>
+                    src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Table1.png"></button>
                 </button>
             </div>
             <div id="tiles-container">
                 <button id="dungeon-tile-button">
                     <img class="object-button"
-                        src="./assets/textures/tiles/dungeon-tile-repr.png"></button>
+                    src="./assets/textures/tiles/dungeon-tile-repr.png"></button>
                 </button>
             </div>
         </div>
+        <div id="file-container">
+            <div class="auth-container" id="login-container">
+                <a href="./login.html">Login</a>
+                <a href="./signup.html">Signup</a>
+            </div>
+            <div class="auth-container" id="profile-container">
+                <p id="authuser-email">Logged in</p>
+            </div>
+            <div id="save-game-contaier">
+                <div id="save-game-input">
+
+                <input type="text" id="save-game-filename" placeholder="File name">
+                <button id="save-game-button">Save</button>
+            </div>
+            
+            <div id="save-game-spinner" class="spinner-border"></div>
+        </div>
+    </div>
+        </div>
         <div id="bottom-bar">
+            
+            <button id="change-to-file">File</button>
             <button id="change-to-tiles">Tiles</button>
             <button id="change-to-objects">Objects</button>
             <button id="change-to-move">Move</button>
@@ -65,7 +84,8 @@
     
     <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-storage.js"></script>
+
     <script>
         var firebaseConfig = {
             apiKey: "AIzaSyAiuucXI6pytwuvH22g1M__o6TRjy2qLNU",
@@ -79,9 +99,9 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
     </script>
-    <script src="game/authenticationSetup.js"></script>
+
+<script src="game/authenticationSetup.js"></script>
 </body>
 
 </html>

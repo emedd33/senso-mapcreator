@@ -5,6 +5,7 @@ const app = new PIXI.Application({
 document.getElementById("game-container").appendChild(app.view)
 const gameMatrix = new Array(MATRIX_WIDTH * MATRIX_HEIGHT).fill(0);
 app.renderer.backgroundColor = 0xFAEBD7
+app.stage.backgroundColor = 0xFAEBD7
 
 let interactionType = "moveObject";
 let objectType;
@@ -42,10 +43,10 @@ app.stage.addChild(new PIXI.display.Layer(tileGroup));
 app.stage.addChild(new PIXI.display.Layer(objectGroup));
 app.stage.addChild(new PIXI.display.Layer(cursorGroup));
 
-const backgroundContainer = new PIXI.Container();
-const tileContainer = new PIXI.Container();
-const objectContainer = new PIXI.Container();
-const cursorContainer = new PIXI.Container();
+const backgroundContainer = new PIXI.Container({width:WIDTH,height:HEIGHT});
+const tileContainer = new PIXI.Container({width:WIDTH,height:HEIGHT});
+const objectContainer = new PIXI.Container({width:WIDTH,height:HEIGHT});
+const cursorContainer = new PIXI.Container({width:WIDTH,height:HEIGHT});
 app.stage.addChild(backgroundContainer)
 app.stage.addChild(tileContainer)
 app.stage.addChild(objectContainer)
@@ -61,16 +62,17 @@ app.stage.scale.y = Y_SCALE
 
 loader.load((loader, resources) => {
     // Setup background Container
+    const gridTexture = PIXI.utils.TextureCache.grid_32_32
+    gridTexture.frame = new PIXI.Rectangle(0, 0, WIDTH, HEIGHT)
     if (gameState.background.texture) {
         if (gameState.background.texture === "grid_32_32") {
-            backgroundSprite = new PIXI.Sprite(PIXI.utils.TextureCache.grid_32_32);
+            backgroundSprite = new PIXI.Sprite(gridTexture);
         }
         backgroundSprite.anchor.set(gameState.background.anchor)
         backgroundSprite.x = gameState.background.x
         backgroundSprite.y = gameState.background.y
     } else {
-        backgroundSprite = new PIXI.Sprite(PIXI.utils.TextureCache.grid_32_32);
-        backgroundSprite.anchor.set(0.5);
+        backgroundSprite = new PIXI.Sprite(gridTexture);
         backgroundSprite.x = 0
         backgroundSprite.y = 0
         gameState.background.texture = "grid_32_32"
