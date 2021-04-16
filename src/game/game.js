@@ -12,13 +12,15 @@ let objectType;
 let tileType;
 let cursorSprite;
 let backgroundSprite;
+let objectScale = 1;
 
 const gameState = {
     background: {},
     tiles: {},
-    objecs: [],
+    objects: {},
     gameMatrix: gameMatrix
 }
+
 // Set up layers
 const backgroundGroup = new PIXI.display.Group(-1, true)
 backgroundGroup.on('sort', ((sprite) => {
@@ -87,8 +89,7 @@ loader.load((loader, resources) => {
     // console.log(document.getElementById("game-container"))
     // document.getElementById("game-container").childNodes[0].addEventListener("pointerdown", onClick)
     backgroundSprite
-    .on('pointerdown', onClick)
-    .on('pointerdown', onDragStart)
+    .on('pointerdown', onPointerDown)
     .on('pointerup', onDragEnd)
     .on('pointerupoutside', onDragEnd)
     .on('pointermove', onDragMove)
@@ -111,21 +112,34 @@ loader.load((loader, resources) => {
 })
 // Event functions
 
-function onClick(event) {
-    const pos = event.data.getLocalPosition(this.parent)
-    addToGrid(pos)
-}
-function onDragStart(event) {
+function onPointerDown(event) {
     // store a reference to the data
     // the reason for this is because of multitouch
     // we want to track the movement of this particular touch
-    if (interactionType === "drawTile") {
-        this.data = getTilePosition(event.data);
-    } else if (interactionType === "moveObject") {
-        console.log(event.data)
-        this.data = event.data;
-    }
+    const pos = event.data.getLocalPosition(this.parent)
     this.dragging = true;
+    if (interactionType==="drawObject" || interactionType === "drawTile"){
+        this.data = event.data;
+        addToGame(pos)
+        return
+    }
+ 
+    if(interactionType === "delete"){
+        this.data = event.data;
+        if(this.type==="object"){
+            objectContainer.removeChild(this)
+            delete gameState.objects[this.id]
+            console.log(gameState)
+            return
+        } 
+        if (this.type==="tile"){
+            const tilePos = getTilePosition(pos)
+            const index = getGameMatrixIndex(tilePos.x, tilePos.y)
+            tileContainer.removeChild(this)
+            gameMatrix[index] = 0
+            delete gameState.tiles[index]
+        }
+    }
 }
 
 function onDragEnd() {
@@ -137,27 +151,26 @@ function onDragEnd() {
 
 function onDragMove(event) {
     
-    const position = event.data.getLocalPosition(this.parent)
     if (cursorSprite){
+        let position = event.data.getLocalPosition(this.parent)
         cursorSprite.x = position.x
         cursorSprite.y = position.y
     }
     if (this.dragging) {
         if (interactionType === "drawTile") {
+            let position = event.data.getLocalPosition(this.parent)
             const tilePosition = getTilePosition(position)
             if (tilePosition.x !== this.data.x || tilePosition.y !== this.data.y) {
                 this.data = tilePosition
-                addToGrid(tilePosition)
+                addToGame(tilePosition)
             }
         } else if (interactionType === "moveObject") {
-            // backgroundSprite.x = 0
-            // backgroundSprite.y = 0
-            this.x = position.x;
-            this.y = position.y;
-            backgroundSprite.x = 0
-            backgroundSprite.y = 0
-
-        }
+            if(this.type=== "object"){
+                let position = event.data.getLocalPosition(this.parent)
+                this.x = position.x;
+                this.y = position.y;
+            }
+        } 
     }
 }
 // eslint-disable-next-line
@@ -182,7 +195,7 @@ function onScroll(event) {
     event.preventDefault()
 
 }
-function addToGrid(pos) {
+function addToGame(pos) {
     if (interactionType === "drawTile") {
         const tilePos = getTilePosition(pos)
         const index = getGameMatrixIndex(tilePos.x, tilePos.y)
@@ -195,13 +208,15 @@ function addToGrid(pos) {
         drawBottomLeftTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
         drawBottomTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
         drawBottomRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
+       
     } else if (interactionType === "drawObject") {
+        console.log(objectScale)
         switch (objectType) {
             case "table_1":
-                drawObject(PIXI.utils.TextureCache.table_1,0.1, pos, "table_1")
+                drawObject(PIXI.utils.TextureCache.table_1,TABLE_1_SCALE*objectScale, pos, "table_1")
                 break
             case "barrel_1":
-                drawObject(PIXI.utils.TextureCache.barrel_1,0.2, pos, "barrel_l")
+                drawObject(PIXI.utils.TextureCache.barrel_1,BARREL_1_SCALE*objectScale, pos, "barrel_l")
                 break
             default:
                 break

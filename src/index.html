@@ -10,6 +10,8 @@
     <script src="modules/pixi-layers.js"></script>
     <script src="functions/game/draw.js"></script>
     <script src="functions/game/position.js"></script>
+    <script src="functions/utils/createId.js"></script>
+    <script src="functions/utils/createSprite.js"></script>
     <script src="game/bottombar.js"></script>
     <script src="game/sidebar.js"></script>
     <script src="game/textures.js"></script>
@@ -39,6 +41,9 @@
                     <img class="object-button"
                     src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Table1.png"></button>
                 </button>
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="object-scaler">
+                </div>
             </div>
             <div id="tiles-container">
                 <button id="dungeon-tile-button">
@@ -55,16 +60,17 @@
             <div class="auth-container" id="profile-container">
                 <p id="authuser-email">Logged in</p>
             </div>
-            <div id="save-game-contaier">
+            <div id="save-game-container">
                 <div id="save-game-input">
 
                 <input type="text" id="save-game-filename" placeholder="File name">
                 <button id="save-game-button">Save</button>
+                <div id="save-game-spinner" class="spinner-border"></div>
             </div>
             
-            <div id="save-game-spinner" class="spinner-border"></div>
         </div>
-    </div>
+        <button id="download-game-button">Download</button>
+        </div>
         </div>
         <div id="bottom-bar">
             
@@ -72,7 +78,7 @@
             <button id="change-to-tiles">Tiles</button>
             <button id="change-to-objects">Objects</button>
             <button id="change-to-move">Move</button>
-            <h2 id="interaction-type">Draw tile</h2>
+            <button id="change-to-delete">Delete</button>
         </div>
     </div>
     <script type="text/javascript" src="game/game.js"></script>

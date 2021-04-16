@@ -1,26 +1,34 @@
 function drawTile(app, gameMatrix, texture, x, y, index, indexValue) {
-    const sprite = new PIXI.Sprite(texture);
-    sprite.y = x
-    sprite.x = y;
-    sprite.parentGroup = tileGroup
-    tileContainer.addChild(sprite)
-    gameMatrix[index] = indexValue
-    gameState.tiles[index.toString()] = { texture: texture, type: indexValue.toString(), x: x, y: y }
-}
-function drawObject(objectTexture, scale, pos, type) {
-    let objectSprite = new PIXI.Sprite(objectTexture);
-    objectSprite.y = pos.y
-    objectSprite.x = pos.x;
-    objectSprite.scale.set(scale)
-    objectSprite.anchor.set(0.5)
-    objectSprite.parentGroup = objectGroup
-    objectSprite.interactive = true
-    objectSprite
-    .on('pointerdown', onDragStart)
+    const tileSprite = new PIXI.Sprite(texture);
+    tileSprite.id = index
+    tileSprite.type = "tile"
+    tileSprite.y = x
+    tileSprite.x = y;
+    tileSprite.parentGroup = tileGroup
+    tileSprite.interactive = true
+    tileSprite
+    .on('pointerdown', onPointerDown)
     .on('pointerup', onDragEnd)
     .on('pointerupoutside', onDragEnd)
     .on('pointermove', onDragMove);
-    gameState.objecs.push({displayOrder:objectSprite.displayOrder, scale:scale, type:type,pos:pos})
+    tileContainer.addChild(tileSprite)
+    gameMatrix[index] = indexValue
+    gameState.tiles[index.toString()] = { texture: texture, type: indexValue.toString(), x: x, y: y, displayOrder: tileSprite.displayOrder }
+}
+function drawObject(objectTexture, scale, pos, type) {
+    let objectSprite = createSprite(objectTexture,scale,0.5)
+    objectSprite.type="object"
+    objectSprite.id = createId()
+    objectSprite.y = pos.y
+    objectSprite.x = pos.x;
+    objectSprite.parentGroup = objectGroup
+    objectSprite.interactive = true
+    objectSprite
+    .on('pointerdown', onPointerDown)
+    .on('pointerup', onDragEnd)
+    .on('pointerupoutside', onDragEnd)
+    .on('pointermove', onDragMove);
+    gameState.objects[objectSprite.id] ={displayOrder:objectSprite.displayOrder, scale:scale, type:type,pos:pos}
     objectContainer.addChild(objectSprite)
 }
 function drawTopRightTile(app, gameMatrix, index, textures, columnPx, rowPx) {

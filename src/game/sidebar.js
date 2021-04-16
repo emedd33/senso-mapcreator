@@ -1,25 +1,24 @@
+
 function setupSidebar(backgroundSprite) {   
     document.getElementById("table_1-object-button").addEventListener("click", function () {
         backgroundSprite.interactive = true
-        document.getElementById("interaction-type").innerHTML = "Draw Table"
         interactionType = "drawObject"
         objectType = "table_1"
-        let newCursorSprite = new PIXI.Sprite(textures.objects.table_1);
-        newCursorSprite.scale.set(0.1)
-        newCursorSprite.anchor.set(0.5)
+        objectScale=1
+        document.getElementById("object-scaler").value = 50
+        let newCursorSprite = createSprite(textures.objects.table_1, TABLE_1_SCALE,0.5)
         newCursorSprite.parentGroup = cursorGroup
-       cursorContainer.addChild(newCursorSprite)
+        cursorContainer.addChild(newCursorSprite)
         cursorContainer.removeChild(cursorSprite)
         cursorSprite = newCursorSprite
     })
     document.getElementById("barrel_1-object-button").addEventListener("click", function () {
         backgroundSprite.interactive = true
-        document.getElementById("interaction-type").innerHTML = "Draw Barrel"
         interactionType = "drawObject"
         objectType = "barrel_1"
-        let newCursorSprite = new PIXI.Sprite(textures.objects.barrel_1);
-        newCursorSprite.scale.set(0.2)
-        newCursorSprite.anchor.set(0.5)
+         objectScale=1
+        document.getElementById("object-scaler").value = 50
+        let newCursorSprite = createSprite(textures.objects.barrel_1, BARREL_1_SCALE,0.5)
         newCursorSprite.parentGroup = cursorGroup
         cursorContainer.addChild(newCursorSprite)
         cursorContainer.removeChild(cursorSprite)
@@ -28,11 +27,11 @@ function setupSidebar(backgroundSprite) {
     })
     document.getElementById("dungeon-tile-button").addEventListener("click", function () {
         backgroundSprite.interactive = true
-        document.getElementById("interaction-type").innerHTML = "Draw dungeon tile"
         interactionType = "drawTile"
         tileType = "dungeonTile"
-        newCursorSprite = new PIXI.Sprite(textures.tiles.center);
-        newCursorSprite.anchor.set(0.5)
+        objectScale=1
+        document.getElementById("object-scaler").value = 50
+        newCursorSprite = createSprite(textures.tiles.center, 1,0);
         newCursorSprite.parentGroup = cursorGroup
         cursorContainer.addChild(newCursorSprite)
         cursorContainer.removeChild(cursorSprite)
@@ -42,7 +41,6 @@ function setupSidebar(backgroundSprite) {
      document.getElementById("change-to-move").addEventListener("click", function () {
          console.log("hei")
         backgroundSprite.interactive = true
-        document.getElementById("interaction-type").innerHTML = "Move object"
         interactionType = "moveObject"
         newCursorSprite = new PIXI.Sprite(textures.objects.cursor);
         newCursorSprite.scale.set(0.05)
@@ -70,10 +68,8 @@ function setupSidebar(backgroundSprite) {
                             document.getElementById("save-game-spinner").style.display="none"
                             document.getElementById("save-game-input").style.display="flex"
                             backgroundSprite.interactive = true
-                            document.getElementById("interaction-type").innerHTML = "Move object"
                             interactionType = "moveObject"
-                            newCursorSprite = new PIXI.Sprite(textures.objects.cursor);
-                            newCursorSprite.scale.set(0.05)
+                            newCursorSprite = createSprite(textures.objects.cursor,0.05,0)
                             newCursorSprite.parentGroup = cursorGroup
                             cursorContainer.addChild(newCursorSprite)
                             cursorContainer.removeChild(cursorSprite)
@@ -84,10 +80,8 @@ function setupSidebar(backgroundSprite) {
                     document.getElementById("save-game-spinner").style.display="none"
                     document.getElementById("save-game-input").style.display="flex"
                     backgroundSprite.interactive = true
-                    document.getElementById("interaction-type").innerHTML = "Move object"
                     interactionType = "moveObject"
-                    newCursorSprite = new PIXI.Sprite(textures.objects.cursor);
-                    newCursorSprite.scale.set(0.05)
+                    newCursorSprite = createSprite(textures.objects.cursor,0.05,0)
                     newCursorSprite.parentGroup = cursorGroup
                     cursorContainer.addChild(newCursorSprite)
                     cursorContainer.removeChild(cursorSprite)
@@ -101,4 +95,31 @@ function setupSidebar(backgroundSprite) {
 
         }
     })
+     document.getElementById("download-game-button").addEventListener("click", function () {
+         cursorContainer.removeChild(cursorSprite)
+         app.renderer.extract.canvas(app.stage).toBlob(function(blob) {
+             var a = document.createElement('a');
+            document.body.append(a);
+            a.download = "new cmap";
+            a.href = URL.createObjectURL(blob);
+            a.click();
+            a.remove();
+            document.getElementById("save-game-spinner").style.display="none"
+            document.getElementById("save-game-input").style.display="flex"
+            backgroundSprite.interactive = true
+            interactionType = "moveObject"
+            newCursorSprite = createSprite(textures.objects.cursor, 0.05,0);
+            newCursorSprite.parentGroup = cursorGroup
+            cursorContainer.addChild(newCursorSprite)
+            cursorContainer.removeChild(cursorSprite)
+            cursorSprite = newCursorSprite
+        }, 'image/png');
+    })
+    document.getElementById("object-scaler").oninput = function() {
+        if (interactionType === "drawObject"){
+            objectScale = this.value/100 + 0.5
+            cursorSprite.scale.set(objectScale*cursorSprite.defaultScale)
+            console.log(cursorSprite.defaultScale, cursorSprite.scale)
+        } 
+    }
 }

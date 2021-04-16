@@ -4,15 +4,18 @@ canvas {
 h2 {
   color: white;
 }
+html {
+  background-color: #000000;
+}
 button {
-  border: none;
-  border-radius: 1rem;
-  color: black;
-  background-color: antiquewhite;
-  text-align: center;
   text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  background-color: black;
+  color: antiquewhite;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 5px;
+  border-color: black;
+  border: solid 1px;
 }
 button:hover {
   background-color: rgb(199, 186, 169);
@@ -25,7 +28,6 @@ a {
   background-color: antiquewhite;
   color: black;
   padding: 5px;
-  border-radius: 5px;
   margin: 5px;
   border-color: black;
   border: solid 1px;
@@ -45,7 +47,6 @@ input {
   display: flex;
   justify-content: center;
 }
-
 /* ID elements */
 #container {
   background-color: black;
@@ -69,7 +70,7 @@ input {
   box-shadow: 5px 5px 15px 5px #000000;
 }
 #login-container {
-  display: none;
+  display: flex;
 }
 
 #save-game-button {
@@ -81,8 +82,13 @@ input {
 }
 #objects-container {
   display: none;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   margin-top: 1rem;
+}
+#object-scale-value {
+  text-align: center;
+  margin: 0;
 }
 #tiles-container {
   display: none;
@@ -90,15 +96,20 @@ input {
   margin-top: 1rem;
 }
 #file-container {
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 #bottom-bar {
   grid-column-start: 1;
   grid-column-end: 11;
   background-color: black;
   height: 10vh;
-  -webkit-box-shadow: 0px -6px 5px -1px rgba(0, 0, 0, 0.59);
-  box-shadow: 0px -6px 5px -1px rgba(0, 0, 0, 0.59);
+  -webkit-box-shadow: 0px -6px 5px -1px rgba(100, 100, 100, 0.59);
+  box-shadow: 0px -6px 5px -1px rgba(100, 100, 100, 0.59);
+}
+#save-game-container {
+  display: none;
 }
 #save-game-spinner {
   display: none;

@@ -1,6 +1,7 @@
 function loadTextures(){
     loader.add("dungeonTiles", "assets/textures/tiles/dungeon-tile.png")
     loader.add("cursor", "assets/textures/cursor.png")
+    loader.add("bulldozer", "assets/textures/bulldozer.png")
     loader.add("grid_32_32", "assets/textures/grids/32-32-grid.png")
     loader.add("table_1", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Table1.png")
     loader.add("barrel_1", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel1.png")
