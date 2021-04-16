@@ -2,7 +2,7 @@ function setupBottomBar(backgroundSprite){
     document.getElementById("change-to-file").addEventListener("click", function () {
 
         document.getElementById("objects-container").style.display = "none"
-        document.getElementById("file-container").style.display = "block"
+        document.getElementById("file-container").style.display = "flex"
         document.getElementById("tiles-container").style.display = "none"
     })
     document.getElementById("change-to-tiles").addEventListener("click", function () {
@@ -19,7 +19,6 @@ function setupBottomBar(backgroundSprite){
     })
     document.getElementById("change-to-move").addEventListener("click", function () {
         backgroundSprite.interactive = false
-        document.getElementById("interaction-type").innerHTML = "Move object"
         interactionType = "moveObject"
     })
      document.getElementById("change-to-delete").addEventListener("click", function () {

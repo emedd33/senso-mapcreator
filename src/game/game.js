@@ -13,6 +13,7 @@ let tileType;
 let cursorSprite;
 let backgroundSprite;
 let objectScale = 1;
+let history = []
 
 const gameState = {
     background: {},
@@ -107,6 +108,7 @@ loader.load((loader, resources) => {
     app.renderer.plugins.interaction.cursorStyles.pointer = "none";
     setupBottomBar(backgroundSprite)
     setupSidebar(backgroundSprite)
+    setUpKeyInputs()
     
 
 })
@@ -196,32 +198,41 @@ function onScroll(event) {
 
 }
 function addToGame(pos) {
+    let newEvent;
     if (interactionType === "drawTile") {
+        tileSprites = []
         const tilePos = getTilePosition(pos)
         const index = getGameMatrixIndex(tilePos.x, tilePos.y)
-        drawTile(app, gameMatrix, textures.tiles.center, tilePos.y, tilePos.x, index, CENTER)
-        drawTopLeftTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
-        drawTopTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
-        drawTopRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
-        drawLeftTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
-        drawRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
-        drawBottomLeftTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
-        drawBottomTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
-        drawBottomRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y)
+        tileSprites.push(drawTile(app, gameMatrix, textures.tiles.center, tilePos.y, tilePos.x, index, CENTER))
+        tileSprites.push(drawTopLeftTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y))
+        tileSprites.push(drawTopTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y))
+        tileSprites.push(drawTopRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y))
+        tileSprites.push(drawLeftTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y))
+        tileSprites.push(drawRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y))
+        tileSprites.push(drawBottomLeftTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y))
+        tileSprites.push(drawBottomTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y))
+        tileSprites.push(drawBottomRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y))
+        newEvent = {action: "add", sprites:tileSprites, type:"tile"}
        
     } else if (interactionType === "drawObject") {
-        console.log(objectScale)
+        let objectSprite
         switch (objectType) {
             case "table_1":
-                drawObject(PIXI.utils.TextureCache.table_1,TABLE_1_SCALE*objectScale, pos, "table_1")
+                objectSprite = drawObject(PIXI.utils.TextureCache.table_1,TABLE_1_SCALE*objectScale, pos, "table_1")
                 break
             case "barrel_1":
-                drawObject(PIXI.utils.TextureCache.barrel_1,BARREL_1_SCALE*objectScale, pos, "barrel_l")
+                objectSprite = drawObject(PIXI.utils.TextureCache.barrel_1,BARREL_1_SCALE*objectScale, pos, "barrel_l")
                 break
             default:
                 break
         }
+        if(objectSprite){
+            newEvent = {action: "add", sprites:[objectSprite], type:"object"}
+        }
 
+    }
+    if (newEvent){
+        history.push(newEvent)
     }
 
 }

@@ -39,7 +39,6 @@ function setupSidebar(backgroundSprite) {
         
     })
      document.getElementById("change-to-move").addEventListener("click", function () {
-         console.log("hei")
         backgroundSprite.interactive = true
         interactionType = "moveObject"
         newCursorSprite = new PIXI.Sprite(textures.objects.cursor);
@@ -100,7 +99,7 @@ function setupSidebar(backgroundSprite) {
          app.renderer.extract.canvas(app.stage).toBlob(function(blob) {
              var a = document.createElement('a');
             document.body.append(a);
-            a.download = "new cmap";
+            a.download = "new map";
             a.href = URL.createObjectURL(blob);
             a.click();
             a.remove();
@@ -119,7 +118,6 @@ function setupSidebar(backgroundSprite) {
         if (interactionType === "drawObject"){
             objectScale = this.value/100 + 0.5
             cursorSprite.scale.set(objectScale*cursorSprite.defaultScale)
-            console.log(cursorSprite.defaultScale, cursorSprite.scale)
         } 
     }
 }
