@@ -12,6 +12,7 @@
     <script src="functions/game/position.js"></script>
     <script src="functions/utils/createId.js"></script>
     <script src="functions/utils/createSprite.js"></script>
+    <script src="functions/utils/changeBackgroundTexture.js"></script>
     <script src="game/bottombar.js"></script>
     <script src="game/sidebar.js"></script>
     <script src="game/textures.js"></script>
@@ -47,10 +48,27 @@
                 </div>
             </div>
             <div id="tiles-container">
+                <h4>Tiles </h4>
                 <button id="dungeon-tile-button">
                     <img class="object-button"
-                    src="./assets/textures/tiles/dungeon-tile-repr.png"></button>
+                    src="./assets/textures/tiles/dungeon-tile-repr.png">
                 </button>
+                <h4>Backgrounds</h4>
+                <div id="backgrounds-container">
+
+                    <button id="gray-background-button">
+                        Gray
+                    </button>
+                    <button id="lightgray-background-button">
+                        Light gray
+                    </button>  
+                    <button id="darkgray-background-button">
+                        Dark gray
+                    </button>
+                    <button id="black-background-button">
+                        Black
+                    </button>
+                </div>
             </div>
         </div>
         <div id="file-container">

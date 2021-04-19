@@ -65,20 +65,20 @@ app.stage.scale.y = Y_SCALE
 
 loader.load((loader, resources) => {
     // Setup background Container
-    const gridTexture = PIXI.utils.TextureCache.grid_32_32
-    gridTexture.frame = new PIXI.Rectangle(0, 0, WIDTH, HEIGHT)
+    const backgroundTexture = PIXI.utils.TextureCache.gray_background
+    backgroundTexture.frame = new PIXI.Rectangle(0, 0, WIDTH, HEIGHT)
     if (gameState.background.texture) {
-        if (gameState.background.texture === "grid_32_32") {
-            backgroundSprite = new PIXI.Sprite(gridTexture);
+        if (gameState.background.texture === "gray_background") {
+            backgroundSprite = new PIXI.Sprite(backgroundTexture);
         }
         backgroundSprite.anchor.set(gameState.background.anchor)
         backgroundSprite.x = gameState.background.x
         backgroundSprite.y = gameState.background.y
     } else {
-        backgroundSprite = new PIXI.Sprite(gridTexture);
+        backgroundSprite = new PIXI.Sprite(backgroundTexture);
         backgroundSprite.x = 0
         backgroundSprite.y = 0
-        gameState.background.texture = "grid_32_32"
+        gameState.background.texture = "gray_background"
         gameState.background.anchor = 0.5
         gameState.background.x = 0
         gameState.background.y = 0

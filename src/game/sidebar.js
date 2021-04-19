@@ -120,4 +120,16 @@ function setupSidebar(backgroundSprite) {
             cursorSprite.scale.set(objectScale*cursorSprite.defaultScale)
         } 
     }
+    document.getElementById("gray-background-button").addEventListener("click", function() {
+        changeBackgroundTexture("gray")
+    })
+    document.getElementById("lightgray-background-button").addEventListener("click", function() {
+        changeBackgroundTexture("lightgray")
+    })
+    document.getElementById("darkgray-background-button").addEventListener("click", function() {
+        changeBackgroundTexture("darkgray")
+    })
+    document.getElementById("black-background-button").addEventListener("click", function() {
+        changeBackgroundTexture("black")
+    })
 }
