@@ -136,4 +136,15 @@ function setupSidebar(backgroundSprite) {
     document.getElementById("black-background-button").addEventListener("click", function() {
         changeBackgroundTexture("black")
     })
+    document.getElementById("object-search-input").addEventListener("input", function(){
+        const searchWord = document.getElementById("object-search-input").value
+        const searchContainer = document.getElementById("object-search-container")
+        for (const elem of searchContainer.children){
+            if (elem.id.includes(searchWord)){
+                elem.style.display = "inline"
+            } else {
+                elem.style.display = "none"
+            }
+    }
+    })
 }
