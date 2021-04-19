@@ -22,7 +22,7 @@
     <script src="firebase/setup.js"></script>
     <script type="text/javascript" src="game/keyInputs.js"></script>
     <link href="./index.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="./styles/switch.css" rel="stylesheet">
     <script>
         var authUser;
         var storage;
@@ -42,7 +42,7 @@
                     <img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel1.png"></button>
                     <button id="table_1-object-button">
                     <img class="object-button"
-                    src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Table1.png"></button>
+                    src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Table1.png"></button> 
                 </button>
                 <div class="slidecontainer">
                     <input type="range" min="1" max="100" value="50" class="slider" id="object-scaler">
@@ -54,9 +54,14 @@
                     <img class="object-button"
                     src="./assets/textures/tiles/dungeon-tile-repr.png">
                 </button>
+                <h4>Autodraw surrounding tiles</h4>
+                <label class="switch">
+                    <input type="checkbox" id="autodraw-input" checked>
+                    <span class="slider round"></span>
+                </label>
                 <h4>Backgrounds</h4>
                 <div id="backgrounds-container">
-
+                    
                     <button id="gray-background-button">
                         Gray
                     </button>
@@ -74,11 +79,11 @@
         </div>
         <div id="file-container">
             <div class="auth-container" id="login-container">
-                <a href="./login.html">Login</a>
-                <a href="./signup.html">Signup</a>
+                <!-- <a href="./login.html">Login</a> -->
+                <!-- <a href="./signup.html">Signup</a> -->
             </div>
             <div class="auth-container" id="profile-container">
-                <p id="authuser-email">Logged in</p>
+                <!-- <p id="authuser-email">Logged in</p> -->
             </div>
             <div id="save-game-container">
                 <div id="save-game-input">

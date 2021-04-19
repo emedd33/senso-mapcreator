@@ -38,6 +38,10 @@ function setupSidebar(backgroundSprite) {
         cursorSprite = newCursorSprite
         
     })
+    document.getElementById("autodraw-input").addEventListener("click",function (event) {
+        autodrawSurroundingTiles = event.target.checked
+    
+    })
      document.getElementById("change-to-move").addEventListener("click", function () {
         backgroundSprite.interactive = true
         interactionType = "moveObject"

@@ -8,6 +8,7 @@ app.renderer.backgroundColor = 0xFAEBD7
 app.stage.backgroundColor = 0xFAEBD7
 
 let interactionType = "moveObject";
+let autodrawSurroundingTiles = true;
 let objectType;
 let tileType;
 let cursorSprite;
@@ -175,14 +176,17 @@ function addToGame(pos) {
         const tilePos = getTilePosition(pos)
         const index = getGameMatrixIndex(tilePos.x, tilePos.y)
         tileSprites.push(drawTile(app, textures.tiles.center, tilePos.y, tilePos.x, index, CENTER))
-        tileSprites.push(drawTopLeftTile(app, index, textures, tilePos.x, tilePos.y))
-        tileSprites.push(drawTopTile(app, index, textures, tilePos.x, tilePos.y))
-        tileSprites.push(drawTopRightTile(app, index, textures, tilePos.x, tilePos.y))
-        tileSprites.push(drawLeftTile(app, index, textures, tilePos.x, tilePos.y))
-        tileSprites.push(drawRightTile(app, index, textures, tilePos.x, tilePos.y))
-        tileSprites.push(drawBottomLeftTile(app, index, textures, tilePos.x, tilePos.y))
-        tileSprites.push(drawBottomTile(app, index, textures, tilePos.x, tilePos.y))
-        tileSprites.push(drawBottomRightTile(app, index, textures, tilePos.x, tilePos.y))
+        if(autodrawSurroundingTiles){
+
+            tileSprites.push(drawTopLeftTile(app, index, textures, tilePos.x, tilePos.y))
+            tileSprites.push(drawTopTile(app, index, textures, tilePos.x, tilePos.y))
+            tileSprites.push(drawTopRightTile(app, index, textures, tilePos.x, tilePos.y))
+            tileSprites.push(drawLeftTile(app, index, textures, tilePos.x, tilePos.y))
+            tileSprites.push(drawRightTile(app, index, textures, tilePos.x, tilePos.y))
+            tileSprites.push(drawBottomLeftTile(app, index, textures, tilePos.x, tilePos.y))
+            tileSprites.push(drawBottomTile(app, index, textures, tilePos.x, tilePos.y))
+            tileSprites.push(drawBottomRightTile(app, index, textures, tilePos.x, tilePos.y))
+        }
         newEvent = {action: "add", sprites:tileSprites, type:"tile"}
        
     } else if (interactionType === "drawObject") {
