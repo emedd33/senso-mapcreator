@@ -1,30 +1,18 @@
 
 function setupSidebar(backgroundSprite) {   
-    document.getElementById("table_1-object-button").addEventListener("click", function () {
-        backgroundSprite.interactive = true
-        interactionType = "drawObject"
-        objectType = "table_1"
-        objectScale=1
-        document.getElementById("object-scaler").value = 50
-        let newCursorSprite = createSprite(textures.objects.table_1, TABLE_1_SCALE,0.5)
-        newCursorSprite.parentGroup = cursorGroup
-        cursorContainer.addChild(newCursorSprite)
-        cursorContainer.removeChild(cursorSprite)
-        cursorSprite = newCursorSprite
-    })
-    document.getElementById("barrel_1-object-button").addEventListener("click", function () {
-        backgroundSprite.interactive = true
-        interactionType = "drawObject"
-        objectType = "barrel_1"
-         objectScale=1
-        document.getElementById("object-scaler").value = 50
-        let newCursorSprite = createSprite(textures.objects.barrel_1, BARREL_1_SCALE,0.5)
-        newCursorSprite.parentGroup = cursorGroup
-        cursorContainer.addChild(newCursorSprite)
-        cursorContainer.removeChild(cursorSprite)
-        cursorSprite = newCursorSprite
+    // document.getElementById("barrel_1-object-button").addEventListener("click", function () {
+    //     backgroundSprite.interactive = true
+    //     interactionType = "drawObject"
+    //     objectType = "barrel_1"
+    //      objectScale=1
+    //     document.getElementById("object-scaler").value = 50
+    //     let newCursorSprite = createSprite(textures.objects.barrel_1, BARREL_1_SCALE,0.5)
+    //     newCursorSprite.parentGroup = cursorGroup
+    //     cursorContainer.addChild(newCursorSprite)
+    //     cursorContainer.removeChild(cursorSprite)
+    //     cursorSprite = newCursorSprite
 
-    })
+    // })
     document.getElementById("dungeon-tile-button").addEventListener("click", function () {
         backgroundSprite.interactive = true
         interactionType = "drawTile"
@@ -137,10 +125,10 @@ function setupSidebar(backgroundSprite) {
         changeBackgroundTexture("black")
     })
     document.getElementById("object-search-input").addEventListener("input", function(){
-        const searchWord = document.getElementById("object-search-input").value
+        const searchWord = document.getElementById("object-search-input").value.toString().toLowerCase()
         const searchContainer = document.getElementById("object-search-container")
         for (const elem of searchContainer.children){
-            if (elem.id.includes(searchWord)){
+            if (elem.id.toString().toLowerCase().includes(searchWord)){
                 elem.style.display = "inline"
             } else {
                 elem.style.display = "none"

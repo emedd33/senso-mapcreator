@@ -7,8 +7,41 @@ function loadTextures(){
     loader.add("lightgray_background", "assets/textures/grids/lightgray_background.png")
     loader.add("black_background", "assets/textures/grids/black_background.png")
     loader.add("darkgray_background", "assets/textures/grids/darkgray_background.png")
-    loader.add("table_1", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Table1.png")
     loader.add("barrel_1", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel1.png")
+    loader.add("barrel_2", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel2.png")
+    loader.add("barrel_3", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel3.png")
+    loader.add("barrel_4", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel4.png")
+    loader.add("barrel_large", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BarrelLarge.png")
+    loader.add("barrel_small", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BarrelSmall.png")
+    loader.add("barrow", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrow.png")
+    loader.add("bathtub", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_bathtub.png")
+    loader.add("bench_1", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Bench1.png")
+    loader.add("bench_2", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Bench2.png")
+    loader.add("benchtable_1", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BenchTable1.png")
+    loader.add("benchtable_2", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BenchTable2.png")
+    loader.add("benchtable_3", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BenchTable3.png")
+    loader.add("book_1", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book1.png")
+    loader.add("book_2", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book2.png")
+    loader.add("book_3", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book3.png")
+    loader.add("book_4", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book4.png")
+    loader.add("book_5", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book5.png")
+    loader.add("book_6", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book6.png")
+    loader.add("book_7", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book7.png")
+    loader.add("book_8", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book8.png")
+    loader.add("book_leaning_1", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning1.png")
+    loader.add("book_leaning_2", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning2.png")
+    loader.add("book_leaning_3", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning3.png")
+    loader.add("book_leaning_4", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning4.png")
+    loader.add("book_leaning_5", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning5.png")
+    loader.add("book_leaning_6", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning6.png")
+    loader.add("books", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Books.png")
+    loader.add("book_shelf", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookShelf.png")
+    loader.add("book_shelf_full", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookShelfFull.png")
+    loader.add("brazier", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Brazier.png")
+    loader.add("brazier_lit", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BrazierLit.png")
+    loader.add("broom", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Broom.png")
+    loader.add("bucket", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Bucket.png")
+    loader.add("bucket_full", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BucketFull.png")
 }
 function loadTiles(){
     
@@ -116,7 +149,75 @@ function loadTiles(){
     textures.tiles.topleftToprightBottomleftBottomright.frame = new PIXI.Rectangle(32 * 4, 32 * 6, 32, 32)
 }
 function loadObjects(){
-    textures.objects.table_1 = PIXI.utils.TextureCache.table_1.clone()
-    textures.objects.barrel_1 = PIXI.utils.TextureCache.barrel_1.clone()
     textures.objects.cursor = PIXI.utils.TextureCache.cursor.clone()
+    textures.objects.barrel_1 = PIXI.utils.TextureCache.barrel_1.clone()
+    textures.objects.barrel_1.scaler = BARREL_1_SCALE
+    textures.objects.barrel_2 = PIXI.utils.TextureCache.barrel_2.clone()
+    textures.objects.barrel_2.scaler = BARREL_2_SCALE
+    textures.objects.barrel_3 = PIXI.utils.TextureCache.barrel_3.clone()
+    textures.objects.barrel_3.scaler = BARREL_3_SCALE
+    textures.objects.barrel_4 = PIXI.utils.TextureCache.barrel_4.clone()
+    textures.objects.barrel_4.scaler = BARREL_4_SCALE
+    textures.objects.barrel_large = PIXI.utils.TextureCache.barrel_large.clone()
+    textures.objects.barrel_large.scaler = BARREL_LARGE_SCALE 
+    textures.objects.barrel_small = PIXI.utils.TextureCache.barrel_small.clone()
+    textures.objects.barrel_small.scaler = BARREL_SMALL_SCALE
+    textures.objects.barrow = PIXI.utils.TextureCache.barrow.clone()
+    textures.objects.barrow.scaler = BARROW_SCALE
+    textures.objects.bathtub = PIXI.utils.TextureCache.bathtub.clone()
+    textures.objects.bathtub.scaler = BATHTUB_SCALE
+    textures.objects.bench_1 = PIXI.utils.TextureCache.bench_1.clone()
+    textures.objects.bench_1.scaler = BENCH_1_SCALE
+    textures.objects.bench_2 = PIXI.utils.TextureCache.bench_2.clone()
+    textures.objects.bench_2.scaler = BENCH_2_SCALE
+    textures.objects.benchtable_1 = PIXI.utils.TextureCache.benchtable_1.clone()
+    textures.objects.benchtable_1.scaler = BENCH_TABLE_1_SCALE
+    textures.objects.benchtable_2 = PIXI.utils.TextureCache.benchtable_2.clone()
+    textures.objects.benchtable_2.scaler = BENCH_TABLE_2_SCALE
+    textures.objects.benchtable_3 = PIXI.utils.TextureCache.benchtable_3.clone()
+    textures.objects.benchtable_3.scaler = BENCH_TABLE_3_SCALE
+    textures.objects.book_1 = PIXI.utils.TextureCache.book_1.clone()
+    textures.objects.book_1.scaler = BOOK_1_SCALE
+    textures.objects.book_2 = PIXI.utils.TextureCache.book_2.clone()
+    textures.objects.book_2.scaler = BOOK_2_SCALE
+    textures.objects.book_3 = PIXI.utils.TextureCache.book_3.clone()
+    textures.objects.book_3.scaler = BOOK_3_SCALE
+    textures.objects.book_4 = PIXI.utils.TextureCache.book_4.clone()
+    textures.objects.book_4.scaler = BOOK_4_SCALE
+    textures.objects.book_5 = PIXI.utils.TextureCache.book_5.clone()
+    textures.objects.book_5.scaler = BOOK_5_SCALE
+    textures.objects.book_6 = PIXI.utils.TextureCache.book_6.clone()
+    textures.objects.book_6.scaler = BOOK_6_SCALE
+    textures.objects.book_7 = PIXI.utils.TextureCache.book_7.clone()
+    textures.objects.book_7.scaler = BOOK_7_SCALE
+    textures.objects.book_8 = PIXI.utils.TextureCache.book_8.clone()
+    textures.objects.book_8.scaler = BOOK_8_SCALE
+    textures.objects.book_leaning_1 = PIXI.utils.TextureCache.book_leaning_1.clone()
+    textures.objects.book_leaning_1.scaler = BOOK_LEANING_1_SCALE
+    textures.objects.book_leaning_2 = PIXI.utils.TextureCache.book_leaning_2.clone()
+    textures.objects.book_leaning_2.scaler = BOOK_LEANING_2_SCALE
+    textures.objects.book_leaning_3 = PIXI.utils.TextureCache.book_leaning_3.clone()
+    textures.objects.book_leaning_3.scaler = BOOK_LEANING_3_SCALE
+    textures.objects.book_leaning_4 = PIXI.utils.TextureCache.book_leaning_4.clone()
+    textures.objects.book_leaning_4.scaler = BOOK_LEANING_4_SCALE
+    textures.objects.book_leaning_5 = PIXI.utils.TextureCache.book_leaning_5.clone()
+    textures.objects.book_leaning_5.scaler = BOOK_LEANING_5_SCALE
+    textures.objects.book_leaning_6 = PIXI.utils.TextureCache.book_leaning_6.clone()
+    textures.objects.book_leaning_6.scaler = BOOK_LEANING_6_SCALE
+    textures.objects.books = PIXI.utils.TextureCache.books.clone()
+    textures.objects.books.scaler = BOOKS_SCALE
+    textures.objects.book_shelf = PIXI.utils.TextureCache.book_shelf.clone()
+    textures.objects.book_shelf.scaler = BOOK_SHELF_SCALE
+    textures.objects.book_shelf_full = PIXI.utils.TextureCache.book_shelf_full.clone()
+    textures.objects.book_shelf_full.scaler = BOOK_SHELF_FULL_SCALE
+    textures.objects.brazier = PIXI.utils.TextureCache.brazier.clone()
+    textures.objects.brazier.scaler = BRAZIER_SCALE
+    textures.objects.brazier_lit = PIXI.utils.TextureCache.brazier_lit.clone()
+    textures.objects.brazier_lit.scaler = BRAZIER_LIT_SCALE
+    textures.objects.broom = PIXI.utils.TextureCache.broom.clone()
+    textures.objects.broom.scaler = BROOM_SCALE
+    textures.objects.bucket = PIXI.utils.TextureCache.bucket.clone()
+    textures.objects.bucket.scaler = BUCKET_SCALE
+    textures.objects.bucket_full = PIXI.utils.TextureCache.bucket_full.clone()
+    textures.objects.bucket_full.scaler = BUCKET_FULL_SCALE
 }

@@ -191,16 +191,7 @@ function addToGame(pos) {
        
     } else if (interactionType === "drawObject") {
         let objectSprite
-        switch (objectType) {
-            case "table_1":
-                objectSprite = drawObject(PIXI.utils.TextureCache.table_1,TABLE_1_SCALE*objectScale, pos, "table_1")
-                break
-            case "barrel_1":
-                objectSprite = drawObject(PIXI.utils.TextureCache.barrel_1,BARREL_1_SCALE*objectScale, pos, "barrel_l")
-                break
-            default:
-                break
-        }
+        objectSprite = drawObject(textures.objects[objectType],textures.objects[objectType].scaler*objectScale, pos, objectType)
         if(objectSprite){
             newEvent = {action: "add", sprites:[objectSprite], type:"object"}
         }
