@@ -52,52 +52,52 @@ function setupSidebar(backgroundSprite) {
         cursorContainer.removeChild(cursorSprite)
         cursorSprite = newCursorSprite
     })
-    document.getElementById("save-game-button").addEventListener("click",function(){
-        if (authUser){
-            const filename = document.getElementById("save-game-filename").value.toString()
-            if (filename){
-                let saveGameState = gameState
-                document.getElementById("save-game-spinner").style.display="block"
-                document.getElementById("save-game-input").style.display="none"
-                backgroundSprite.interactive = false
-                cursorContainer.removeChild(cursorSprite)
-                try {
-                    let mapCreatorJSONRef = storage.ref(`/users/${authUser.displayName}/mapcreator/${filename}/gameState.json`);
-                    mapCreatorJSONRef.putString(saveGameState).then(()=>{})
-                    app.renderer.extract.canvas(app.stage).toBlob(function(blob) {
-                        let mapCreatorPNGRef = storage.ref(`/users/${authUser.displayName}/mapcreator/${filename}/image.png`);
-                        mapCreatorPNGRef.put(blob).then((snapshot) => {
-                            console.log('Uploaded png!');
-                            document.getElementById("save-game-spinner").style.display="none"
-                            document.getElementById("save-game-input").style.display="flex"
-                            backgroundSprite.interactive = true
-                            interactionType = "moveObject"
-                            newCursorSprite = createSprite(textures.objects.cursor,0.05,0)
-                            newCursorSprite.parentGroup = cursorGroup
-                            cursorContainer.addChild(newCursorSprite)
-                            cursorContainer.removeChild(cursorSprite)
-                            cursorSprite = newCursorSprite
-                        });
-                    })
-                } catch (error) {
-                    document.getElementById("save-game-spinner").style.display="none"
-                    document.getElementById("save-game-input").style.display="flex"
-                    backgroundSprite.interactive = true
-                    interactionType = "moveObject"
-                    newCursorSprite = createSprite(textures.objects.cursor,0.05,0)
-                    newCursorSprite.parentGroup = cursorGroup
-                    cursorContainer.addChild(newCursorSprite)
-                    cursorContainer.removeChild(cursorSprite)
-                    cursorSprite = newCursorSprite
+    // document.getElementById("save-game-button").addEventListener("click",function(){
+    //     if (authUser){
+    //         const filename = document.getElementById("save-game-filename").value.toString()
+    //         if (filename){
+    //             let saveGameState = gameState
+    //             document.getElementById("save-game-spinner").style.display="block"
+    //             document.getElementById("save-game-input").style.display="none"
+    //             backgroundSprite.interactive = false
+    //             cursorContainer.removeChild(cursorSprite)
+    //             try {
+    //                 let mapCreatorJSONRef = storage.ref(`/users/${authUser.displayName}/mapcreator/${filename}/gameState.json`);
+    //                 mapCreatorJSONRef.putString(saveGameState).then(()=>{})
+    //                 app.renderer.extract.canvas(app.stage).toBlob(function(blob) {
+    //                     let mapCreatorPNGRef = storage.ref(`/users/${authUser.displayName}/mapcreator/${filename}/image.png`);
+    //                     mapCreatorPNGRef.put(blob).then((snapshot) => {
+    //                         console.log('Uploaded png!');
+    //                         document.getElementById("save-game-spinner").style.display="none"
+    //                         document.getElementById("save-game-input").style.display="flex"
+    //                         backgroundSprite.interactive = true
+    //                         interactionType = "moveObject"
+    //                         newCursorSprite = createSprite(textures.objects.cursor,0.05,0)
+    //                         newCursorSprite.parentGroup = cursorGroup
+    //                         cursorContainer.addChild(newCursorSprite)
+    //                         cursorContainer.removeChild(cursorSprite)
+    //                         cursorSprite = newCursorSprite
+    //                     });
+    //                 })
+    //             } catch (error) {
+    //                 document.getElementById("save-game-spinner").style.display="none"
+    //                 document.getElementById("save-game-input").style.display="flex"
+    //                 backgroundSprite.interactive = true
+    //                 interactionType = "moveObject"
+    //                 newCursorSprite = createSprite(textures.objects.cursor,0.05,0)
+    //                 newCursorSprite.parentGroup = cursorGroup
+    //                 cursorContainer.addChild(newCursorSprite)
+    //                 cursorContainer.removeChild(cursorSprite)
+    //                 cursorSprite = newCursorSprite
                     
-                }
-        } else {
-            alert("Please enter filename")
-        }
+    //             }
+    //     } else {
+    //         alert("Please enter filename")
+    //     }
             
 
-        }
-    })
+    //     }
+    // })
      document.getElementById("download-game-button").addEventListener("click", function () {
          cursorContainer.removeChild(cursorSprite)
          app.renderer.extract.canvas(app.stage).toBlob(function(blob) {

@@ -209,6 +209,5 @@ function addToGame(pos) {
     if (newEvent){
         history.push(newEvent)
     }
-    newGameMatrix.printMatrix()
 
 }

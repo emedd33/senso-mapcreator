@@ -1,10 +1,4 @@
 function setupBottomBar(backgroundSprite){
-    document.getElementById("change-to-file").addEventListener("click", function () {
-
-        document.getElementById("objects-container").style.display = "none"
-        document.getElementById("file-container").style.display = "flex"
-        document.getElementById("tiles-container").style.display = "none"
-    })
     document.getElementById("change-to-tiles").addEventListener("click", function () {
         backgroundSprite.interactive = true        
         document.getElementById("objects-container").style.display = "none"

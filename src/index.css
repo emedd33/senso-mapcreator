@@ -21,6 +21,7 @@ button {
   margin: 5px;
   border-color: black;
   border: solid 1px;
+  cursor: pointer;
 }
 button:hover {
   background-color: rgb(199, 186, 169);
@@ -117,28 +118,11 @@ input {
   margin: 0;
 }
 #tiles-container {
-  display: none;
-  justify-content: center;
+  display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   margin-top: 1rem;
 }
-#file-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-#save-game-container {
-  display: none;
-}
-#save-game-spinner {
-  display: none;
-}
-#save-game-input {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
 .object-button {
   width: 3rem;
   height: 3rem;
