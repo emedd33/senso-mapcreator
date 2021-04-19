@@ -20,12 +20,15 @@ function changeBackgroundTexture(type){
     newBackgroundSprite.x = 0
     newBackgroundSprite.y = 0
     newBackgroundSprite.interactive = true
+    newBackgroundSprite.buttonMode = true;
     newBackgroundSprite
     .on('pointerdown', onPointerDown)
     .on('pointerup', onDragEnd)
     .on('pointerupoutside', onDragEnd)
     .on('pointermove', onDragMove)
     backgroundContainer.addChild(newBackgroundSprite)
-    backgroundContainer.removeChild(backgroundSprite)
+    if (backgroundSprite){
+        backgroundContainer.removeChild(backgroundSprite)
+    }
     backgroundSprite = newBackgroundSprite
 }

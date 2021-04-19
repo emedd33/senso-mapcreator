@@ -64,42 +64,10 @@ app.stage.scale.x = X_SCALE
 app.stage.scale.y = Y_SCALE
 
 loader.load((loader, resources) => {
-    // Setup background Container
-    const backgroundTexture = PIXI.utils.TextureCache.gray_background
-    backgroundTexture.frame = new PIXI.Rectangle(0, 0, WIDTH, HEIGHT)
-    if (gameState.background.texture) {
-        if (gameState.background.texture === "gray_background") {
-            backgroundSprite = new PIXI.Sprite(backgroundTexture);
-        }
-        backgroundSprite.anchor.set(gameState.background.anchor)
-        backgroundSprite.x = gameState.background.x
-        backgroundSprite.y = gameState.background.y
-    } else {
-        backgroundSprite = new PIXI.Sprite(backgroundTexture);
-        backgroundSprite.x = 0
-        backgroundSprite.y = 0
-        gameState.background.texture = "gray_background"
-        gameState.background.anchor = 0.5
-        gameState.background.x = 0
-        gameState.background.y = 0
-    }
-    backgroundSprite.interactive = true;
-    backgroundSprite.buttonMode = true;
-    backgroundContainer.addChild(backgroundSprite);
-
-    // console.log(document.getElementById("game-container"))
-    // document.getElementById("game-container").childNodes[0].addEventListener("pointerdown", onClick)
-    backgroundSprite
-    .on('pointerdown', onPointerDown)
-    .on('pointerup', onDragEnd)
-    .on('pointerupoutside', onDragEnd)
-    .on('pointermove', onDragMove)
     
-
+    changeBackgroundTexture("gray")
     loadObjects()
     loadTiles()
-    // Setup interaction button
-    // console.log(textures.objects)
     cursorSprite = new PIXI.Sprite(textures.objects.cursor);
     cursorSprite.scale.set(0.05)
     cursorSprite.parentGroup = cursorGroup
@@ -131,7 +99,7 @@ function onPointerDown(event) {
         if(this.type==="object"){
             objectContainer.removeChild(this)
             delete gameState.objects[this.id]
-            console.log(gameState)
+            history.push({action: "remove", sprites:[this], type:"object"})
             return
         } 
         if (this.type==="tile"){
@@ -140,6 +108,7 @@ function onPointerDown(event) {
             tileContainer.removeChild(this)
             gameMatrix[index] = 0
             delete gameState.tiles[index]
+            history.push({action: "remove", sprites:[this], type:"tile", previousIndexValue: index})
         }
     }
 }
