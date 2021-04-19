@@ -3,7 +3,7 @@ const app = new PIXI.Application({
     height: HEIGHT
 })
 document.getElementById("game-container").appendChild(app.view)
-const gameMatrix = new Array(MATRIX_WIDTH * MATRIX_HEIGHT).fill(0);
+const newGameMatrix = new GameMatrix(MATRIX_WIDTH,MATRIX_HEIGHT)
 app.renderer.backgroundColor = 0xFAEBD7
 app.stage.backgroundColor = 0xFAEBD7
 
@@ -19,7 +19,7 @@ const gameState = {
     background: {},
     tiles: {},
     objects: {},
-    gameMatrix: gameMatrix
+    gameMatrix: newGameMatrix
 }
 
 // Set up layers
@@ -106,7 +106,7 @@ function onPointerDown(event) {
             const tilePos = getTilePosition(pos)
             const index = getGameMatrixIndex(tilePos.x, tilePos.y)
             tileContainer.removeChild(this)
-            gameMatrix[index] = 0
+            newGameMatrix.cleanIndex(index)
             delete gameState.tiles[index]
             history.push({action: "remove", sprites:[this], type:"tile", previousIndexValue: index})
         }
@@ -121,13 +121,15 @@ function onDragEnd() {
 
 
 function onDragMove(event) {
-    
-    if (cursorSprite){
-        let position = event.data.getLocalPosition(this.parent)
+    let position;
+    if (this.parent){
+        position =  event.data.getLocalPosition(this.parent)
+    }
+    if (cursorSprite && position){
         cursorSprite.x = position.x
         cursorSprite.y = position.y
     }
-    if (this.dragging) {
+    if (this.dragging && position) {
         if (interactionType === "drawTile") {
             let position = event.data.getLocalPosition(this.parent)
             const tilePosition = getTilePosition(position)
@@ -172,15 +174,15 @@ function addToGame(pos) {
         tileSprites = []
         const tilePos = getTilePosition(pos)
         const index = getGameMatrixIndex(tilePos.x, tilePos.y)
-        tileSprites.push(drawTile(app, gameMatrix, textures.tiles.center, tilePos.y, tilePos.x, index, CENTER))
-        tileSprites.push(drawTopLeftTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y))
-        tileSprites.push(drawTopTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y))
-        tileSprites.push(drawTopRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y))
-        tileSprites.push(drawLeftTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y))
-        tileSprites.push(drawRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y))
-        tileSprites.push(drawBottomLeftTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y))
-        tileSprites.push(drawBottomTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y))
-        tileSprites.push(drawBottomRightTile(app, gameMatrix, index, textures, tilePos.x, tilePos.y))
+        tileSprites.push(drawTile(app, textures.tiles.center, tilePos.y, tilePos.x, index, CENTER))
+        tileSprites.push(drawTopLeftTile(app, index, textures, tilePos.x, tilePos.y))
+        tileSprites.push(drawTopTile(app, index, textures, tilePos.x, tilePos.y))
+        tileSprites.push(drawTopRightTile(app, index, textures, tilePos.x, tilePos.y))
+        tileSprites.push(drawLeftTile(app, index, textures, tilePos.x, tilePos.y))
+        tileSprites.push(drawRightTile(app, index, textures, tilePos.x, tilePos.y))
+        tileSprites.push(drawBottomLeftTile(app, index, textures, tilePos.x, tilePos.y))
+        tileSprites.push(drawBottomTile(app, index, textures, tilePos.x, tilePos.y))
+        tileSprites.push(drawBottomRightTile(app, index, textures, tilePos.x, tilePos.y))
         newEvent = {action: "add", sprites:tileSprites, type:"tile"}
        
     } else if (interactionType === "drawObject") {
@@ -203,5 +205,6 @@ function addToGame(pos) {
     if (newEvent){
         history.push(newEvent)
     }
+    newGameMatrix.printMatrix()
 
 }
