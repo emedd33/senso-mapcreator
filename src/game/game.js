@@ -3,7 +3,7 @@ const app = new PIXI.Application({
     height: HEIGHT
 })
 document.getElementById("game-container").appendChild(app.view)
-const newGameMatrix = new GameMatrix(MATRIX_WIDTH,MATRIX_HEIGHT)
+const newGameMatrix = new GameMatrix(MATRIX_WIDTH, MATRIX_HEIGHT)
 app.renderer.backgroundColor = 0xFAEBD7
 app.stage.backgroundColor = 0xFAEBD7
 
@@ -47,10 +47,10 @@ app.stage.addChild(new PIXI.display.Layer(tileGroup));
 app.stage.addChild(new PIXI.display.Layer(objectGroup));
 app.stage.addChild(new PIXI.display.Layer(cursorGroup));
 
-const backgroundContainer = new PIXI.Container({width:WIDTH,height:HEIGHT});
-const tileContainer = new PIXI.Container({width:WIDTH,height:HEIGHT});
-const objectContainer = new PIXI.Container({width:WIDTH,height:HEIGHT});
-const cursorContainer = new PIXI.Container({width:WIDTH,height:HEIGHT});
+const backgroundContainer = new PIXI.Container({ width: WIDTH, height: HEIGHT });
+const tileContainer = new PIXI.Container({ width: WIDTH, height: HEIGHT });
+const objectContainer = new PIXI.Container({ width: WIDTH, height: HEIGHT });
+const cursorContainer = new PIXI.Container({ width: WIDTH, height: HEIGHT });
 app.stage.addChild(backgroundContainer)
 app.stage.addChild(tileContainer)
 app.stage.addChild(objectContainer)
@@ -59,13 +59,11 @@ app.stage.addChild(cursorContainer)
 // Load textures 
 const loader = new PIXI.Loader(); // you can also create your own if you want
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
-const textures = {tiles:{}, objects:{}}
+const textures = { tiles: {}, objects: {} }
 loadTextures()
-app.stage.scale.x = X_SCALE
-app.stage.scale.y = Y_SCALE
 
 loader.load((loader, resources) => {
-    
+
     changeBackgroundTexture("gray")
     loadObjects()
     loadTiles()
@@ -78,7 +76,7 @@ loader.load((loader, resources) => {
     setupBottomBar(backgroundSprite)
     setupSidebar(backgroundSprite)
     setUpKeyInputs()
-    
+
 
 })
 // Event functions
@@ -89,27 +87,27 @@ function onPointerDown(event) {
     // we want to track the movement of this particular touch
     const pos = event.data.getLocalPosition(this.parent)
     this.dragging = true;
-    if (interactionType==="drawObject" || interactionType === "drawTile"){
+    if (interactionType === "drawObject" || interactionType === "drawTile") {
         this.data = event.data;
         addToGame(pos)
         return
     }
- 
-    if(interactionType === "delete"){
+
+    if (interactionType === "delete") {
         this.data = event.data;
-        if(this.type==="object"){
+        if (this.type === "object") {
             objectContainer.removeChild(this)
             delete gameState.objects[this.id]
-            history.push({action: "remove", sprites:[this], type:"object"})
+            history.push({ action: "remove", sprites: [this], type: "object" })
             return
-        } 
-        if (this.type==="tile"){
+        }
+        if (this.type === "tile") {
             const tilePos = getTilePosition(pos)
             const index = getGameMatrixIndex(tilePos.x, tilePos.y)
             tileContainer.removeChild(this)
             newGameMatrix.cleanIndex(index)
             delete gameState.tiles[index]
-            history.push({action: "remove", sprites:[this], type:"tile", previousIndexValue: index})
+            history.push({ action: "remove", sprites: [this], type: "tile", previousIndexValue: index })
         }
     }
 }
@@ -123,10 +121,10 @@ function onDragEnd() {
 
 function onDragMove(event) {
     let position;
-    if (this.parent){
-        position =  event.data.getLocalPosition(this.parent)
+    if (this.parent) {
+        position = event.data.getLocalPosition(this.parent)
     }
-    if (cursorSprite && position){
+    if (cursorSprite && position) {
         cursorSprite.x = position.x
         cursorSprite.y = position.y
     }
@@ -139,12 +137,12 @@ function onDragMove(event) {
                 addToGame(tilePosition)
             }
         } else if (interactionType === "moveObject") {
-            if(this.type=== "object"){
+            if (this.type === "object") {
                 let position = event.data.getLocalPosition(this.parent)
                 this.x = position.x;
                 this.y = position.y;
             }
-        } 
+        }
     }
 }
 // eslint-disable-next-line
@@ -176,7 +174,7 @@ function addToGame(pos) {
         const tilePos = getTilePosition(pos)
         const index = getGameMatrixIndex(tilePos.x, tilePos.y)
         tileSprites.push(drawTile(app, textures.tiles.center, tilePos.y, tilePos.x, index, CENTER))
-        if(autodrawSurroundingTiles){
+        if (autodrawSurroundingTiles) {
 
             tileSprites.push(drawTopLeftTile(app, index, textures, tilePos.x, tilePos.y))
             tileSprites.push(drawTopTile(app, index, textures, tilePos.x, tilePos.y))
@@ -187,17 +185,17 @@ function addToGame(pos) {
             tileSprites.push(drawBottomTile(app, index, textures, tilePos.x, tilePos.y))
             tileSprites.push(drawBottomRightTile(app, index, textures, tilePos.x, tilePos.y))
         }
-        newEvent = {action: "add", sprites:tileSprites, type:"tile"}
-       
+        newEvent = { action: "add", sprites: tileSprites, type: "tile" }
+
     } else if (interactionType === "drawObject") {
         let objectSprite
-        objectSprite = drawObject(textures.objects[objectType],textures.objects[objectType].scaler*objectScale, pos, objectType)
-        if(objectSprite){
-            newEvent = {action: "add", sprites:[objectSprite], type:"object"}
+        objectSprite = drawObject(textures.objects[objectType], textures.objects[objectType].scaler * objectScale, pos, objectType)
+        if (objectSprite) {
+            newEvent = { action: "add", sprites: [objectSprite], type: "object" }
         }
 
     }
-    if (newEvent){
+    if (newEvent) {
         history.push(newEvent)
     }
 
