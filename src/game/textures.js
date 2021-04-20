@@ -42,6 +42,30 @@ function loadTextures(){
     loader.add("broom", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Broom.png")
     loader.add("bucket", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Bucket.png")
     loader.add("bucket_full", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BucketFull.png")
+    loader.add("candlestick_1", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Candlestick1.png")
+    loader.add("candlestick_2", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Candlestick2.png")
+    loader.add("candlestick_3", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Candlestick3.png")
+    loader.add("candlestick_4", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Candlestick4.png")
+    loader.add("cart", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Cart.png")
+    loader.add("chair_1", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chari1.png")
+    loader.add("chair_2", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chari2.png")
+    loader.add("chair_3", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chari3.png")
+    loader.add("chair_4", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chari4.png")
+    loader.add("chair_5", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chari5.png")
+    loader.add("chair_6", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chari6.png")
+    loader.add("chest", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chest.png")
+    loader.add("clothes_peg", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_ClothesPeg.png")
+    loader.add("crate_1", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate1.png")
+    loader.add("crate_2", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate2.png")
+    loader.add("crate_3", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate3.png")
+    loader.add("crate_4", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate4.png")
+    loader.add("crate_5", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate5.png")
+    loader.add("crate_6", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate6.png")
+    loader.add("crate_7", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate7.png")
+    loader.add("crate_8", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate8.png")
+    loader.add("crate_9", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate9.png")
+    loader.add("crate_10", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate10.png")
+    loader.add("crate_11", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate11.png")
 }
 function loadTiles(){
     
@@ -220,4 +244,54 @@ function loadObjects(){
     textures.objects.bucket.scaler = BUCKET_SCALE
     textures.objects.bucket_full = PIXI.utils.TextureCache.bucket_full.clone()
     textures.objects.bucket_full.scaler = BUCKET_FULL_SCALE
+    textures.objects.candlestick_1 = PIXI.utils.TextureCache.candlestick_1.clone()
+    textures.objects.candlestick_1.scaler = CANDLESTICK_1_SCALE
+    textures.objects.candlestick_2 = PIXI.utils.TextureCache.candlestick_2.clone()
+    textures.objects.candlestick_2.scaler = CANDLESTICK_2_SCALE
+    textures.objects.candlestick_3 = PIXI.utils.TextureCache.candlestick_3.clone()
+    textures.objects.candlestick_3.scaler = CANDLESTICK_3_SCALE
+    textures.objects.candlestick_4 = PIXI.utils.TextureCache.candlestick_4.clone()
+    textures.objects.candlestick_4.scaler = CANDLESTICK_4_SCALE
+    textures.objects.cart = PIXI.utils.TextureCache.cart.clone()
+    textures.objects.cart.scaler = CART_SCALE
+    textures.objects.chair_1 = PIXI.utils.TextureCache.chair_1.clone()
+    textures.objects.chair_1.scaler = CHAIR_1_SCALE
+    textures.objects.chair_2 = PIXI.utils.TextureCache.chair_2.clone()
+    textures.objects.chair_2.scaler = CHAIR_2_SCALE
+    textures.objects.chair_3 = PIXI.utils.TextureCache.chair_3.clone()
+    textures.objects.chair_3.scaler = CHAIR_3_SCALE
+    textures.objects.chair_4 = PIXI.utils.TextureCache.chair_4.clone()
+    textures.objects.chair_4.scaler = CHAIR_4_SCALE
+    textures.objects.chair_5 = PIXI.utils.TextureCache.chair_5.clone()
+    textures.objects.chair_5.scaler = CHAIR_5_SCALE
+    textures.objects.chair_6 = PIXI.utils.TextureCache.chair_6.clone()
+    textures.objects.chair_6.scaler = CHAIR_6_SCALE
+    textures.objects.chair_6 = PIXI.utils.TextureCache.chair_6.clone()
+    textures.objects.chair_6.scaler = CHAIR_6_SCALE
+    textures.objects.chest = PIXI.utils.TextureCache.chest.clone()
+    textures.objects.chest.scaler = CHEST_SCALE
+    textures.objects.clothes_peg = PIXI.utils.TextureCache.clothes_peg.clone()
+    textures.objects.clothes_peg.scaler = CLOTHES_PEG_SCALE
+    textures.objects.crate_1 = PIXI.utils.TextureCache.crate_1.clone()
+    textures.objects.crate_1.scaler = CRATE_1_SCALE
+    textures.objects.crate_2 = PIXI.utils.TextureCache.crate_2.clone()
+    textures.objects.crate_2.scaler = CRATE_2_SCALE
+    textures.objects.crate_3 = PIXI.utils.TextureCache.crate_3.clone()
+    textures.objects.crate_3.scaler = CRATE_3_SCALE
+    textures.objects.crate_4 = PIXI.utils.TextureCache.crate_4.clone()
+    textures.objects.crate_4.scaler = CRATE_5_SCALE
+    textures.objects.crate_5 = PIXI.utils.TextureCache.crate_5.clone()
+    textures.objects.crate_5.scaler = CRATE_5_SCALE
+    textures.objects.crate_6 = PIXI.utils.TextureCache.crate_6.clone()
+    textures.objects.crate_6.scaler = CRATE_6_SCALE
+    textures.objects.crate_7 = PIXI.utils.TextureCache.crate_7.clone()
+    textures.objects.crate_7.scaler = CRATE_7_SCALE
+    textures.objects.crate_8 = PIXI.utils.TextureCache.crate_8.clone()
+    textures.objects.crate_8.scaler = CRATE_8_SCALE
+    textures.objects.crate_9 = PIXI.utils.TextureCache.crate_9.clone()
+    textures.objects.crate_9.scaler = CRATE_9_SCALE
+    textures.objects.crate_10 = PIXI.utils.TextureCache.crate_10.clone()
+    textures.objects.crate_10.scaler = CRATE_10_SCALE
+    textures.objects.crate_11 = PIXI.utils.TextureCache.crate_11.clone()
+    textures.objects.crate_11.scaler = CRATE_11_SCALE
 }
