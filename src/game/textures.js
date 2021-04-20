@@ -1,4 +1,4 @@
-function loadTextures(){
+function loadTextures() {
     loader.add("dungeonTiles", "assets/textures/tiles/dungeon-tile.png")
     loader.add("cursor", "assets/textures/cursor.png")
     loader.add("bulldozer", "assets/textures/bulldozer.png")
@@ -67,8 +67,8 @@ function loadTextures(){
     loader.add("crate_10", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate10.png")
     loader.add("crate_11", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate11.png")
 }
-function loadTiles(){
-    
+function loadTiles() {
+
     // Loads Dungeon tiles
     // Row 1
     textures.tiles.bottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
@@ -172,7 +172,7 @@ function loadTiles(){
     textures.tiles.topleftToprightBottomleftBottomright = PIXI.utils.TextureCache.dungeonTiles.clone()
     textures.tiles.topleftToprightBottomleftBottomright.frame = new PIXI.Rectangle(32 * 4, 32 * 6, 32, 32)
 }
-function loadObjects(){
+function loadObjects() {
     textures.objects.cursor = PIXI.utils.TextureCache.cursor.clone()
     textures.objects.barrel_1 = PIXI.utils.TextureCache.barrel_1.clone()
     textures.objects.barrel_1.scaler = BARREL_1_SCALE
@@ -183,7 +183,7 @@ function loadObjects(){
     textures.objects.barrel_4 = PIXI.utils.TextureCache.barrel_4.clone()
     textures.objects.barrel_4.scaler = BARREL_4_SCALE
     textures.objects.barrel_large = PIXI.utils.TextureCache.barrel_large.clone()
-    textures.objects.barrel_large.scaler = BARREL_LARGE_SCALE 
+    textures.objects.barrel_large.scaler = BARREL_LARGE_SCALE
     textures.objects.barrel_small = PIXI.utils.TextureCache.barrel_small.clone()
     textures.objects.barrel_small.scaler = BARREL_SMALL_SCALE
     textures.objects.barrow = PIXI.utils.TextureCache.barrow.clone()

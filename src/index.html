@@ -29,11 +29,11 @@
 </head>
 
 <body>
-    
+
     <div id="container">
         <div id="game-container"></div>
         <div id="right-sidebar">
-            
+
             <div id="draw-type-container">
 
                 <div id="objects-container">
@@ -43,127 +43,202 @@
                     </div>
                     <p style="margin-bottom: 0">Objects</p>
                     <input type="text" id="object-search-input" placeholder="Search">
-                    
-                    <div id="object-search-container" style=" justify-content: flex-start; align-items: flex-start; flex-wrap: wrap; overflow-y: scroll; height: 40rem" >
 
-                        <button id="barrel_1" onclick="setDrawObject(this, BARREL_1_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel1.png"></button>
-                        <button id="barrel_2" onclick="setDrawObject(this, BARREL_2_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel2.png"></button>
-                        <button id="barrel_3" onclick="setDrawObject(this, BARREL_3_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel3.png"></button>
-                        <button id="barrel_4" onclick="setDrawObject(this, BARREL_4_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel4.png"></button>
-                        <button id="barrel_large" onclick="setDrawObject(this, BARREL_LARGE_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BarrelLarge.png"></button>
-                        <button id="barrel_small"onclick="setDrawObject(this, BARREL_SMALL_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BarrelSmall.png"></button>
-                        <button id="barrow" onclick="setDrawObject(this, BARROW_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrow.png"></button>
-                        <button id="bathtub" onclick="setDrawObject(this, BATHTUB_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Bathtub.png"></button>
-                        <button id="bench_1" onclick="setDrawObject(this, BENCH_1_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Bench1.png"></button>
-                        <button id="bench_2" onclick="setDrawObject(this, BENCH_2_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Bench2.png"></button>
-                        <button id="benchtable_1" onclick="setDrawObject(this, BENCH_TABLE_1_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BenchTable1.png"></button>
-                        <button id="benchtable_2" onclick="setDrawObject(this, BENCH_TABLE_2_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BenchTable2.png"></button>
-                        <button id="benchtable_3" onclick="setDrawObject(this, BENCH_TABLE_3_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BenchTable3.png"></button>
-                        <button id="book_1" onclick="setDrawObject(this, BOOK_1_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book1.png"></button>
-                        <button id="book_2" onclick="setDrawObject(this, BOOK_2_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book2.png"></button>
-                        <button id="book_3" onclick="setDrawObject(this, BOOK_3_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book3.png"></button>
-                        <button id="book_4" onclick="setDrawObject(this, BOOK_4_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book4.png"></button>
-                        <button id="book_5" onclick="setDrawObject(this, BOOK_5_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book5.png"></button>
-                        <button id="book_6" onclick="setDrawObject(this, BOOK_6_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book6.png"></button>
-                        <button id="book_7" onclick="setDrawObject(this, BOOK_7_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book7.png"></button>
-                        <button id="book_leaning_1" onclick="setDrawObject(this, BOOK_LEANING_1_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning1.png"></button>
-                        <button id="book_leaning_2" onclick="setDrawObject(this, BOOK_LEANING_2_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning2.png"></button>
-                        <button id="book_leaning_3" onclick="setDrawObject(this, BOOK_LEANING_3_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning3.png"></button>
-                        <button id="book_leaning_4" onclick="setDrawObject(this, BOOK_LEANING_4_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning4.png"></button>
-                        <button id="book_leaning_5" onclick="setDrawObject(this, BOOK_LEANING_5_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning5.png"></button>
-                        <button id="book_leaning_6" onclick="setDrawObject(this, BOOK_LEANING_6_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning6.png"></button>
-                        <button id="books" onclick="setDrawObject(this, BOOKS_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Books.png"></button>
-                        <button id="book_shelf" onclick="setDrawObject(this, BOOK_SHELF_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookShelf.png"></button>
-                        <button id="book_shelf_full" onclick="setDrawObject(this, BOOK_SHELF_FULL_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookShelfFull.png"></button>
-                        <button id="brazier" onclick="setDrawObject(this, BRAZIER_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Brazier.png"></button>
-                        <button id="brazier_lit" onclick="setDrawObject(this, BRAZIER_LIT_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BrazierLit.png"></button>
-                        <button id="broom" onclick="setDrawObject(this, BROOM_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Broom.png"></button>
-                        <button id="bucket" onclick="setDrawObject(this, BUCKET_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Bucket.png"></button>
-                        <button id="bucket_full" onclick="setDrawObject(this, BUCKET_FULL_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BucketFull.png"></button>
-                        <button id="candlestick_1" onclick="setDrawObject(this, CANDLESTICK_1_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Candlestick1.png"></button>
-                        <button id="candlestick_2" onclick="setDrawObject(this, CANDLESTICK_2_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Candlestick2.png"></button>
-                        <button id="candlestick_3" onclick="setDrawObject(this, CANDLESTICK_3_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Candlestick3.png"></button>
-                        <button id="candlestick_4" onclick="setDrawObject(this, CANDLESTICK_4_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Candlestick4.png"></button>
-                        <button id="cart" onclick="setDrawObject(this, CART_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Cart.png"></button>
-                        <button id="chair_1" onclick="setDrawObject(this, CHARI_1_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chair1.png"></button>
-                        <button id="chair_2"  onclick="setDrawObject(this, CHARI_2_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chair2.png"></button>
-                        <button id="chair_3" onclick="setDrawObject(this, CHARI_3_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chair3.png"></button>
-                        <button id="chair_4" onclick="setDrawObject(this, CHARI_4_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chair4.png"></button>
-                        <button id="chair_5" onclick="setDrawObject(this, CHARI_5_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chair5.png"></button>
-                        <button id="chair_6" onclick="setDrawObject(this, CHARI_6_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chair6.png"></button>
-                        <button id="chest" onclick="setDrawObject(this, CHEST_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chest.png"></button>
-                        <button id="clothes_peg" onclick="setDrawObject(this, CLOTHES_PEG_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_ClothesPeg.png"></button>
-                        <button id="crate_1" onclick="setDrawObject(this, CRATE_1_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate1.png"></button>
-                        <button id="crate_2" onclick="setDrawObject(this, CRATE_2_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate2.png"></button>
-                        <button id="crate_3" onclick="setDrawObject(this, CRATE_3_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate3.png"></button>
-                        <button id="crate_4" onclick="setDrawObject(this, CRATE_4_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate4.png"></button>
-                        <button id="crate_5" onclick="setDrawObject(this, CRATE_5_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate5.png"></button>
-                        <button id="crate_6" onclick="setDrawObject(this, CRATE_6_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate6.png"></button>
-                        <button id="crate_7" onclick="setDrawObject(this, CRATE_7_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate7.png"></button>
-                        <button id="crate_8" onclick="setDrawObject(this, CRATE_8_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate8.png"></button>
-                        <button id="crate_9" onclick="setDrawObject(this, CRATE_9_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate9.png"></button>
-                        <button id="crate_10" onclick="setDrawObject(this, CRATE_10_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate10.png"></button>
-                        <button id="crate_11" onclick="setDrawObject(this, CRATE_11_SCALE)"><img class="object-button" src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate11.png"></button>
+                    <div id="object-search-container"
+                        style=" justify-content: flex-start; align-items: flex-start; flex-wrap: wrap; overflow-y: scroll; height: 20rem;">
+
+                        <button id="barrel_1" onclick="setDrawObject(this, BARREL_1_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel1.png"></button>
+                        <button id="barrel_2" onclick="setDrawObject(this, BARREL_2_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel2.png"></button>
+                        <button id="barrel_3" onclick="setDrawObject(this, BARREL_3_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel3.png"></button>
+                        <button id="barrel_4" onclick="setDrawObject(this, BARREL_4_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel4.png"></button>
+                        <button id="barrel_large" onclick="setDrawObject(this, BARREL_LARGE_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BarrelLarge.png"></button>
+                        <button id="barrel_small" onclick="setDrawObject(this, BARREL_SMALL_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BarrelSmall.png"></button>
+                        <button id="barrow" onclick="setDrawObject(this, BARROW_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrow.png"></button>
+                        <button id="bathtub" onclick="setDrawObject(this, BATHTUB_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Bathtub.png"></button>
+                        <button id="bench_1" onclick="setDrawObject(this, BENCH_1_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Bench1.png"></button>
+                        <button id="bench_2" onclick="setDrawObject(this, BENCH_2_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Bench2.png"></button>
+                        <button id="benchtable_1" onclick="setDrawObject(this, BENCH_TABLE_1_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BenchTable1.png"></button>
+                        <button id="benchtable_2" onclick="setDrawObject(this, BENCH_TABLE_2_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BenchTable2.png"></button>
+                        <button id="benchtable_3" onclick="setDrawObject(this, BENCH_TABLE_3_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BenchTable3.png"></button>
+                        <button id="book_1" onclick="setDrawObject(this, BOOK_1_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book1.png"></button>
+                        <button id="book_2" onclick="setDrawObject(this, BOOK_2_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book2.png"></button>
+                        <button id="book_3" onclick="setDrawObject(this, BOOK_3_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book3.png"></button>
+                        <button id="book_4" onclick="setDrawObject(this, BOOK_4_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book4.png"></button>
+                        <button id="book_5" onclick="setDrawObject(this, BOOK_5_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book5.png"></button>
+                        <button id="book_6" onclick="setDrawObject(this, BOOK_6_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book6.png"></button>
+                        <button id="book_7" onclick="setDrawObject(this, BOOK_7_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Book7.png"></button>
+                        <button id="book_leaning_1" onclick="setDrawObject(this, BOOK_LEANING_1_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning1.png"></button>
+                        <button id="book_leaning_2" onclick="setDrawObject(this, BOOK_LEANING_2_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning2.png"></button>
+                        <button id="book_leaning_3" onclick="setDrawObject(this, BOOK_LEANING_3_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning3.png"></button>
+                        <button id="book_leaning_4" onclick="setDrawObject(this, BOOK_LEANING_4_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning4.png"></button>
+                        <button id="book_leaning_5" onclick="setDrawObject(this, BOOK_LEANING_5_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning5.png"></button>
+                        <button id="book_leaning_6" onclick="setDrawObject(this, BOOK_LEANING_6_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookLeaning6.png"></button>
+                        <button id="books" onclick="setDrawObject(this, BOOKS_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Books.png"></button>
+                        <button id="book_shelf" onclick="setDrawObject(this, BOOK_SHELF_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookShelf.png"></button>
+                        <button id="book_shelf_full" onclick="setDrawObject(this, BOOK_SHELF_FULL_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BookShelfFull.png"></button>
+                        <button id="brazier" onclick="setDrawObject(this, BRAZIER_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Brazier.png"></button>
+                        <button id="brazier_lit" onclick="setDrawObject(this, BRAZIER_LIT_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BrazierLit.png"></button>
+                        <button id="broom" onclick="setDrawObject(this, BROOM_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Broom.png"></button>
+                        <button id="bucket" onclick="setDrawObject(this, BUCKET_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Bucket.png"></button>
+                        <button id="bucket_full" onclick="setDrawObject(this, BUCKET_FULL_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_BucketFull.png"></button>
+                        <button id="candlestick_1" onclick="setDrawObject(this, CANDLESTICK_1_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Candlestick1.png"></button>
+                        <button id="candlestick_2" onclick="setDrawObject(this, CANDLESTICK_2_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Candlestick2.png"></button>
+                        <button id="candlestick_3" onclick="setDrawObject(this, CANDLESTICK_3_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Candlestick3.png"></button>
+                        <button id="candlestick_4" onclick="setDrawObject(this, CANDLESTICK_4_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Candlestick4.png"></button>
+                        <button id="cart" onclick="setDrawObject(this, CART_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Cart.png"></button>
+                        <button id="chair_1" onclick="setDrawObject(this, CHARI_1_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chair1.png"></button>
+                        <button id="chair_2" onclick="setDrawObject(this, CHARI_2_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chair2.png"></button>
+                        <button id="chair_3" onclick="setDrawObject(this, CHARI_3_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chair3.png"></button>
+                        <button id="chair_4" onclick="setDrawObject(this, CHARI_4_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chair4.png"></button>
+                        <button id="chair_5" onclick="setDrawObject(this, CHARI_5_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chair5.png"></button>
+                        <button id="chair_6" onclick="setDrawObject(this, CHARI_6_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chair6.png"></button>
+                        <button id="chest" onclick="setDrawObject(this, CHEST_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Chest.png"></button>
+                        <button id="clothes_peg" onclick="setDrawObject(this, CLOTHES_PEG_SCALE)"><img
+                                class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_ClothesPeg.png"></button>
+                        <button id="crate_1" onclick="setDrawObject(this, CRATE_1_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate1.png"></button>
+                        <button id="crate_2" onclick="setDrawObject(this, CRATE_2_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate2.png"></button>
+                        <button id="crate_3" onclick="setDrawObject(this, CRATE_3_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate3.png"></button>
+                        <button id="crate_4" onclick="setDrawObject(this, CRATE_4_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate4.png"></button>
+                        <button id="crate_5" onclick="setDrawObject(this, CRATE_5_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate5.png"></button>
+                        <button id="crate_6" onclick="setDrawObject(this, CRATE_6_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate6.png"></button>
+                        <button id="crate_7" onclick="setDrawObject(this, CRATE_7_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate7.png"></button>
+                        <button id="crate_8" onclick="setDrawObject(this, CRATE_8_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate8.png"></button>
+                        <button id="crate_9" onclick="setDrawObject(this, CRATE_9_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate9.png"></button>
+                        <button id="crate_10" onclick="setDrawObject(this, CRATE_10_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate10.png"></button>
+                        <button id="crate_11" onclick="setDrawObject(this, CRATE_11_SCALE)"><img class="object-button"
+                                src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate11.png"></button>
                     </div>
                 </div>
-            <div id="tiles-container">
-                <h4>Tiles </h4>
-                <button id="dungeon-tile-button">
-                    <img class="object-button"
-                    src="./assets/textures/tiles/dungeon-tile-repr.png">
-                </button>
-                <h4>Autodraw surrounding tiles</h4>
-                <label class="switch">
-                    <input type="checkbox" id="autodraw-input" checked>
-                    <span class="slider round"></span>
-                </label>
-                <h4>Backgrounds</h4>
-                <div id="backgrounds-container">
-                    
-                    <button id="gray-background-button">
-                        Gray
+                <div id="tiles-container">
+                    <h4>Tiles </h4>
+                    <button id="dungeon-tile-button">
+                        <img class="object-button" src="./assets/textures/tiles/dungeon-tile-repr.png">
                     </button>
-                    <button id="lightgray-background-button">
-                        Light gray
-                    </button>  
-                    <button id="darkgray-background-button">
-                        Dark gray
-                    </button>
-                    <button id="black-background-button">
-                        Black
-                    </button>
+                    <h4>Autodraw surrounding tiles</h4>
+                    <label class="switch">
+                        <input type="checkbox" id="autodraw-input" checked>
+                        <span class="slider round"></span>
+                    </label>
+                    <h4>Backgrounds</h4>
+                    <div id="backgrounds-container">
+
+                        <button id="gray-background-button">
+                            Gray
+                        </button>
+                        <button id="lightgray-background-button">
+                            Light gray
+                        </button>
+                        <button id="darkgray-background-button">
+                            Dark gray
+                        </button>
+                        <button id="black-background-button">
+                            Black
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="file-container">
-            
-            
-            
-        </div>
-        </div>
-        </div>
-        <div id="bottom-bar" style="justify-content: space-between; padding: 5px;">
-            <div style="display: flex; align-items: center; justify-content: center">                
-                <button id="change-to-tiles">Tiles</button>
-                <button id="change-to-objects">Objects</button>
-                <button id="change-to-move">Move</button>
-                <button id="change-to-delete">Delete</button>
-            </div>
-            <div>
-                <button>grids</button>
-            </div>
-            <div style="width: 10rem; display: flex; justify-content: center;">
-                <button id="download-game-button">Download</button>
+            <div id="file-container">
+
+
+
             </div>
         </div>
+    </div>
+    <div id="bottom-bar" style="justify-content: space-between;">
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <button id="change-to-tiles">Tiles</button>
+            <button id="change-to-objects">Objects</button>
+            <button id="change-to-move">Move</button>
+            <button id="change-to-delete">Delete</button>
+        </div>
+        <div style="width: 10rem; display: flex; justify-content: center;">
+            <button id="download-game-button">Download</button>
+        </div>
+    </div>
     </div>
     <script type="text/javascript" src="game/game.js"></script>
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
-    
+
     <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
-    
+
     <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-storage.js"></script>
