@@ -1,18 +1,6 @@
 
 function setupSidebar(backgroundSprite) {   
-    // document.getElementById("barrel_1-object-button").addEventListener("click", function () {
-    //     backgroundSprite.interactive = true
-    //     interactionType = "drawObject"
-    //     objectType = "barrel_1"
-    //      objectScale=1
-    //     document.getElementById("object-scaler").value = 50
-    //     let newCursorSprite = createSprite(textures.objects.barrel_1, BARREL_1_SCALE,0.5)
-    //     newCursorSprite.parentGroup = cursorGroup
-    //     cursorContainer.addChild(newCursorSprite)
-    //     cursorContainer.removeChild(cursorSprite)
-    //     cursorSprite = newCursorSprite
 
-    // })
     document.getElementById("dungeon-tile-button").addEventListener("click", function () {
         backgroundSprite.interactive = true
         interactionType = "drawTile"

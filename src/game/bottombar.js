@@ -18,12 +18,16 @@ function setupBottomBar(backgroundSprite){
      document.getElementById("change-to-delete").addEventListener("click", function () {
         backgroundSprite.interactive = true
         interactionType = "delete"
-         let newCursorSprite = new PIXI.Sprite(PIXI.utils.TextureCache.bulldozer);
+        let newCursorSprite = new PIXI.Sprite(PIXI.utils.TextureCache.bulldozer);
         newCursorSprite.scale.set(0.05)
         newCursorSprite.anchor.set(0,0.5)
         newCursorSprite.parentGroup = cursorGroup
         cursorContainer.addChild(newCursorSprite)
         cursorContainer.removeChild(cursorSprite)
         cursorSprite = newCursorSprite
+    })
+    document.getElementById("medium-game-button").addEventListener("click", function(){
+        resetGame()
+
     })
 }

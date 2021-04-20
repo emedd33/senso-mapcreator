@@ -1,27 +1,21 @@
-const app = new PIXI.Application({
+let globalScale = 1;
+let gameWidth;
+let gameHeight;
+let app = new PIXI.Application({
     width: WIDTH,
     height: HEIGHT
 })
-document.getElementById("game-container").appendChild(app.view)
-const newGameMatrix = new GameMatrix(MATRIX_WIDTH, MATRIX_HEIGHT)
-app.renderer.backgroundColor = 0xFAEBD7
-app.stage.backgroundColor = 0xFAEBD7
-
-let interactionType = "moveObject";
-let autodrawSurroundingTiles = true;
+const history = []
+let newGameMatrix;
+let interactionType;
+let autodrawSurroundingTiles;
 let objectType;
 let tileType;
 let cursorSprite;
 let backgroundSprite;
-let objectScale = 1;
-let history = []
+let objectScale;
 
-const gameState = {
-    background: {},
-    tiles: {},
-    objects: {},
-    gameMatrix: newGameMatrix
-}
+let gameState;
 
 // Set up layers
 const backgroundGroup = new PIXI.display.Group(-1, true)
@@ -60,26 +54,22 @@ app.stage.addChild(cursorContainer)
 const loader = new PIXI.Loader(); // you can also create your own if you want
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 const textures = { tiles: {}, objects: {} }
-loadTextures()
-
+// Event functions
+loadTextures(loader)
 loader.load((loader, resources) => {
-
-    changeBackgroundTexture("gray")
+    
     loadObjects()
     loadTiles()
-    cursorSprite = new PIXI.Sprite(textures.objects.cursor);
-    cursorSprite.scale.set(0.05)
-    cursorSprite.parentGroup = cursorGroup
-    cursorContainer.addChild(cursorSprite)
     app.renderer.plugins.interaction.cursorStyles.default = "none";
     app.renderer.plugins.interaction.cursorStyles.pointer = "none";
+    setUpKeyInputs()
+    resetGame()
+    changeBackgroundTexture("gray")
     setupBottomBar(backgroundSprite)
     setupSidebar(backgroundSprite)
-    setUpKeyInputs()
-
-
+    
+    document.getElementById("game-container").appendChild(app.view)
 })
-// Event functions
 
 function onPointerDown(event) {
     // store a reference to the data
@@ -92,7 +82,7 @@ function onPointerDown(event) {
         addToGame(pos)
         return
     }
-
+    
     if (interactionType === "delete") {
         this.data = event.data;
         if (this.type === "object") {
@@ -172,7 +162,8 @@ function addToGame(pos) {
     if (interactionType === "drawTile") {
         tileSprites = []
         const tilePos = getTilePosition(pos)
-        const index = getGameMatrixIndex(tilePos.x, tilePos.y)
+
+        const index = newGameMatrix.getIndexByPosition(tilePos.x, tilePos.y)
         tileSprites.push(drawTile(app, textures.tiles.center, tilePos.y, tilePos.x, index, CENTER))
         if (autodrawSurroundingTiles) {
 
@@ -200,3 +191,4 @@ function addToGame(pos) {
     }
 
 }
+

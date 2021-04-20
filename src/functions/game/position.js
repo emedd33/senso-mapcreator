@@ -8,6 +8,6 @@ function getTilePosition(pos) {
 
 function getGameMatrixIndex(x, y) {
     // Returns the gameMatrix index from the x-y position
-    let index = x / TEXTURE_WIDTH + y/TEXTURE_HEIGHT*MATRIX_WIDTH
+    let index = x / TEXTURE_WIDTH + y/TEXTURE_HEIGHT*MATRIX_WIDTH*globalScale
     return index
 }

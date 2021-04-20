@@ -15,7 +15,8 @@ function changeBackgroundTexture(type){
         gameState.background.texture = "black_background"
 
     }
-    backgroundTexture.frame = new PIXI.Rectangle(0, 0, WIDTH, HEIGHT)
+    backgroundTexture.frame = new PIXI.Rectangle(0, 0, app.view.width, app.view.height)
+    console.log(backgroundContainer)
     newBackgroundSprite = new PIXI.Sprite(backgroundTexture);
     newBackgroundSprite.x = 0
     newBackgroundSprite.y = 0
@@ -26,6 +27,7 @@ function changeBackgroundTexture(type){
     .on('pointerup', onDragEnd)
     .on('pointerupoutside', onDragEnd)
     .on('pointermove', onDragMove)
+    console.log("spirte", newBackgroundSprite)
     backgroundContainer.addChild(newBackgroundSprite)
     if (backgroundSprite){
         backgroundContainer.removeChild(backgroundSprite)

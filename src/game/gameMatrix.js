@@ -18,6 +18,10 @@ class GameMatrix{
             return this.matrix[index].value
         }
     }
+    getIndexByPosition(x,y){
+        return x / TEXTURE_WIDTH + y/TEXTURE_HEIGHT*this.width
+    }
+    
     updateByIndex(index, sprite, value){
         if (this.matrix[index].sprite){
             tileContainer.addChild(sprite)
@@ -53,7 +57,7 @@ class GameMatrix{
         }
     }
     getTopIndex(index){
-        if(index){
+        if(index !== undefined){
             return index - this.width
         }
     }
@@ -80,7 +84,7 @@ class GameMatrix{
         }
     }
     getBottomIndex(index){
-        if(index){
+        if(index !== undefined){
             return index + this.width
         }
     }

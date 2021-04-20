@@ -1,4 +1,4 @@
-function loadTextures() {
+function loadTextures(loader) {
     loader.add("dungeonTiles", "assets/textures/tiles/dungeon-tile.png")
     loader.add("cursor", "assets/textures/cursor.png")
     loader.add("bulldozer", "assets/textures/bulldozer.png")
