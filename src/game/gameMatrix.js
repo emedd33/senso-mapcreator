@@ -2,17 +2,19 @@ class GameMatrix{
     width;
     height;
     matrix;
+    size;
     lastAddedIndex; 
     constructor(width, height){
         this.width = width
         this.height = height
+        this.size = width*height
         this.matrix = new Array(width * height).fill({value:0, sprite:null});
     }
     getIndex(index){
         return this.matrix[index]
     }
     getValue(index){
-        if(index>= 0){
+        if(index>= 0 && index < this.size){
             return this.matrix[index].value
         }
     }

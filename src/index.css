@@ -10,11 +10,12 @@ h4 {
   width: 100%;
 }
 html {
-  background-color: #292929;
   margin: 0;
 }
-body{
+body {
   margin: 0;
+  background-color: #292929;
+  height: 100%;
 }
 button {
   text-decoration: none;
@@ -58,30 +59,10 @@ input {
   justify-content: center;
 }
 /* ID elements */
-#container {
-  background-color: black;
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-}
-#game-container {
-  grid-column-start: 1;
-  grid-column-end: 10;
-  z-index: 0;
-  background-color: #292929;
-}
 
-/* RIGHT SIDEBAR*/
-#right-sidebar {
-  grid-column-start: 10;
-  grid-column-end: 11;
-  background-color: black;
-  height: 100%;
-  padding: 5px;
-  z-index: 1;
-  min-width: 10rem;
-  transition: 200ms;
-  -webkit-box-shadow: 5px 5px 15px 5px #000000;
-  box-shadow: 5px 5px 15px 5px #000000;
+#game-container {
+  z-index: 0;
+  height: 100vh;
 }
 
 #backgrounds-container {
@@ -132,16 +113,4 @@ input {
 .object-button {
   width: 3rem;
   height: 3rem;
-}
-
-/* BOTTOM BAR*/
-#bottom-bar {
-  grid-column-start: 1;
-  grid-column-end: 11;
-  background-color: black;
-  height: 10vh;
-  display: flex;
-  align-items: center;
-  -webkit-box-shadow: 0px -6px 5px -1px rgba(100, 100, 100, 0.59);
-  box-shadow: 0px -6px 5px -1px rgba(100, 100, 100, 0.59);
 }
