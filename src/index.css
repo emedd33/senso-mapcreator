@@ -63,6 +63,7 @@ input {
 #game-container {
   z-index: 0;
   height: 100vh;
+  padding: 5rem;
 }
 
 #backgrounds-container {
