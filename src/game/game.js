@@ -5,6 +5,7 @@ let app = new PIXI.Application({
     width: WIDTH,
     height: HEIGHT
 })
+var graphics = new PIXI.Graphics();
 const history = []
 let newGameMatrix;
 let interactionType;
@@ -13,8 +14,8 @@ let objectType;
 let tileType;
 let cursorSprite;
 let backgroundSprite;
+let selectedObject;
 let objectScale;
-
 let gameState;
 
 // Set up layers
@@ -76,14 +77,30 @@ function onPointerDown(event) {
         this.data = event.data;
         addToGame(pos)
         return
-    }
+    } 
+    if (interactionType === "moveObject"){
+            // draw a rounded rectangle
+        graphics.clear()
+        if(this.type === "object"){
+            if(selectedObject !== this){
+                selectedObject = this
+                graphics.lineStyle(2, 0xFFFFFF, 0.5);
+                graphics.drawRoundedRect(this.x-this.height/2, this.y-this.height/2, this.width, this.height, 16);
+                graphics.endFill(); 
+                
+            }
+        } else {
+            selectedObject = undefined
+        }
     
+    }
     if (interactionType === "delete") {
         this.data = event.data;
         if (this.type === "object") {
             objectContainer.removeChild(this)
             delete gameState.objects[this.id]
             history.push({ action: "remove", sprites: [this], type: "object" })
+      
             return
         }
         if (this.type === "tile") {
@@ -124,8 +141,12 @@ function onDragMove(event) {
         } else if (interactionType === "moveObject") {
             if (this.type === "object") {
                 let position = event.data.getLocalPosition(this.parent)
-                this.x = position.x;
-                this.y = position.y;
+                if (this.x !== position.x || this.y !== position.y){
+                    selectedObject = undefined
+                    graphics.clear()
+                    this.x = position.x;
+                    this.y = position.y;
+                }
             }
         }
     }
@@ -196,6 +217,7 @@ document.getElementById("create-game-button").addEventListener("click", function
     changeBackgroundTexture("gray")    
     setupBottomBar(backgroundSprite)
     setupSidebar(backgroundSprite)
+    app.stage.addChild(graphics);
 })
 document.getElementById("select-small-environment").addEventListener("click", function(){
     globalScale = 2

@@ -1,4 +1,6 @@
 function setDrawObject(button, scaler){
+    graphics.clear()
+    selectedObject = undefined
     backgroundSprite.interactive = true
     interactionType = "drawObject"
     objectType = button.id
@@ -9,4 +11,9 @@ function setDrawObject(button, scaler){
     cursorContainer.addChild(newCursorSprite)
     cursorContainer.removeChild(cursorSprite)
     cursorSprite = newCursorSprite
+    let src = button.children[0].src.toString()
+    let selectedObjectImg = document.getElementById("selected-object-img");
+    selectedObjectImg.style.display = "flex"
+    selectedObjectImg.src = src
+    selectedObjectImg.width = cursorSprite.width
 }

@@ -2,6 +2,8 @@
 function setupSidebar(backgroundSprite) {   
 
     document.getElementById("dungeon-tile-button").addEventListener("click", function () {
+        graphics.clear()
+        selectedObject = undefined
         backgroundSprite.interactive = true
         interactionType = "drawTile"
         tileType = "dungeonTile"
@@ -98,6 +100,8 @@ function setupSidebar(backgroundSprite) {
         if (interactionType === "drawObject"){
             objectScale = this.value/100 + 0.5
             cursorSprite.scale.set(objectScale*cursorSprite.defaultScale)
+            document.getElementById("selected-object-img").width = cursorSprite.width
+
         } 
     }
     document.getElementById("gray-background-button").addEventListener("click", function() {

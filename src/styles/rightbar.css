@@ -6,7 +6,7 @@
   position: fixed;
   right: 0;
   top: 0;
-  width: 12rem;
+  width: 10%;
   height: 100%;
   z-index: 1;
   min-width: 10rem;
@@ -22,4 +22,11 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+}
+
+#objects-container {
+  display: none;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 1rem;
 }
