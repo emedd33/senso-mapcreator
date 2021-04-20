@@ -1,0 +1,50 @@
+#select-environment-container {
+  background-color: black;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  min-height: 40rem;
+}
+
+#select-environment-size-container {
+  align-items: center;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+#select-environment-tile-container {
+  display: flex;
+  justify-content: center;
+  display: flex;
+}
+
+.css-radio {
+  height: 10rem;
+  width: 10rem;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  border-style: solid;
+  border-radius: 5px;
+  cursor: pointer;
+  border-color: gray;
+}
+input[type="radio"].css-radio {
+  display: none;
+}
+input[type="radio"].css-radio:checked + label.css-radio {
+  border-color: #2fbcdf;
+}
+.css-radio:hover {
+  border-color: #2fbcdf;
+}
+label.css-radio {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+}

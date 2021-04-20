@@ -63,12 +63,7 @@ loader.load((loader, resources) => {
     app.renderer.plugins.interaction.cursorStyles.default = "none";
     app.renderer.plugins.interaction.cursorStyles.pointer = "none";
     setUpKeyInputs()
-    resetGame()
-    changeBackgroundTexture("gray")
-    setupBottomBar(backgroundSprite)
-    setupSidebar(backgroundSprite)
-    
-    document.getElementById("game-container").appendChild(app.view)
+
 })
 
 function onPointerDown(event) {
@@ -192,3 +187,22 @@ function addToGame(pos) {
 
 }
 
+document.getElementById("create-game-button").addEventListener("click", function(){
+    document.getElementById("game-container").removeChild(document.getElementById("select-environment-container"))
+    document.getElementById("right-sidebar").style.display = "flex"
+    document.getElementById("bottom-bar").style.display = "flex"
+    document.getElementById("game-container").appendChild(app.view)
+    resetGame()
+    changeBackgroundTexture("gray")    
+    setupBottomBar(backgroundSprite)
+    setupSidebar(backgroundSprite)
+})
+document.getElementById("select-small-environment").addEventListener("click", function(){
+    globalScale = 2
+})
+document.getElementById("select-medium-environment").addEventListener("click", function(){
+    globalScale = 1
+})
+document.getElementById("select-large-environment").addEventListener("click", function(){
+    globalScale = 0.5
+})

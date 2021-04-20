@@ -26,26 +26,4 @@ function setupBottomBar(backgroundSprite){
         cursorContainer.removeChild(cursorSprite)
         cursorSprite = newCursorSprite
     })
-    document.getElementById("large-game-button").addEventListener("click", function(){
-        var r = confirm("Reset scale to large? This will clear all content");
-        if (r == true) {
-            globalScale = 0.5
-            resetGame()
-        } 
-    })
-    document.getElementById("medium-game-button").addEventListener("click", function(){
-        var r = confirm("Reset scale to medium? This will clear all content");
-        if (r == true) {
-            globalScale = 1
-            resetGame()
-        } 
-    })
-    document.getElementById("small-game-button").addEventListener("click", function(){
-        var r = confirm("Reset scale to medium? This will clear all content");
-        if (r == true) {
-            globalScale = 2
-            resetGame()
-        }
-        resetGame()
-    })
 }

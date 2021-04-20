@@ -20,11 +20,12 @@
     <script src="game/gameMatrix.js"></script>
     <script src="assets/Constants.js"></script>
     <script type="text/javascript" src="game/keyInputs.js"></script>
-    <script src="game/resetGame.js"></script>
+    <script src="game/setupGame.js"></script>
     <link href="./index.css" rel="stylesheet">
     <link href="./styles/switch.css" rel="stylesheet">
     <link href="./styles/bottombar.css" rel="stylesheet">
     <link href="./styles/rightbar.css" rel="stylesheet">
+    <link href="./styles/select-environment.css" rel="stylesheet">
     <script>
         var authUser;
         var storage;
@@ -33,7 +34,46 @@
 
 <body>
 
-        <div id="game-container"></div>
+        <div id="game-container">
+            <div id="select-environment-container">
+                <h2 style="text-align: center;"> Size of map</h2>
+                <div id="select-environment-size-container">
+                    <div style="display:grid; grid-template-rows: 1fr;  justify-items: center;">
+
+                        <input type="radio" id="select-small-environment" class="css-radio" name="size">
+                        <label for="select-small-environment" class="css-radio">
+                            <p>Small</p>
+                        
+                        </label>
+                    </div>
+                    <div style="display:grid; grid-template-rows: 1fr;  justify-items: center;">
+
+
+                    <input type="radio" id="select-medium-environment" class="css-radio" name="size">
+                    <label for="select-medium-environment" class="css-radio">
+                       <p>Medium</p>
+                    
+                    </label>
+                    </div>
+                    <div style="display:grid; grid-template-rows: 1fr;  justify-items: center;">
+                        <input type="radio" id="select-large-environment" class="css-radio" name="size">
+                        <label for="select-large-environment" class="css-radio">
+                            <p>Large</p>
+                        </label>
+                    </div>
+                </div>
+                <h2 style="text-align: center;"> Map type</h2>
+
+                <div id="select-environment-tile-container">
+            
+                <input type="radio" id ="select-dungeon-map-type" class="css-radio">
+                <label for="select-dungeon-map-type" class="css-radio"> 
+                    <p>Dungeon</p>
+                    <img class="object-button" src="./assets/textures/tiles/dungeon-tile-repr.png">
+                </label>
+            </div>
+            <button id="create-game-button"> Create</button>
+        </div>
         <div id="right-sidebar">
 
             <div id="draw-type-container">
@@ -227,9 +267,6 @@
             <button id="change-to-move">Move</button>
             <button id="change-to-delete">Delete</button>
             <button id="download-game-button">Download</button>
-            <button id="small-game-button"> Small </button>
-            <button id="medium-game-button"> Medium </button>
-            <button id="large-game-button"> Large </button>
     </div>
     </div>
     <script type="text/javascript" src="game/game.js"></script>

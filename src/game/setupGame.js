@@ -26,3 +26,6 @@ function resetGame(){
     changeBackgroundTexture("gray")
    
 }
+function setupEnvironment(){
+    
+}
