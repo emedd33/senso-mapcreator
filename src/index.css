@@ -62,16 +62,9 @@ input {
 
 #game-container {
   z-index: 0;
-  height: 100vh;
   padding: 5rem;
 }
 
-#backgrounds-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-}
 #gray-background-button {
   background-color: #606060;
 }
