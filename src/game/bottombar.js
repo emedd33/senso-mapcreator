@@ -26,8 +26,16 @@ function setupBottomBar(backgroundSprite){
         cursorContainer.removeChild(cursorSprite)
         cursorSprite = newCursorSprite
     })
-    document.getElementById("medium-game-button").addEventListener("click", function(){
+    document.getElementById("large-game-button").addEventListener("click", function(){
+        globalScale = 0.5
         resetGame()
-
+    })
+    document.getElementById("medium-game-button").addEventListener("click", function(){
+        globalScale = 1
+        resetGame()
+    })
+    document.getElementById("small-game-button").addEventListener("click", function(){
+        globalScale = 2
+        resetGame()
     })
 }

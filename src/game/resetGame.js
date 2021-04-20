@@ -1,7 +1,6 @@
 function resetGame(){
-    app.view.width = WIDTH*globalScale
-    app.view.height = HEIGHT*globalScale
-    newGameMatrix = new GameMatrix(MATRIX_WIDTH*globalScale, MATRIX_HEIGHT*globalScale)
+    app.stage.scale.set(globalScale)
+    newGameMatrix = new GameMatrix(MATRIX_WIDTH/globalScale, MATRIX_HEIGHT/globalScale)
     newGameMatrix.printMatrix()
     interactionType = "moveObject";
     objectScale = 1;
@@ -15,7 +14,7 @@ function resetGame(){
     interactionType = "delete"
     
     let newCursorSprite = new PIXI.Sprite(PIXI.utils.TextureCache.cursor);
-    newCursorSprite.scale.set(0.05)
+    newCursorSprite.scale.set(0.05/globalScale)
     newCursorSprite.anchor.set(0,0.5)
     newCursorSprite.parentGroup = cursorGroup
     cursorContainer.addChild(newCursorSprite)
