@@ -1,3 +1,4 @@
+
 function drawTile(app, texture, x, y, index, indexValue) {
     const tileSprite = new PIXI.Sprite(texture);
     let previousIndexValue = newGameMatrix.getValue(index)
@@ -30,7 +31,7 @@ function drawObject(objectTexture, scale, pos, type) {
     .on('pointerup', onDragEnd)
     .on('pointerupoutside', onDragEnd)
     .on('pointermove', onDragMove);
-    gameState.objects[objectSprite.id] ={displayOrder:objectSprite.displayOrder, scale:scale, type:type,pos:pos}
+    gameState.objects[objectSprite.id] ={sprite: objectSprite, displayOrder:objectSprite.displayOrder, scale:scale, type:type,pos:pos, width:objectSprite.width, height:objectSprite.height}
     objectContainer.addChild(objectSprite)
     return objectSprite
 }

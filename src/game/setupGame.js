@@ -10,9 +10,7 @@ function resetGame(){
         tiles: {},
         objects: {},
         gameMatrix: newGameMatrix
-    }
-    interactionType = "delete"
-    
+    }    
     let newCursorSprite = new PIXI.Sprite(PIXI.utils.TextureCache.cursor);
     newCursorSprite.scale.set(0.05/globalScale)
     newCursorSprite.anchor.set(0,0.5)

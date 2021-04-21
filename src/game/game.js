@@ -68,48 +68,54 @@ loader.load((loader, resources) => {
 })
 
 function onPointerDown(event) {
-    // store a reference to the data
-    // the reason for this is because of multitouch
-    // we want to track the movement of this particular touch
-    const pos = event.data.getLocalPosition(this.parent)
-    this.dragging = true;
-    if (interactionType === "drawObject" || interactionType === "drawTile") {
-        this.data = event.data;
-        addToGame(pos)
-        return
-    } 
-    if (interactionType === "moveObject"){
-            // draw a rounded rectangle
-        graphics.clear()
-        if(this.type === "object"){
-            if(selectedObject !== this){
-                selectedObject = this
-                graphics.lineStyle(2, 0xFFFFFF, 0.5);
-                graphics.drawRoundedRect(this.x-this.height/2, this.y-this.height/2, this.width, this.height, 16);
-                graphics.endFill(); 
-                
-            }
-        } else {
-            selectedObject = undefined
-        }
     
-    }
-    if (interactionType === "delete") {
-        this.data = event.data;
-        if (this.type === "object") {
-            objectContainer.removeChild(this)
-            delete gameState.objects[this.id]
-            history.push({ action: "remove", sprites: [this], type: "object" })
-      
+    if (event.data.originalEvent.button === 0){ // left click on the mouse
+
+        const pos = event.data.getLocalPosition(this.parent)
+        this.dragging = true;
+        if (
+            interactionType === "drawObject" 
+            || interactionType === "drawTile"
+        ) {
+            this.data = event.data;
+            addToGame(pos)
             return
+        } 
+        if (interactionType === "moveObject"){ 
+            // draw a rounded rectangle
+            graphics.clear()
+            if(this.type === "object"){
+                if(selectedObject !== this){
+                    selectedObject = this
+                    // graphics.lineStyle(2, 0xFFFFFF, 0.5);
+                    // graphics.drawRoundedRect(this.x-this.height/2, this.y-this.height/2, this.width, this.height, 16);
+                    // graphics.endFill(); 
+                    
+                }
+            } else {
+                selectedObject = undefined
+            }
+            return
+        
         }
-        if (this.type === "tile") {
+        if (interactionType === "deleteObject") {
+            this.data = event.data;
+            if (this.type === "object") {
+                objectContainer.removeChild(this)
+                delete gameState.objects[this.id]
+                history.push({ action: "remove", sprites: [this], type: "object" })
+            }
+            return
+            
+        }
+        if (interactionType === "removeTile"){
             const tilePos = getTilePosition(pos)
             const index = getGameMatrixIndex(tilePos.x, tilePos.y)
             tileContainer.removeChild(this)
             newGameMatrix.cleanIndex(index)
             delete gameState.tiles[index]
             history.push({ action: "remove", sprites: [this], type: "tile", previousIndexValue: index })
+            
         }
     }
 }
@@ -148,6 +154,25 @@ function onDragMove(event) {
                     this.y = position.y;
                 }
             }
+        } else if(interactionType === "deleteObject"){
+            console.log()
+            let hoveredObject = Object.values(gameState.objects).filter(obj=> {
+             return  (
+                 (position.x- obj.pos.x) <0 && 
+                (position.x - obj.pos.x+obj.width) > 0 &&
+                 (position.y- obj.pos.y) <0 && 
+                (position.y - obj.pos.y+obj.height) > 0 
+                )
+            }
+            )
+            if (hoveredObject.length > 0){
+                hoveredObject.forEach(obj=>{
+                console.log(obj)
+                objectContainer.removeChild(obj.sprite)
+                delete gameState.objects[obj.sprite.id]
+                history.push({ action: "remove", sprites: [obj.sprite], type: "object" })
+                })
+            }
         }
     }
 }
@@ -173,27 +198,28 @@ function onScroll(event) {
     event.preventDefault()
 
 }
+function addTilesToGame(index, tilePos, addCenter){
+    tileSprites = []
+    if (addCenter){
+        tileSprites.push(drawTile(app, textures.tiles.center, tilePos.y, tilePos.x, index, CENTER))
+    }
+    tileSprites.push(drawTopLeftTile(app, index, textures, tilePos.x, tilePos.y))
+    tileSprites.push(drawTopTile(app, index, textures, tilePos.x, tilePos.y))
+    tileSprites.push(drawTopRightTile(app, index, textures, tilePos.x, tilePos.y))
+    tileSprites.push(drawLeftTile(app, index, textures, tilePos.x, tilePos.y))
+    tileSprites.push(drawRightTile(app, index, textures, tilePos.x, tilePos.y))
+    tileSprites.push(drawBottomLeftTile(app, index, textures, tilePos.x, tilePos.y))
+    tileSprites.push(drawBottomTile(app, index, textures, tilePos.x, tilePos.y))
+    tileSprites.push(drawBottomRightTile(app, index, textures, tilePos.x, tilePos.y))
+    newEvent = { action: "add", sprites: tileSprites, type: "tile" }
+    history.push(newEvent)
+}
 function addToGame(pos) {
     let newEvent;
     if (interactionType === "drawTile") {
-        tileSprites = []
         const tilePos = getTilePosition(pos)
-
         const index = newGameMatrix.getIndexByPosition(tilePos.x, tilePos.y)
-        tileSprites.push(drawTile(app, textures.tiles.center, tilePos.y, tilePos.x, index, CENTER))
-        if (autodrawSurroundingTiles) {
-
-            tileSprites.push(drawTopLeftTile(app, index, textures, tilePos.x, tilePos.y))
-            tileSprites.push(drawTopTile(app, index, textures, tilePos.x, tilePos.y))
-            tileSprites.push(drawTopRightTile(app, index, textures, tilePos.x, tilePos.y))
-            tileSprites.push(drawLeftTile(app, index, textures, tilePos.x, tilePos.y))
-            tileSprites.push(drawRightTile(app, index, textures, tilePos.x, tilePos.y))
-            tileSprites.push(drawBottomLeftTile(app, index, textures, tilePos.x, tilePos.y))
-            tileSprites.push(drawBottomTile(app, index, textures, tilePos.x, tilePos.y))
-            tileSprites.push(drawBottomRightTile(app, index, textures, tilePos.x, tilePos.y))
-        }
-        newEvent = { action: "add", sprites: tileSprites, type: "tile" }
-
+        addTilesToGame(index,tilePos, true)
     } else if (interactionType === "drawObject") {
         let objectSprite
         objectSprite = drawObject(textures.objects[objectType], textures.objects[objectType].scaler * objectScale, pos, objectType)
@@ -202,10 +228,6 @@ function addToGame(pos) {
         }
 
     }
-    if (newEvent) {
-        history.push(newEvent)
-    }
-
 }
 
 document.getElementById("create-game-button").addEventListener("click", function(){

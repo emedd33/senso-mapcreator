@@ -48,10 +48,6 @@ a {
 a:hover {
   background-color: goldenrod;
 }
-input {
-  max-height: 3rem;
-  border-radius: 5px;
-}
 
 /* Classes */
 .auth-container {
@@ -63,30 +59,6 @@ input {
 #game-container {
   z-index: 0;
   padding: 5rem;
-}
-
-#gray-background-button {
-  background-color: #606060;
-}
-#lightgray-background-button {
-  background-color: rgb(195, 195, 195);
-}
-#darkgray-background-button {
-  background-color: #292929;
-}
-#black-background-button {
-  background-color: #000000;
-}
-#login-container {
-  display: flex;
-}
-
-#save-game-button {
-  height: 2rem;
-  border-radius: 5px;
-}
-#profile-container {
-  display: none;
 }
 
 #tiles-container {

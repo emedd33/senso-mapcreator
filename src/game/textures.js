@@ -1,7 +1,9 @@
 function loadTextures(loader) {
     loader.add("dungeonTiles", "assets/textures/tiles/dungeon-tile.png")
-    loader.add("cursor", "assets/textures/cursor.png")
-    loader.add("bulldozer", "assets/textures/bulldozer.png")
+    loader.add("cursor", "assets/icons/cursor.png")
+    loader.add("bulldozer", "assets/icons/bulldozer.png")
+    loader.add("delete", "assets/icons/delete_icon.png")
+    loader.add("shovel", "assets/icons/shovel_icon.png")
     loader.add("grid_32_32", "assets/textures/grids/32-32-grid.png")
     loader.add("gray_background", "assets/textures/grids/gray_background.png")
     loader.add("lightgray_background", "assets/textures/grids/lightgray_background.png")
@@ -174,6 +176,7 @@ function loadTiles() {
 }
 function loadObjects() {
     textures.objects.cursor = PIXI.utils.TextureCache.cursor.clone()
+    textures.objects.shovel = PIXI.utils.TextureCache.shovel.clone()
     textures.objects.barrel_1 = PIXI.utils.TextureCache.barrel_1.clone()
     textures.objects.barrel_1.scaler = BARREL_1_SCALE
     textures.objects.barrel_2 = PIXI.utils.TextureCache.barrel_2.clone()
