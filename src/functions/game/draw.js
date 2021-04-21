@@ -33,6 +33,7 @@ function drawObject(objectTexture, scale, pos, type) {
     .on('pointermove', onDragMove);
     gameState.objects[objectSprite.id] ={sprite: objectSprite, displayOrder:objectSprite.displayOrder, scale:scale, type:type,pos:pos, width:objectSprite.width, height:objectSprite.height}
     objectContainer.addChild(objectSprite)
+    gameHistory.addEvent(new GameEvent("add","object",objectSprite))
 }
 function drawTopRightTile(app,index, textures, columnPx, rowPx) {
     const topRightIndex = newGameMatrix.getTopRightIndex(index)

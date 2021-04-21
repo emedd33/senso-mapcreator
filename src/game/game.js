@@ -7,6 +7,7 @@ let app = new PIXI.Application({
 })
 var graphics = new PIXI.Graphics();
 let newGameMatrix;
+let gameHistory;
 let interactionType;
 let autodrawSurroundingTiles;
 let objectType;
