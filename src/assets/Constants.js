@@ -1,8 +1,8 @@
 const OLD_WHITE = 0xFAEBD7
 const TEXTURE_WIDTH = 32
 const TEXTURE_HEIGHT = 32
-const WIDTH = TEXTURE_WIDTH*4//window.innerWidth*0.8 - window.innerWidth*0.8%TEXTURE_WIDTH
-const HEIGHT = TEXTURE_HEIGHT*4// window.innerHeight*0.8 - window.innerHeight*0.8%TEXTURE_HEIGHT
+const WIDTH = window.innerWidth*0.8 - window.innerWidth*0.8%TEXTURE_WIDTH
+const HEIGHT = window.innerHeight*0.8 - window.innerHeight*0.8%TEXTURE_HEIGHT
 const MATRIX_WIDTH = (WIDTH / TEXTURE_WIDTH)
 const MATRIX_HEIGHT = (HEIGHT / TEXTURE_HEIGHT)
 

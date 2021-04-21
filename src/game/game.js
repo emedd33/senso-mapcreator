@@ -72,11 +72,11 @@ function onPointerDown(event) {
 
         const pos = event.data.getLocalPosition(this.parent)
         this.dragging = true;
+        this.data = event.data;
         if (
             interactionType === "drawObject" 
             || interactionType === "drawTile"
         ) {
-            this.data = event.data;
             addToGame(pos)
             return
         } 
@@ -102,12 +102,7 @@ function onPointerDown(event) {
             return
             
         }
-        if (interactionType === "removeTile"){
-            let tilePos = getTilePosition(pos)
-            let index = getGameMatrixIndex(tilePos.x, tilePos.y)
-            tileContainer.removeChild(this)
-            newGameMatrix.cleanIndex(index)
-        }
+
     }
 }
 
@@ -122,7 +117,7 @@ function onDragMove(event) {
     let position;
     if (this.parent) {
         position = event.data.getLocalPosition(this.parent)
-    }
+    } 
     if (cursorSprite && position) {
         cursorSprite.x = position.x
         cursorSprite.y = position.y
@@ -137,7 +132,7 @@ function onDragMove(event) {
             }
         } else if (interactionType === "moveObject") {
             if (this.type === "object") {
-                let position = event.data.getLocalPosition(this.parent)
+                position = event.data.getLocalPosition(this.parent)
                 if (this.x !== position.x || this.y !== position.y){
                     selectedObject = undefined
                     graphics.clear()
@@ -146,7 +141,6 @@ function onDragMove(event) {
                 }
             }
         } else if(interactionType === "deleteObject"){
-            console.log()
             let hoveredObject = Object.values(gameState.objects).filter(obj=> {
              return  (
                  (position.x- obj.pos.x) <0 && 
@@ -158,13 +152,12 @@ function onDragMove(event) {
             )
             if (hoveredObject.length > 0){
                 hoveredObject.forEach(obj=>{
-                console.log(obj)
                 objectContainer.removeChild(obj.sprite)
                 delete gameState.objects[obj.sprite.id]
                 })
             }
         } else if(interactionType === "removeTile"){
-                let position = event.data.getLocalPosition(this.parent)
+            let position = event.data.getLocalPosition(tileContainer)
                 let index = newGameMatrix.getIndexByPosition(position.x, position.y)
                 let tile = newGameMatrix.getIndex(index)
                 if(tile && tile.sprite){
@@ -190,7 +183,6 @@ function addTilesToGame(index, tilePos, addCenter){
     drawBottomRightTile(app, index, textures, tilePos.x, tilePos.y)
 }
 function addToGame(pos) {
-    let newEvent;
     if (interactionType === "drawTile") {
         const tilePos = getTilePosition(pos)
         const index = newGameMatrix.getIndexByPosition(tilePos.x, tilePos.y)

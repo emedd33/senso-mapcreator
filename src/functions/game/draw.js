@@ -7,7 +7,7 @@ function drawTile(app, texture, x, y, index, indexValue) {
     tileSprite.y = x
     tileSprite.x = y;
     tileSprite.parentGroup = tileGroup
-    tileSprite.interactive = true
+    tileSprite.interactive = false
     tileSprite
     .on('pointerdown', onPointerDown)
     .on('pointerup', onDragEnd)
@@ -394,7 +394,6 @@ function drawBottomLeftTile(app,index, textures, columnPx, rowPx) {
 function drawBottomTile(app,index, textures, columnPx, rowPx) {
     const bottomIndex = newGameMatrix.getBottomIndex(index)
     const bottomTile =newGameMatrix.getValue(bottomIndex)
-    console.log("bottomTile", bottomTile)
     if (bottomTile === CENTER) {
         return
     }
