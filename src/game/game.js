@@ -101,6 +101,16 @@ function onPointerDown(event) {
             }
             return
             
+        } 
+        if (interactionType === "removeTile"){
+            let position = event.data.getLocalPosition(tileContainer)
+            let centerIndex = newGameMatrix.getIndexByPosition(position.x, position.y)
+            let centerTile = newGameMatrix.getIndex(centerIndex)
+            if(centerTile && centerTile.sprite){
+                if (centerTile.value === 5){
+                    removeTilesFromGame(centerTile, centerIndex)
+                }
+            }
         }
 
     }
@@ -161,9 +171,10 @@ function onDragMove(event) {
                 let index = newGameMatrix.getIndexByPosition(position.x, position.y)
                 let tile = newGameMatrix.getIndex(index)
                 if(tile && tile.sprite){
-                    tileContainer.removeChild(tile.sprite)
-                    newGameMatrix.cleanIndex(index)
-                }
+                    if (tile.value === 5){
+                        removeTilesFromGame(tile, index)
+                    }
+            }
 
         }
     }
@@ -190,6 +201,32 @@ function addToGame(pos) {
     } else if (interactionType === "drawObject") {
         drawObject(textures.objects[objectType], textures.objects[objectType].scaler * objectScale, pos, objectType)
     }
+}
+function removeTilesFromGame(centerTile, centerIndex){
+    tileContainer.removeChild(centerTile.sprite)
+    newGameMatrix.cleanIndex(centerIndex)
+    let topIndex = newGameMatrix.getTopIndex(centerIndex);
+    let topLeftIndex = newGameMatrix.getTopLeftIndex(centerIndex);
+    let topRightIndex = newGameMatrix.getTopRightIndex(centerIndex);
+    let leftIndex = newGameMatrix.getLeftIndex(centerIndex);
+    let rightIndex = newGameMatrix.getRightIndex(centerIndex);
+    let bottomLeftIndex = newGameMatrix.getBottomLeftIndex(centerIndex);
+    let bottomIndex = newGameMatrix.getBottomIndex(centerIndex);
+    let bottomRightIndex = newGameMatrix.getBottomRightIndex(centerIndex);
+    [topLeftIndex,topIndex, topRightIndex, leftIndex, rightIndex, bottomLeftIndex, bottomIndex, bottomRightIndex].forEach(index=>{
+        let tile = newGameMatrix.getIndex(index)
+        if (tile.value !== 5){
+            tileContainer.removeChild(tile.sprite)
+            newGameMatrix.cleanIndex(index)
+        }
+    });
+    [topLeftIndex,topIndex, topRightIndex, leftIndex, rightIndex, bottomLeftIndex, bottomIndex, bottomRightIndex].forEach(index=>{
+        let tile = newGameMatrix.getIndex(index)
+        if (tile && tile.value === 5){
+            let tilePos = newGameMatrix.getPositionByIndex(index)
+            addTilesToGame(index,tilePos,false)
+        }
+    })
 }
 
 document.getElementById("create-game-button").addEventListener("click", function(){
