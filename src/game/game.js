@@ -6,7 +6,6 @@ let app = new PIXI.Application({
     height: HEIGHT
 })
 var graphics = new PIXI.Graphics();
-const history = []
 let newGameMatrix;
 let interactionType;
 let autodrawSurroundingTiles;
@@ -86,11 +85,7 @@ function onPointerDown(event) {
             graphics.clear()
             if(this.type === "object"){
                 if(selectedObject !== this){
-                    selectedObject = this
-                    // graphics.lineStyle(2, 0xFFFFFF, 0.5);
-                    // graphics.drawRoundedRect(this.x-this.height/2, this.y-this.height/2, this.width, this.height, 16);
-                    // graphics.endFill(); 
-                    
+                    selectedObject = this                    
                 }
             } else {
                 selectedObject = undefined
@@ -103,19 +98,15 @@ function onPointerDown(event) {
             if (this.type === "object") {
                 objectContainer.removeChild(this)
                 delete gameState.objects[this.id]
-                history.push({ action: "remove", sprites: [this], type: "object" })
             }
             return
             
         }
         if (interactionType === "removeTile"){
-            const tilePos = getTilePosition(pos)
-            const index = getGameMatrixIndex(tilePos.x, tilePos.y)
+            let tilePos = getTilePosition(pos)
+            let index = getGameMatrixIndex(tilePos.x, tilePos.y)
             tileContainer.removeChild(this)
             newGameMatrix.cleanIndex(index)
-            delete gameState.tiles[index]
-            history.push({ action: "remove", sprites: [this], type: "tile", previousIndexValue: index })
-            
         }
     }
 }
@@ -170,49 +161,33 @@ function onDragMove(event) {
                 console.log(obj)
                 objectContainer.removeChild(obj.sprite)
                 delete gameState.objects[obj.sprite.id]
-                history.push({ action: "remove", sprites: [obj.sprite], type: "object" })
                 })
             }
+        } else if(interactionType === "removeTile"){
+                let position = event.data.getLocalPosition(this.parent)
+                let index = newGameMatrix.getIndexByPosition(position.x, position.y)
+                let tile = newGameMatrix.getIndex(index)
+                if(tile && tile.sprite){
+                    tileContainer.removeChild(tile.sprite)
+                    newGameMatrix.cleanIndex(index)
+                }
+
         }
     }
 }
-// eslint-disable-next-line
-function onScroll(event) {
-    // no implemented yet
-    // TODO make zooming work
-    let wDelta = event.wheelDelta < 0 ? 'down' : 'up';
-    // Initial scale is set to 1.5, so user can zoom out to 1.05 and zoom in to 1.95 
-    if (wDelta === "down") {
-        if (app.stage.width >= 3800) {
-            app.stage.scale.x -= .05
-            app.stage.scale.y -= .05
-        }
-    } else if (wDelta === "up") {
-        if (app.stage.scale.y <= 1) {
 
-            app.stage.scale.x += .05
-            app.stage.scale.y += .05
-        }
-    }
-
-    event.preventDefault()
-
-}
 function addTilesToGame(index, tilePos, addCenter){
-    tileSprites = []
     if (addCenter){
-        tileSprites.push(drawTile(app, textures.tiles.center, tilePos.y, tilePos.x, index, CENTER))
+        drawTile(app, textures.tiles.center, tilePos.y, tilePos.x, index, CENTER)
     }
-    tileSprites.push(drawTopLeftTile(app, index, textures, tilePos.x, tilePos.y))
-    tileSprites.push(drawTopTile(app, index, textures, tilePos.x, tilePos.y))
-    tileSprites.push(drawTopRightTile(app, index, textures, tilePos.x, tilePos.y))
-    tileSprites.push(drawLeftTile(app, index, textures, tilePos.x, tilePos.y))
-    tileSprites.push(drawRightTile(app, index, textures, tilePos.x, tilePos.y))
-    tileSprites.push(drawBottomLeftTile(app, index, textures, tilePos.x, tilePos.y))
-    tileSprites.push(drawBottomTile(app, index, textures, tilePos.x, tilePos.y))
-    tileSprites.push(drawBottomRightTile(app, index, textures, tilePos.x, tilePos.y))
-    newEvent = { action: "add", sprites: tileSprites, type: "tile" }
-    history.push(newEvent)
+    drawTopLeftTile(app, index, textures, tilePos.x, tilePos.y)
+    drawTopTile(app, index, textures, tilePos.x, tilePos.y)
+    drawTopRightTile(app, index, textures, tilePos.x, tilePos.y)
+    drawLeftTile(app, index, textures, tilePos.x, tilePos.y)
+    drawRightTile(app, index, textures, tilePos.x, tilePos.y)
+    drawBottomLeftTile(app, index, textures, tilePos.x, tilePos.y)
+    drawBottomTile(app, index, textures, tilePos.x, tilePos.y)
+    drawBottomRightTile(app, index, textures, tilePos.x, tilePos.y)
 }
 function addToGame(pos) {
     let newEvent;
@@ -221,12 +196,7 @@ function addToGame(pos) {
         const index = newGameMatrix.getIndexByPosition(tilePos.x, tilePos.y)
         addTilesToGame(index,tilePos, true)
     } else if (interactionType === "drawObject") {
-        let objectSprite
-        objectSprite = drawObject(textures.objects[objectType], textures.objects[objectType].scaler * objectScale, pos, objectType)
-        if (objectSprite) {
-            newEvent = { action: "add", sprites: [objectSprite], type: "object" }
-        }
-
+        drawObject(textures.objects[objectType], textures.objects[objectType].scaler * objectScale, pos, objectType)
     }
 }
 

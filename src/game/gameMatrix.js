@@ -3,7 +3,6 @@ class GameMatrix{
     height;
     matrix;
     size;
-    lastAddedIndex; 
     constructor(width, height){
         this.width = width
         this.height = height
@@ -19,18 +18,20 @@ class GameMatrix{
         }
     }
     getIndexByPosition(x,y){
-        return x / TEXTURE_WIDTH + y/TEXTURE_HEIGHT*this.width
+        return Math.floor(x / TEXTURE_WIDTH) + Math.floor(y/TEXTURE_HEIGHT)*this.width
+    }
+    getPositionByIndex(index){
+        let x= (index%this.width)*TEXTURE_WIDTH
+        let y = Math.floor(index/this.width)*TEXTURE_HEIGHT
+        return {x:x, y:y}
+        
     }
     
     updateByIndex(index, sprite, value){
-        if (this.matrix[index].sprite){
-            tileContainer.addChild(sprite)
-            tileContainer.removeChild(this.matrix[index].sprite)
-        }
         this.matrix[index] = {value:value, sprite:sprite}
     }
     cleanIndex(index){
-        this.matrix[index] = {value:0, sprite:0}
+        this.matrix[index] = {value:0, sprite:null}
     }
     printMatrix(){
         
