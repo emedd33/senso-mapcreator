@@ -25,6 +25,7 @@ function drawObject(objectTexture, scale, pos, type) {
     objectSprite.x = pos.x;
     objectSprite.parentGroup = objectGroup
     objectSprite.interactive = true
+    objectSprite.angle = objectAngle
     objectSprite
     .on('pointerdown', onPointerDown)
     .on('pointerup', onDragEnd)

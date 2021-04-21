@@ -3,8 +3,9 @@ function setDrawObject(button, scaler){
     selectedObject = undefined
     backgroundSprite.interactive = true
     interactionType = "drawObject"
-    objectType = button.id
-    objectScale=1
+    objectType = button.id;
+    objectScale = 1;
+    objectAngle = 0;
     document.getElementById("object-scaler").value = 50
     let newCursorSprite = createSprite(textures.objects[button.id], textures.objects[button.id].scaler,0.5)
     newCursorSprite.parentGroup = cursorGroup
@@ -16,4 +17,5 @@ function setDrawObject(button, scaler){
     selectedObjectImg.style.display = "flex"
     selectedObjectImg.src = src
     selectedObjectImg.width = cursorSprite.width
+    selectedObjectImg.style.transform = `rotate(${objectAngle}deg)`;
 }

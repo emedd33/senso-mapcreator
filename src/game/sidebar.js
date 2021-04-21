@@ -21,4 +21,16 @@ function setupSidebar(backgroundSprite) {
             }
     }
     })
+    document.getElementById("rotate-left-object-button").addEventListener("click", function(){
+        selectedObjectImg = document.getElementById("selected-object-img");
+        objectAngle -=90
+        selectedObjectImg.style.transform = `rotate(${objectAngle}deg)`;
+        cursorSprite.angle =objectAngle 
+    })
+     document.getElementById("rotate-right-object-button").addEventListener("click", function(){
+        selectedObjectImg = document.getElementById("selected-object-img");
+        objectAngle +=90
+        selectedObjectImg.style.transform = `rotate(${objectAngle}deg)`;
+        cursorSprite.angle = objectAngle 
+    })
 }

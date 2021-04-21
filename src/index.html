@@ -73,12 +73,17 @@
             <div id="draw-type-container">
 
                 <div id="objects-container">
-                        <div style="min-height: 3rem; width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                        <div style="min-height: 10rem; width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
                                 <img id="selected-object-img" src="" style=" display: none;">
                         </div>
                         <div style="min-height: 5rem; width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
                                 <div class="slidecontainer">
                                         <input type="range" min="1" max="100" value="50" id="object-scaler" >
+                                </div>
+                                <div style="display: flex; justify-content: center; flex-direction: row;">
+
+                                        <button id="rotate-left-object-button"title="Rotata to left"><img class="object-button" src="./assets/icons/rotate.png"></button>
+                                        <button id="rotate-right-object-button" title="Rotate to right"><img class="object-button" src="./assets/icons/rotate.png" style="transform: scaleX(-1);"></button>
                                 </div>
                         </div>
                         <p style="margin-bottom: 0; text-align: center;">Objects</p>
@@ -234,12 +239,11 @@
             </div>
         </div>
     <div id="bottom-bar">
-            <button id="move-object-button" title="Move objects" ><img style="width:3rem; height: 3rem; padding-left: 0.5rem;" class="object-button" src="./assets/icons/cursor.png" ></button>
-            <button id="draw-tile-button" title="Draw tiles"><img class="object-button" src="./assets/icons/shovel_icon.png"></button>
-            <button id="remove-tile-button" title="Remove tiles"><img style="width:3rem; height: 3rem; padding-left: 0.5rem;" class="object-button"src="./assets/icons/bulldozer.png"></button>
-            <button id="delete-object-button" title="Delete"><img style="width:3rem; height: 3rem; padding-left: 0.5rem;" class="object-button"src="./assets/icons/delete_icon.png"></button>
-            <button id="download-game-button" title="Download map"><img class="object-button" src="./assets/icons/download_icon.png"></button>
-         
+        <button id="move-object-button" title="Move objects" ><img style="width:3rem; height: 3rem; padding-left: 0.5rem;" class="object-button" src="./assets/icons/cursor.png" ></button>
+        <button id="draw-tile-button" title="Draw tiles"><img class="object-button" src="./assets/icons/shovel_icon.png"></button>
+        <button id="remove-tile-button" title="Remove tiles"><img style="width:3rem; height: 3rem; padding-left: 0.5rem;" class="object-button"src="./assets/icons/bulldozer.png"></button>
+        <button id="delete-object-button" title="Delete"><img style="width:3rem; height: 3rem; padding-left: 0.5rem;" class="object-button"src="./assets/icons/delete_icon.png"></button>
+        <button id="download-game-button" title="Download map"><img class="object-button" src="./assets/icons/download_icon.png"></button>
     </div>
     </div>
     <script type="text/javascript" src="game/game.js"></script>

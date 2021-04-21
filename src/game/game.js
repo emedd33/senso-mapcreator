@@ -16,6 +16,7 @@ let backgroundSprite;
 let selectedObject;
 let objectScale;
 let gameState;
+let objectAngle = 90
 
 // Set up layers
 const backgroundGroup = new PIXI.display.Group(-1, true)
@@ -107,9 +108,7 @@ function onPointerDown(event) {
             let centerIndex = newGameMatrix.getIndexByPosition(position.x, position.y)
             let centerTile = newGameMatrix.getIndex(centerIndex)
             if(centerTile && centerTile.sprite){
-                if (centerTile.value === 5){
-                    removeTilesFromGame(centerTile, centerIndex)
-                }
+                removeTilesFromGame(centerTile, centerIndex)
             }
         }
 
