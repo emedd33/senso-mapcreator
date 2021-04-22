@@ -1,11 +1,10 @@
 function setupBottomBar(backgroundSprite){
 
     document.getElementById("move-object-button").addEventListener("click", function () {
-        
+
         backgroundSprite.interactive = true
         interactionType = "moveObject"
-        newCursorSprite = new PIXI.Sprite(textures.objects.cursor);
-        newCursorSprite.scale.set(0.05)
+         newCursorSprite = createSprite(PIXI.utils.TextureCache.cursor, 0.05,0);
         newCursorSprite.parentGroup = cursorGroup
         cursorContainer.addChild(newCursorSprite)
         cursorContainer.removeChild(cursorSprite)
@@ -19,8 +18,7 @@ function setupBottomBar(backgroundSprite){
         tileType = "dungeonTile"
         objectScale=1
         document.getElementById("object-scaler").value = 50
-        newCursorSprite = createSprite(textures.objects.shovel, 0.05,0.2);
-        console.log(textures.tiles.shovel)
+        newCursorSprite = createSprite(textures.objects.shovel, 0.05,0);
         newCursorSprite.parentGroup = cursorGroup
         cursorContainer.addChild(newCursorSprite)
         cursorContainer.removeChild(cursorSprite)
@@ -30,10 +28,8 @@ function setupBottomBar(backgroundSprite){
      document.getElementById("remove-tile-button").addEventListener("click", function () {
         backgroundSprite.interactive = true
         interactionType = "removeTile"
-        let newCursorSprite = new PIXI.Sprite(PIXI.utils.TextureCache.bulldozer);
-        newCursorSprite.scale.set(0.05)
-        newCursorSprite.zOrder = 3
-        newCursorSprite.anchor.set(0,0)
+        document.getElementById("object-scaler").value = 50
+        newCursorSprite = createSprite(PIXI.utils.TextureCache.bulldozer, 0.05,0.2);
         newCursorSprite.parentGroup = cursorGroup
         cursorContainer.addChild(newCursorSprite)
         cursorContainer.removeChild(cursorSprite)
@@ -56,7 +52,6 @@ function setupBottomBar(backgroundSprite){
             gridContainer.addChild(gridSprite)
             displayGrid = true
         } else {
-            
             gridContainer.removeChild(gridSprite)
             displayGrid = false
         }
