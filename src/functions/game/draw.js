@@ -21,7 +21,11 @@ function drawTile(app, texture,  y,x, index, indexValue) {
     }
 }
 function drawObject(objectTexture, scale, pos, type) {
-    let objectSprite = createSprite(objectTexture,scale,0.5)
+    if (fixObjectToGrid){
+        pos = getTilePosition(pos)
+    }
+
+    let objectSprite = createSprite(objectTexture,scale,0)
     objectSprite.type="object"
     objectSprite.id = createId()
     objectSprite.y = pos.y

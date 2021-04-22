@@ -11,15 +11,18 @@ function setupSidebar(backgroundSprite) {
     }
    
     document.getElementById("object-search-input").addEventListener("input", function(){
-        const searchWord = document.getElementById("object-search-input").value.toString().toLowerCase()
+        const searchWord = document.getElementById("object-search-input").value.toString().toLowerCase().replace(/ /g,'')
         const searchContainer = document.getElementById("all-object-container")
         for (const elem of searchContainer.children){
-            if (elem.id.toString().toLowerCase().includes(searchWord)){
+            if (elem.id.toString().toLowerCase().replace(/ /g,'').replace("_", "").includes(searchWord)){
                 elem.style.display = "inline"
             } else {
                 elem.style.display = "none"
             }
     }
+    })
+    document.getElementById("fix-to-tile-checkbox").addEventListener("change", function(event){
+        fixObjectToGrid = !fixObjectToGrid;
     })
     document.getElementById("rotate-left-object-button").addEventListener("click", function(){
         selectedObjectImg = document.getElementById("selected-object-img");

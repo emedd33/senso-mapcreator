@@ -14,6 +14,7 @@ let interactionType;
 let autodrawSurroundingTiles;
 let objectType;
 let tileType;
+let fixObjectToGrid = false;
 let cursorSprite;
 let backgroundSprite;
 let selectedObject;
@@ -137,13 +138,16 @@ function onDragMove(event) {
         position = event.data.getLocalPosition(this.parent)
     } 
     if (cursorSprite && position) {
+        if (fixObjectToGrid && interactionType === "drawObject"){
+            position = getTilePosition(position)
+        }
         cursorSprite.x = position.x
         cursorSprite.y = position.y
     }
     if (this.dragging && position) {
         if (interactionType === "drawTile") {
             let position = event.data.getLocalPosition(this.parent)
-            const tilePosition = getTilePosition(position)
+            let tilePosition = getTilePosition(position)
             if (tilePosition.x !== this.data.x || tilePosition.y !== this.data.y) {
                 this.data = tilePosition
                 addToGame(tilePosition)
@@ -151,6 +155,9 @@ function onDragMove(event) {
         } else if (interactionType === "moveObject") {
             if (this.type === "object") {
                 position = event.data.getLocalPosition(this.parent)
+                if (fixObjectToGrid){
+                    position = getTilePosition(position)
+                }
                 if (this.x !== position.x || this.y !== position.y){
                     selectedObject = undefined
                     graphics.clear()

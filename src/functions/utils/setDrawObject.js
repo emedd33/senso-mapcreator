@@ -7,7 +7,7 @@ function setDrawObject(button, scaler){
     objectScale = 1;
     objectAngle = 0;
     document.getElementById("object-scaler").value = 50
-    let newCursorSprite = createSprite(textures.objects[button.id], textures.objects[button.id].scaler,0.5)
+    let newCursorSprite = createSprite(textures.objects[button.id], textures.objects[button.id].scaler,0)
     newCursorSprite.parentGroup = cursorGroup
     cursorContainer.addChild(newCursorSprite)
     cursorContainer.removeChild(cursorSprite)

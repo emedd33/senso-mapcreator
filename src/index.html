@@ -72,6 +72,7 @@
 
 
                 <div id="objects-container">
+                        <p style="margin-bottom: 0; text-align: center; width: 100%;">Objects</p>
                         <div style="min-height: 10rem; width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
                                 <img id="selected-object-img" src="" style=" display: none;">
                         </div>
@@ -80,15 +81,18 @@
                                         <input type="range" min="1" max="100" value="50" id="object-scaler" >
                                 </div>
                                 <div style="display: flex; justify-content: center; flex-direction: row;">
-
-                                        <button id="rotate-left-object-button"title="Rotata to left"><img class="object-button" src="./assets/icons/rotate.png"></button>
+                                        <button id="rotate-left-object-button"title="Rotate to left"><img class="object-button" src="./assets/icons/rotate.png"></button>
                                         <button id="rotate-right-object-button" title="Rotate to right"><img class="object-button" src="./assets/icons/rotate.png" style="transform: scaleX(-1);"></button>
                                 </div>
                         </div>
-                        <p style="margin-bottom: 0; text-align: center;">Objects</p>
+                        <div>
+                                <input type="checkbox" id="fix-to-tile-checkbox" title="Display grid" class="css-checkbox-button" >
+                                <label for="fix-to-tile-checkbox" title="Places objects in grid" class="css-checkbox-button" style="width: 5rem; margin: 1rem;">
+                                        <p>Fix til grid</p>
+                                </label>
+                        </div>
                         <input type="text" id="object-search-input" class="input-text" placeholder="Search">
                         <div id="all-object-parent-container">
-
                         <div id="all-object-container">
 
                         <button id="barrel_1" title="Barrel 1" onclick="setDrawObject(this, BARREL_1_SCALE)"><img class="object-button" 
