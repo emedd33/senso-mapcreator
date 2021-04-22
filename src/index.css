@@ -71,3 +71,9 @@ a:hover {
   width: 3rem;
   height: 3rem;
 }
+
+input[type="text"].input-text {
+  background-color: black;
+  color: white;
+  height: 2rem;
+}

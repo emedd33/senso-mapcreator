@@ -7,11 +7,47 @@ class GameEvent{
         this.spriteType = spriteType
         this.sprite = sprite
     }
-    reverse(){
+    getContainer(){
+        switch (this.spriteType) {
+            case "object":
+                return objectContainer
+            default:
+                break;
+        }
+    }
+    add(){
+        let container = this.getContainer()
+        container.addChild(this.sprite)
 
     }
-    do(){
+    remove(){
+        let container = this.getContainer()
+        container.removeChild(this.sprite)
 
+    }
+    reverse(){
+        switch(this.eventType){
+            case "add":
+                this.remove()
+                break
+            case "remove":
+                this.add()
+                break
+            default:
+                break
+        }
+    }
+    do(){
+        switch(this.eventType){
+            case "add":
+                this.add()
+                break
+            case "remove":
+                this.remove()
+                break
+            default:
+                break
+        }
     }
 }
 class GameHistory{
@@ -23,17 +59,16 @@ class GameHistory{
     }
     addEvent(event){
         this.events.push(event)
-        console.log(this.events)
     }
     undo(){
-        if (events.length > 0){
+        if (this.events.length > 0){
             let lastEvent = this.events.pop()
             lastEvent.reverse()
-            reverseEvents.push(lastEvent)
+            this.reverseEvents.push(lastEvent)
         }
     }
     redo(){
-        if (reverseEvents.length > 0){
+        if (this.reverseEvents.length > 0){
             let lastReverseEvent = this.reverseEvents.pop()
             lastReverseEvent.do()
             this.events.push(lastReverseEvent)

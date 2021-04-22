@@ -70,7 +70,6 @@
         </div>
         <div id="right-sidebar">
 
-            <div id="draw-type-container">
 
                 <div id="objects-container">
                         <div style="min-height: 10rem; width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
@@ -87,10 +86,10 @@
                                 </div>
                         </div>
                         <p style="margin-bottom: 0; text-align: center;">Objects</p>
-                        <input type="text" id="object-search-input" placeholder="Search">
+                        <input type="text" id="object-search-input" class="input-text" placeholder="Search">
+                        <div id="all-object-parent-container">
 
-                        <div id="object-search-container"
-                        style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; overflow-y: scroll; height:40rem; margin-top: 1rem;">
+                        <div id="all-object-container">
 
                         <button id="barrel_1" title="Barrel 1" onclick="setDrawObject(this, BARREL_1_SCALE)"><img class="object-button" 
                                 src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel1.png"></button>
@@ -230,13 +229,10 @@
                                 src="./assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate11.png"></button>
                     </div>
                 </div>
+
+                </div>
                 
-            </div>
-            <div id="file-container">
-
-
-
-            </div>
+         
         </div>
     <div id="bottom-bar">
         <button id="move-object-button" title="Move objects" ><img style="width:3rem; height: 3rem; padding-left: 0.5rem;" class="object-button" src="./assets/icons/cursor.png" ></button>
