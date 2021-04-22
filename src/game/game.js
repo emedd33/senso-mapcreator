@@ -22,6 +22,8 @@ let selectedObject;
 let objectScale;
 let gameState;
 let objectAngle = 0
+let centerTileVersions
+
 
 // Set up layers
 const backgroundGroup = new PIXI.display.Group(-1, true)
@@ -191,7 +193,9 @@ function onDragMove(event) {
 
 function addTilesToGame(index, tilePos, addCenter) {
     if (addCenter) {
-        drawTile(app, textures.tiles.center, tilePos.y, tilePos.x, index, CENTER)
+        let centerTileVersionNumber = Math.floor(Math.random() * 4);
+        console.log(centerTileVersionNumber);
+        drawTile(app, centerTileVersions[centerTileVersionNumber], tilePos.y, tilePos.x, index, CENTER)
     }
     drawTopLeftTile(app, index, textures, tilePos.x, tilePos.y)
     drawTopTile(app, index, textures, tilePos.x, tilePos.y)

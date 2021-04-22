@@ -186,6 +186,14 @@ function loadTiles() {
         textures.tiles.topleftBottomright.frame = new PIXI.Rectangle(32 * 3, 32 * 6, 32, 32)
         textures.tiles.topleftToprightBottomleftBottomright = PIXI.utils.TextureCache.tiles.clone()
         textures.tiles.topleftToprightBottomleftBottomright.frame = new PIXI.Rectangle(32 * 4, 32 * 6, 32, 32)
+        textures.tiles.center_clone1 = PIXI.utils.TextureCache.tiles.clone()
+        textures.tiles.center_clone1.frame = new PIXI.Rectangle(32 * 5, 32 * 6, 32, 32)
+        textures.tiles.center_clone2 = PIXI.utils.TextureCache.tiles.clone()
+        textures.tiles.center_clone2.frame = new PIXI.Rectangle(32 * 6, 32 * 6, 32, 32)
+        // Row 8
+        textures.tiles.center_clone3 = PIXI.utils.TextureCache.tiles.clone()
+        textures.tiles.center_clone3.frame = new PIXI.Rectangle(32 * 0, 32 * 7, 32, 32)
+        centerTileVersions = [textures.tiles.center, textures.tiles.center_clone1, textures.tiles.center_clone2, textures.tiles.center_clone3]
     })
 
 }
