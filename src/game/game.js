@@ -8,6 +8,8 @@ let app = new PIXI.Application({
 var graphics = new PIXI.Graphics();
 let newGameMatrix;
 let gameHistory;
+let displayGrid = false;
+let gridSprite;
 let interactionType;
 let autodrawSurroundingTiles;
 let objectType;
@@ -17,7 +19,7 @@ let backgroundSprite;
 let selectedObject;
 let objectScale;
 let gameState;
-let objectAngle = 90
+let objectAngle = 0
 
 // Set up layers
 const backgroundGroup = new PIXI.display.Group(-1, true)
@@ -32,25 +34,29 @@ const objectGroup = new PIXI.display.Group(1, true)
 objectGroup.on("sort", ((sprite) => {
     sprite.zOrder = 1;
 }));
-const cursorGroup = new PIXI.display.Group(2, true)
+const gridGroup = new PIXI.display.Group(2, true)
+const cursorGroup = new PIXI.display.Group(3, true)
 objectGroup.on("sort", ((sprite) => {
-    sprite.zOrder = 2;
+    sprite.zOrder = 3;
 }));
 
 app.stage.sortableChildren = true;
 app.stage.addChild(new PIXI.display.Layer(backgroundGroup));
 app.stage.addChild(new PIXI.display.Layer(tileGroup));
 app.stage.addChild(new PIXI.display.Layer(objectGroup));
+app.stage.addChild(new PIXI.display.Layer(gridGroup));
 app.stage.addChild(new PIXI.display.Layer(cursorGroup));
 
 const backgroundContainer = new PIXI.Container({ width: WIDTH, height: HEIGHT });
 const tileContainer = new PIXI.Container({ width: WIDTH, height: HEIGHT });
 const objectContainer = new PIXI.Container({ width: WIDTH, height: HEIGHT });
+const gridContainer = new PIXI.Container({ width: WIDTH, height: HEIGHT });
 const cursorContainer = new PIXI.Container({ width: WIDTH, height: HEIGHT });
 app.stage.addChild(backgroundContainer)
 app.stage.addChild(tileContainer)
 app.stage.addChild(objectContainer)
 app.stage.addChild(cursorContainer)
+app.stage.addChild(gridContainer)
 
 // Load textures 
 const loader = new PIXI.Loader(); // you can also create your own if you want
@@ -62,6 +68,7 @@ loader.load((loader, resources) => {
     
     loadObjects()
     loadTiles()
+    loadGrid()
     app.renderer.plugins.interaction.cursorStyles.default = "none";
     app.renderer.plugins.interaction.cursorStyles.pointer = "none";
     setUpKeyInputs()
@@ -87,7 +94,8 @@ function onPointerDown(event) {
             graphics.clear()
             if(this.type === "object"){
                 if(selectedObject !== this){
-                    selectedObject = this                    
+                    selectedObject = this      
+                    setDrawObject(document.getElementById(""))              
                 }
             } else {
                 selectedObject = undefined
@@ -203,28 +211,6 @@ function addToGame(pos) {
 function removeTilesFromGame(centerTile, centerIndex){
     tileContainer.removeChild(centerTile.sprite)
     newGameMatrix.cleanIndex(centerIndex)
-    // let topIndex = newGameMatrix.getTopIndex(centerIndex);
-    // let topLeftIndex = newGameMatrix.getTopLeftIndex(centerIndex);
-    // let topRightIndex = newGameMatrix.getTopRightIndex(centerIndex);
-    // let leftIndex = newGameMatrix.getLeftIndex(centerIndex);
-    // let rightIndex = newGameMatrix.getRightIndex(centerIndex);
-    // let bottomLeftIndex = newGameMatrix.getBottomLeftIndex(centerIndex);
-    // let bottomIndex = newGameMatrix.getBottomIndex(centerIndex);
-    // let bottomRightIndex = newGameMatrix.getBottomRightIndex(centerIndex);
-    // [topLeftIndex,topIndex, topRightIndex, leftIndex, rightIndex, bottomLeftIndex, bottomIndex, bottomRightIndex].forEach(index=>{
-    //     let tile = newGameMatrix.getIndex(index)
-    //     if (tile.value !== 5){
-    //         tileContainer.removeChild(tile.sprite)
-    //         newGameMatrix.cleanIndex(index)
-    //     }
-    // });
-    // [topLeftIndex,topIndex, topRightIndex, leftIndex, rightIndex, bottomLeftIndex, bottomIndex, bottomRightIndex].forEach(index=>{
-    //     let tile = newGameMatrix.getIndex(index)
-    //     if (tile && tile.value === 5){
-    //         let tilePos = newGameMatrix.getPositionByIndex(index)
-    //         addTilesToGame(index,tilePos,false)
-    //     }
-    // })
 }
 
 document.getElementById("create-game-button").addEventListener("click", function(){

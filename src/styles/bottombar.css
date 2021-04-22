@@ -3,15 +3,78 @@
   grid-column-start: 1;
   grid-column-end: 11;
   background-color: black;
-  height: 10vh;
-  display: flex;
   display: none;
   align-items: center;
   position: fixed;
+  justify-content: space-evenly;
   bottom: 0;
   left: 0;
   width: 100%;
   padding: 1rem;
   -webkit-box-shadow: 0px -6px 5px -1px rgba(100, 100, 100, 0.59);
   box-shadow: 0px -6px 5px -1px rgba(100, 100, 100, 0.59);
+}
+#bottom-bar-actions {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.css-radio-button {
+  height: 3rem;
+  width: 3rem;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  border-style: solid;
+  border-radius: 5px;
+  cursor: pointer;
+  border-color: gray;
+}
+
+input[type="radio"].css-radio-button {
+  display: none;
+}
+input[type="radio"].css-radio-button:checked + label.css-radio-button {
+  border-color: #2fbcdf;
+}
+.css-radio-button:hover {
+  border-color: #2fbcdf;
+}
+label.css-radio-button {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+}
+
+.css-checkbox-button {
+  height: 3rem;
+  width: 3rem;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  border-style: solid;
+  border-radius: 5px;
+  cursor: pointer;
+  border-color: gray;
+}
+
+input[type="checkbox"].css-checkbox-button {
+  display: none;
+}
+input[type="checkbox"].css-checkbox-button:checked + label.css-checkbox-button {
+  border-color: rgb(199, 186, 169);
+}
+
+label.css-checkbox-button {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
 }

@@ -235,11 +235,36 @@
          
         </div>
     <div id="bottom-bar">
-        <button id="move-object-button" title="Move objects" ><img style="width:3rem; height: 3rem; padding-left: 0.5rem;" class="object-button" src="./assets/icons/cursor.png" ></button>
-        <button id="draw-tile-button" title="Draw tiles"><img class="object-button" src="./assets/icons/shovel_icon.png"></button>
-        <button id="remove-tile-button" title="Remove tiles"><img style="width:3rem; height: 3rem; padding-left: 0.5rem;" class="object-button"src="./assets/icons/bulldozer.png"></button>
-        <button id="delete-object-button" title="Delete"><img style="width:3rem; height: 3rem; padding-left: 0.5rem;" class="object-button"src="./assets/icons/delete_icon.png"></button>
-        <button id="download-game-button" title="Download map"><img class="object-button" src="./assets/icons/download_icon.png"></button>
+            <div style="display: flex; justify-content: flex-start;">
+                <input type="radio" id="move-object-button" class="css-radio-button" title="Move objects" name="action">
+                <label for="move-object-button" class="css-radio-button">
+                        <img class="object-button" src="./assets/icons/cursor.png">
+                </label>
+                <input type="radio" id="draw-tile-button" class="css-radio-button" title="Draw tiles" name="action">
+                <label for="draw-tile-button" class="css-radio-button">
+                        <img class="object-button" src="./assets/icons/shovel_icon.png">
+                </label>
+                <input type="radio" id="remove-tile-button" class="css-radio-button" title="Remove tiles" name="action">
+                <label for="remove-tile-button" class="css-radio-button">
+                        <img class="object-button" src="./assets/icons/bulldozer.png">
+                </label>
+                <input type="radio" id="delete-object-button" title="Delete objects" class="css-radio-button" name="action">
+                <label for="delete-object-button" class="css-radio-button">
+                        <img class="object-button" src="./assets/icons/delete_icon.png">
+                </label>
+        </div>
+        <div >
+                <input type="checkbox" id="display-grid-checkbox" title="Display grid" class="css-checkbox-button">
+                <label for="display-grid-checkbox" class="css-checkbox-button">
+                        <img class="object-button" src="./assets/icons/grid_icon.png">
+                </label>
+        </div>
+        <div>
+        <button id="download-game-button" title="Download map"><img class="object-button" src="./assets/icons/download_icon.png"></button> 
+
+        </div>
+
+         
     </div>
     </div>
     <script type="text/javascript" src="game/game.js"></script>

@@ -69,6 +69,13 @@ function loadTextures(loader) {
     loader.add("crate_10", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate10.png")
     loader.add("crate_11", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Crate11.png")
 }
+function loadGrid() {
+    textures.grid = PIXI.utils.TextureCache.grid_32_32.clone()
+    gridSprite = createSprite(textures.grid, 1,0.5)
+    gridSprite.alpha = 0.5
+    gridSprite.zOrder = 2
+    gridSprite.interactive = false
+}
 function loadTiles() {
 
     // Loads Dungeon tiles

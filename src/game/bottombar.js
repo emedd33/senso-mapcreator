@@ -31,6 +31,7 @@ function setupBottomBar(backgroundSprite){
         interactionType = "removeTile"
         let newCursorSprite = new PIXI.Sprite(PIXI.utils.TextureCache.bulldozer);
         newCursorSprite.scale.set(0.05)
+        newCursorSprite.zOrder = 3
         newCursorSprite.anchor.set(0,0.5)
         newCursorSprite.parentGroup = cursorGroup
         cursorContainer.addChild(newCursorSprite)
@@ -47,6 +48,18 @@ function setupBottomBar(backgroundSprite){
         cursorContainer.addChild(newCursorSprite)
         cursorContainer.removeChild(cursorSprite)
         cursorSprite = newCursorSprite
+    })
+    document.getElementById("display-grid-checkbox").addEventListener("change", function (event) {
+        
+        if (!displayGrid){
+            gridContainer.addChild(gridSprite)
+            displayGrid = true
+        } else {
+            
+            gridContainer.removeChild(gridSprite)
+            displayGrid = false
+        }
+        
     })
     
     
