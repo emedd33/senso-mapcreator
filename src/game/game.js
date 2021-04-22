@@ -96,7 +96,6 @@ function onPointerDown(event) {
             if(this.type === "object"){
                 if(selectedObject !== this){
                     selectedObject = this      
-                    setDrawObject(document.getElementById(""))              
                 }
             } else {
                 selectedObject = undefined
@@ -155,9 +154,6 @@ function onDragMove(event) {
         } else if (interactionType === "moveObject") {
             if (this.type === "object") {
                 position = event.data.getLocalPosition(this.parent)
-                if (fixObjectToGrid){
-                    position = getTilePosition(position)
-                }
                 if (this.x !== position.x || this.y !== position.y){
                     selectedObject = undefined
                     graphics.clear()

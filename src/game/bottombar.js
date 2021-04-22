@@ -1,6 +1,7 @@
 function setupBottomBar(backgroundSprite){
 
     document.getElementById("move-object-button").addEventListener("click", function () {
+        
         backgroundSprite.interactive = true
         interactionType = "moveObject"
         newCursorSprite = new PIXI.Sprite(textures.objects.cursor);
