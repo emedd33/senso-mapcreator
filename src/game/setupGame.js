@@ -1,6 +1,6 @@
-function resetGame(){
+function resetGame() {
     app.stage.scale.set(globalScale)
-    newGameMatrix = new GameMatrix(MATRIX_WIDTH/globalScale, MATRIX_HEIGHT/globalScale)
+    newGameMatrix = new GameMatrix(MATRIX_WIDTH / globalScale, MATRIX_HEIGHT / globalScale)
     gameHistory = new GameHistory()
     newGameMatrix.printMatrix()
     interactionType = "moveObject";
@@ -11,10 +11,10 @@ function resetGame(){
         tiles: {},
         objects: {},
         gameMatrix: newGameMatrix
-    }    
+    }
     let newCursorSprite = new PIXI.Sprite(PIXI.utils.TextureCache.cursor);
-    newCursorSprite.scale.set(0.05/globalScale)
-    newCursorSprite.anchor.set(0,0.5)
+    newCursorSprite.scale.set(0.05 / globalScale)
+    newCursorSprite.anchor.set(0, 0.5)
     newCursorSprite.parentGroup = cursorGroup
     cursorContainer.addChild(newCursorSprite)
     cursorContainer.removeChild(cursorSprite)
@@ -22,9 +22,8 @@ function resetGame(){
     tileContainer.removeChildren()
     cursorSprite = newCursorSprite
     backgroundContainer.removeChildren()
-    changeBackgroundTexture("gray")
-   
+
 }
-function setupEnvironment(){
-    
+function setupEnvironment() {
+
 }

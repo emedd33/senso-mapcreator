@@ -69,7 +69,6 @@ const textures = { tiles: {}, objects: {} }
 // Event functions
 loadTextures(loader)
 loader.load((loader, resources) => {
-
     loadObjects()
     loadGrid()
     app.renderer.plugins.interaction.cursorStyles.default = "none";
@@ -227,7 +226,7 @@ document.getElementById("create-game-button").addEventListener("click", function
     document.getElementById("bottom-bar").style.display = "flex"
     document.getElementById("game-container").appendChild(app.view)
     resetGame()
-    changeBackgroundTexture("gray")
+    changeBackgroundTexture(selectedTile)
     setupBottomBar(backgroundSprite)
     setupSidebar(backgroundSprite)
     app.stage.addChild(graphics);

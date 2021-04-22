@@ -16,9 +16,14 @@
   gap: 10px;
 }
 #select-environment-tile-container {
-  display: flex;
+  align-items: center;
   justify-content: center;
-  display: flex;
+  justify-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .css-radio {
@@ -31,6 +36,7 @@
   border-style: solid;
   border-radius: 5px;
   cursor: pointer;
+  padding: 2px;
   border-color: gray;
 }
 input[type="radio"].css-radio {
@@ -38,6 +44,7 @@ input[type="radio"].css-radio {
 }
 input[type="radio"].css-radio:checked + label.css-radio {
   border-color: #2fbcdf;
+  border-width: 5px;
 }
 .css-radio:hover {
   border-color: #2fbcdf;

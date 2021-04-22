@@ -1,10 +1,13 @@
 function loadTextures(loader) {
+    loader.add("grid_32_32", "assets/textures/grids/32-32-grid.png")
+    loader.add("gray_background", "assets/textures/grids/gray_background.png")
+    loader.add("water_background", "assets/textures/grids/water_background.jpg")
+    // Icons
     loader.add("cursor", "assets/icons/cursor.png")
     loader.add("bulldozer", "assets/icons/bulldozer.png")
     loader.add("delete", "assets/icons/delete_icon.png")
     loader.add("shovel", "assets/icons/shovel_icon.png")
-    loader.add("grid_32_32", "assets/textures/grids/32-32-grid.png")
-    loader.add("gray_background", "assets/textures/grids/gray_background.png")
+    // TC basics asset pack
     loader.add("barrel_1", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel1.png")
     loader.add("barrel_2", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel2.png")
     loader.add("barrel_3", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel3.png")
