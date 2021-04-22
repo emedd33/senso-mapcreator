@@ -3,7 +3,12 @@ class GameMatrix{
     height;
     matrix;
     size;
+    maxXPos;
     constructor(width, height){
+        if (width % 1 !== 0 || height % 1 !==0){
+            width = Math.floor(width)
+            height = Math.floor(height)
+        }
         this.width = width
         this.height = height
         this.size = width*height

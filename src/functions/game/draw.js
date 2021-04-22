@@ -1,21 +1,24 @@
 
-function drawTile(app, texture, x, y, index, indexValue) {
-    const tileSprite = new PIXI.Sprite(texture);
-    let previousTile = newGameMatrix.getIndex(index)
-    tileSprite.id = index
-    tileSprite.type = "tile"
-    tileSprite.y = x
-    tileSprite.x = y;
-    tileSprite.parentGroup = tileGroup
-    tileSprite.interactive = false
-    tileSprite
-    .on('pointerdown', onPointerDown)
-    .on('pointerup', onDragEnd)
-    .on('pointerupoutside', onDragEnd)
-    .on('pointermove', onDragMove);
-    tileContainer.addChild(tileSprite)
-    tileContainer.removeChild(previousTile.sprite)
-    newGameMatrix.updateByIndex(index, tileSprite,indexValue)
+function drawTile(app, texture,  y,x, index, indexValue) {
+    if (x < newGameMatrix.width*TEXTURE_WIDTH && x >= 0){
+
+        const tileSprite = new PIXI.Sprite(texture);
+        let previousTile = newGameMatrix.getIndex(index)
+        tileSprite.id = index
+        tileSprite.type = "tile"
+        tileSprite.y = y
+        tileSprite.x = x;
+        tileSprite.parentGroup = tileGroup
+        tileSprite.interactive = false
+        tileSprite
+        .on('pointerdown', onPointerDown)
+        .on('pointerup', onDragEnd)
+        .on('pointerupoutside', onDragEnd)
+        .on('pointermove', onDragMove);
+        tileContainer.addChild(tileSprite)
+        tileContainer.removeChild(previousTile.sprite)
+        newGameMatrix.updateByIndex(index, tileSprite,indexValue)
+    }
 }
 function drawObject(objectTexture, scale, pos, type) {
     let objectSprite = createSprite(objectTexture,scale,0.5)

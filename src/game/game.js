@@ -225,11 +225,11 @@ document.getElementById("create-game-button").addEventListener("click", function
     app.stage.addChild(graphics);
 })
 document.getElementById("select-small-environment").addEventListener("click", function(){
-    globalScale = 2
+    globalScale = 1.2
 })
 document.getElementById("select-medium-environment").addEventListener("click", function(){
     globalScale = 1
 })
 document.getElementById("select-large-environment").addEventListener("click", function(){
-    globalScale = 0.5
+    globalScale = 0.8
 })
