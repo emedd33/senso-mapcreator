@@ -227,7 +227,7 @@ document.getElementById("create-game-button").addEventListener("click", function
     document.getElementById("bottom-bar").style.display = "flex"
     document.getElementById("game-container").appendChild(app.view)
     resetGame()
-    changeBackgroundTexture("gray")
+    changeBackgroundTexture(selectedTile)
     setupBottomBar(backgroundSprite)
     setupSidebar(backgroundSprite)
     app.stage.addChild(graphics);
@@ -244,6 +244,8 @@ document.getElementById("select-large-environment").addEventListener("click", fu
 document.getElementById("select-dungeon-map-tile").addEventListener("click", function () {
     selectedTile = "dungeon-tile";
 })
-document.getElementById("select-grass-map-tile").addEventListener("click", function () {
-    selectedTile = "grass-tile";
+
+document.getElementById("select-ocean-map-tile").addEventListener("click", function () {
+    console.log("hei");
+    selectedTile = "ocean-tile";
 })
