@@ -1,12 +1,15 @@
 function changeBackgroundTexture(type) {
     let backgroundTexture;
-    console.log(type);
     if (type === "dungeon-tile") {
         backgroundTexture = PIXI.utils.TextureCache.gray_background
         gameState.background.texture = "gray_background"
-    } else if (type === "grass-tile") {
+    }
+    else if (type === "grass-tile") {
         backgroundTexture = PIXI.utils.TextureCache.water_background
         gameState.background.texture = "water_background"
+    } else if (type === "ocean-tile") {
+        backgroundTexture = PIXI.utils.TextureCache.ocean_background
+        gameState.background.texture = "ocean_background"
     }
     backgroundTexture.frame = new PIXI.Rectangle(0, 0, app.view.width / globalScale, app.view.height / globalScale)
     newBackgroundSprite = new PIXI.Sprite(backgroundTexture);

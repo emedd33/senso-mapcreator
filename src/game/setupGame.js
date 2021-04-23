@@ -22,7 +22,6 @@ function resetGame() {
     tileContainer.removeChildren()
     cursorSprite = newCursorSprite
     backgroundContainer.removeChildren()
-
 }
 function setupEnvironment() {
 

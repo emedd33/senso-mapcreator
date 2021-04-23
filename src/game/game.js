@@ -243,6 +243,8 @@ document.getElementById("select-large-environment").addEventListener("click", fu
 document.getElementById("select-dungeon-map-tile").addEventListener("click", function () {
     selectedTile = "dungeon-tile";
 })
-document.getElementById("select-grass-map-tile").addEventListener("click", function () {
-    selectedTile = "grass-tile";
+
+document.getElementById("select-ocean-map-tile").addEventListener("click", function () {
+    console.log("hei");
+    selectedTile = "ocean-tile";
 })
