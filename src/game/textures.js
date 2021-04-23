@@ -9,7 +9,6 @@ function loadTextures(loader) {
     loader.add("delete", "assets/icons/delete_icon.png")
     loader.add("shovel", "assets/icons/shovel_icon.png")
     // TC basics asset pack
-    loader.add("grid_32_32", "assets/textures/grids/32-32-grid.png")
     loader.add("barrel_1", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel1.png")
     loader.add("barrel_2", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel2.png")
     loader.add("barrel_3", "assets/textures/objects/TC_Basics_Asset_Pack/TC_Basics Asset Pack_Barrel3.png")

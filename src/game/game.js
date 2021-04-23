@@ -245,6 +245,9 @@ document.getElementById("select-dungeon-map-tile").addEventListener("click", fun
 })
 
 document.getElementById("select-ocean-map-tile").addEventListener("click", function () {
-    console.log("hei");
     selectedTile = "ocean-tile";
+}
+)
+document.getElementById("select-grass-map-tile").addEventListener("click", function () {
+    selectedTile = "grass-tile";
 })
