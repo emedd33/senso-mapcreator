@@ -15,7 +15,7 @@ let selectedTile = "dungeon-tile";
 let autodrawSurroundingTiles;
 let objectType;
 let tileType;
-let fixObjectToGrid = false;
+let fixObjectPosition = "free";
 let cursorSprite;
 let backgroundSprite;
 let selectedObject;
@@ -138,8 +138,8 @@ function onDragMove(event) {
         position = event.data.getLocalPosition(this.parent)
     }
     if (cursorSprite && position) {
-        if (fixObjectToGrid && interactionType === "drawObject") {
-            position = getTilePosition(position)
+        if (fixObjectPosition !== "free" && interactionType === "drawObject") {
+            position = getTilePosition(position, fixObjectPosition)
         }
         cursorSprite.x = position.x
         cursorSprite.y = position.y

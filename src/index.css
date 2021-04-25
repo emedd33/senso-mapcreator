@@ -58,7 +58,8 @@ a:hover {
 
 #game-container {
   z-index: 0;
-  padding: 5rem;
+  margin-bottom: 10%;
+  padding: 2rem;
 }
 
 #tiles-container {
