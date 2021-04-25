@@ -193,7 +193,6 @@ function onDragMove(event) {
 function addTilesToGame(index, tilePos, addCenter) {
     if (addCenter) {
         let centerTileVersionNumber = Math.floor(Math.random() * 4);
-        console.log(centerTileVersionNumber);
         drawTile(app, centerTileVersions[centerTileVersionNumber], tilePos.y, tilePos.x, index, CENTER)
     }
     drawTopLeftTile(app, index, textures, tilePos.x, tilePos.y)

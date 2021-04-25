@@ -2,7 +2,6 @@ function resetGame() {
     app.stage.scale.set(globalScale)
     newGameMatrix = new GameMatrix(MATRIX_WIDTH / globalScale, MATRIX_HEIGHT / globalScale)
     gameHistory = new GameHistory()
-    newGameMatrix.printMatrix()
     interactionType = "moveObject";
     objectScale = 1;
     autodrawSurroundingTiles = true;
