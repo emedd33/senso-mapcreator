@@ -83,7 +83,6 @@
 
 
                         <div id="objects-container">
-                                <p style="margin-bottom: 0; text-align: center; width: 100%;">Objects</p>
                                 <div id="preview-object-container">
                                         <img id="selected-object-img" src="" style=" display: none;">
                                 </div>
@@ -749,6 +748,15 @@
                                         <img class="object-button" src="./assets/icons/delete_icon.png">
                                 </label>
                         </div>
+
+                        <div>
+                                <button id="undo-action-button" title="Undo action"><img class="object-button"
+                                                src="./assets/icons/undo_icon.png"></button>
+                                <button id="redo-action-button" title="Redo action"><img class="object-button"
+                                                src="./assets/icons/undo_icon.png"
+                                                style="transform: scaleX(-1);"></button>
+
+                        </div>
                         <div>
                                 <input type="checkbox" id="display-grid-checkbox" title="Display grid"
                                         class="css-checkbox-button">
@@ -756,6 +764,8 @@
                                         <img class="object-button" src="./assets/icons/grid_icon.png">
                                 </label>
                         </div>
+
+
                         <div>
                                 <button id="download-game-button" title="Download map"><img class="object-button"
                                                 src="./assets/icons/download_icon.png"></button>

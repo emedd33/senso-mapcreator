@@ -1,8 +1,8 @@
 const OLD_WHITE = 0xFAEBD7
 const TEXTURE_WIDTH = 32
 const TEXTURE_HEIGHT = 32
-const WIDTH = window.innerWidth*0.8 - window.innerWidth*0.8%TEXTURE_WIDTH
-const HEIGHT = window.innerHeight*0.8 - window.innerHeight*0.8%TEXTURE_HEIGHT
+const WIDTH = window.innerWidth * 0.8 - window.innerWidth * 0.8 % TEXTURE_WIDTH
+const HEIGHT = window.innerHeight * 0.8 - window.innerHeight * 0.8 % TEXTURE_HEIGHT
 const MATRIX_WIDTH = (WIDTH / TEXTURE_WIDTH)
 const MATRIX_HEIGHT = (HEIGHT / TEXTURE_HEIGHT)
 
@@ -67,9 +67,9 @@ const BARROW_SCALE = 0.2
 const BATHTUB_SCALE = 0.2
 const BENCH_1_SCALE = 0.2
 const BENCH_2_SCALE = 0.2
-const BENCH_TABLE_1_SCALE = 0.2
-const BENCH_TABLE_2_SCALE = 0.2
-const BENCH_TABLE_3_SCALE = 0.2
+const BENCH_TABLE_1_SCALE = 0.1
+const BENCH_TABLE_2_SCALE = 0.1
+const BENCH_TABLE_3_SCALE = 0.1
 const BOOK_1_SCALE = 0.2
 const BOOK_2_SCALE = 0.2
 const BOOK_3_SCALE = 0.2
